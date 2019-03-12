@@ -1,0 +1,155 @@
+package com.deque.axe.android.wrappers;
+
+import com.deque.axe.android.AxeView;
+import com.deque.axe.android.AxeView.Builder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AxeViewBuilder implements Builder {
+
+  private List<Builder> children = new ArrayList<>();
+
+  private AxeRect boundsInScreen = new AxeRect(0, 0, 0, 0);
+
+  private String className = Object.class.getSimpleName();
+
+  private String contentDescription = null;
+
+  private boolean isAccessibilityFocusable = false;
+
+  private boolean isClickable = false;
+
+  private boolean isEnabled = true;
+
+  private boolean isImportantForAccessibility = false;
+
+  private AxeView labeledBy = null;
+
+  private String text = null;
+
+  public AxeViewBuilder() { }
+
+  private AxeViewBuilder(AxeViewBuilder deepCopyThis) {
+    children = deepCopyThis.children;
+    boundsInScreen = deepCopyThis.boundsInScreen;
+    className = deepCopyThis.className;
+    contentDescription = deepCopyThis.contentDescription;
+    isAccessibilityFocusable = deepCopyThis.isAccessibilityFocusable;
+    isClickable = deepCopyThis.isClickable;
+    isEnabled = deepCopyThis.isEnabled;
+    isImportantForAccessibility = deepCopyThis.isImportantForAccessibility;
+    labeledBy = deepCopyThis.labeledBy;
+    text = deepCopyThis.text;
+  }
+
+  /**
+   * Add a child builder to this hierarchy. This child is deep copied,
+   * so the same builder can be used to create another child. In fact,
+   * you could continually reference the same builder, but that would
+   * be hard to do correctly. Don't do this.
+   * @param child The child builder to add.
+   */
+  public void addChild(AxeViewBuilder child) {
+
+    AxeViewBuilder copy = new AxeViewBuilder(child);
+
+    children.add(copy);
+  }
+
+  public AxeViewBuilder boundsInScreen(final AxeRect boundsInScreen) {
+    this.boundsInScreen = boundsInScreen;
+    return this;
+  }
+
+  public AxeRect boundsInScreen() {
+    return boundsInScreen;
+  }
+
+  public AxeViewBuilder className(final String newValue) {
+    className = newValue;
+    return this;
+  }
+
+  public String className() {
+    return className;
+  }
+
+  public AxeViewBuilder contentDescription(final String newValue) {
+    this.contentDescription = newValue;
+    return this;
+  }
+
+  public String contentDescription() {
+    return contentDescription;
+  }
+
+  public AxeViewBuilder isAccessibilityFocusable(final boolean newValue) {
+    isAccessibilityFocusable = newValue;
+    return this;
+  }
+
+  public boolean isAccessibilityFocusable() {
+    return isAccessibilityFocusable;
+  }
+
+  public AxeViewBuilder isClickable(final boolean isClickable) {
+    this.isClickable = isClickable;
+    return this;
+  }
+
+  @Override
+  public boolean isClickable() {
+    return isClickable;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return isEnabled;
+  }
+
+  public AxeViewBuilder isEnabled(final boolean newValue) {
+    isEnabled = newValue;
+    return this;
+  }
+
+  @Override
+  public boolean isImportantForAccessibility() {
+    return isImportantForAccessibility;
+  }
+
+  public AxeViewBuilder isImportantForAccessibility(final boolean newValue) {
+    isImportantForAccessibility = newValue;
+    return this;
+  }
+
+  @Override
+  public AxeView labeledBy() {
+    return labeledBy;
+  }
+
+  public AxeViewBuilder text(final String newValue) {
+    this.text = newValue;
+    return this;
+  }
+
+  public String text() {
+    return text;
+  }
+
+  @Override
+  public List<AxeView> children() {
+
+    List<AxeView> results = new ArrayList<>();
+
+    for (final AxeView.Builder childBuilder : children) {
+      results.add(new AxeView(childBuilder));
+    }
+
+    return results;
+  }
+
+  public AxeView build() {
+    return new AxeView(this);
+  }
+}

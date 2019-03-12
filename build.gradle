@@ -1,0 +1,154 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.9.3"
+    }
+}
+
+plugins {
+    id "com.github.spotbugs" version "1.6.11"
+}
+
+apply plugin: 'java'
+
+def gitDescribe = { ->
+    def stdout = new ByteArrayOutputStream()
+
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+
+    return stdout.toString().trim()
+}
+
+def mavenVersion = { ->
+
+    if (gitDescribe().contains('-')) {
+        return "develop-SNAPSHOT"
+    } else {
+        return gitDescribe().toString()
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:support-annotations:24.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.jetbrains:annotations:15.0'
+
+    testImplementation 'ar.com.hjg:pngj:2.1.0'
+    testImplementation 'junit:junit:4.12'
+
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.2"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+tasks.withType(JacocoCoverageVerification) {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.85
+            }
+        }
+    }
+}
+
+task codeCoverage {
+    dependsOn 'clean'
+    dependsOn 'test'
+    dependsOn 'jacocoTestCoverageVerification'
+    dependsOn 'jacocoTestReport'
+}
+
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion "8.18"
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+dependencies {
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+}
+
+spotbugs {
+    toolVersion = '3.1.12'
+}
+
+spotbugsTest.enabled = false
+
+// To generate an HTML report instead of XML
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    reports.xml.enabled = false
+    reports.html.enabled = true
+}
+
+if (!(hasProperty('artifactory_username') && hasProperty('artifactory_apikey'))) {
+    print ("No artifactory Info. Publishing impossible.")
+    return
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.deque.axe'
+            artifactId = 'axeandroid'
+            version = mavenVersion()
+            from components.java
+        }
+    }
+}
+
+apply plugin: 'com.jfrog.artifactory'
+
+artifactory {
+    contextUrl = 'https://agora.dequecloud.com/artifactory'
+
+    publish {
+
+        repository {
+            repoKey = 'axe-android'
+
+            // Set these in your gradle props to empty!
+            username = artifactory_username
+            password = artifactory_apikey
+        }
+
+        defaults {
+            publications('maven')
+            publishArtifacts = true
+        }
+    }
+
+    clientConfig.info.setBuildName(gitDescribe.toString())
+}
+
+artifactoryPublish {
+    dependsOn jar
+}
+

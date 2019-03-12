@@ -1,0 +1,17 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+.DS_Store
+/build
+.idea/libraries
+.idea
+*.iml
+app-release.apk
+build
+AxeAndroid/build
+AxeCore/build
+google-services.json
+axe-android-services-key.json
+release_notes.txt
+AxeAndroid/release
+AxeAndroid/src/main/play/release-notes

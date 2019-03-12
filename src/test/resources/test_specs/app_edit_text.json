@@ -1,0 +1,595 @@
+{
+  "axeConf": {
+    "ruleIds": ["EditTextName", "EditTextValue"],
+    "standards": []
+  },
+  "axeContext": {
+    "axeView": {
+      "axeViewId": -203780985,
+      "boundsInScreen": {
+        "bottom": 1920,
+        "left": 0,
+        "right": 1080,
+        "top": 0
+      },
+      "children": [
+        {
+          "axeViewId": -1948329793,
+          "boundsInScreen": {
+            "bottom": 1794,
+            "left": 0,
+            "right": 1080,
+            "top": 0
+          },
+          "children": [
+            {
+              "axeViewId": 592380438,
+              "boundsInScreen": {
+                "bottom": 1794,
+                "left": 0,
+                "right": 1080,
+                "top": 63
+              },
+              "children": [
+                {
+                  "axeViewId": -2020750822,
+                  "boundsInScreen": {
+                    "bottom": 1794,
+                    "left": 0,
+                    "right": 1080,
+                    "top": 63
+                  },
+                  "children": [
+                    {
+                      "axeViewId": 580920856,
+                      "boundsInScreen": {
+                        "bottom": 210,
+                        "left": 0,
+                        "right": 1080,
+                        "top": 63
+                      },
+                      "children": [
+                        {
+                          "axeViewId": -377143524,
+                          "boundsInScreen": {
+                            "bottom": 210,
+                            "left": 0,
+                            "right": 1080,
+                            "top": 63
+                          },
+                          "children": [
+                            {
+                              "axeViewId": -681613253,
+                              "boundsInScreen": {
+                                "bottom": 210,
+                                "left": 0,
+                                "right": 147,
+                                "top": 63
+                              },
+                              "children": [],
+                              "className": "android.widget.ImageButton",
+                              "contentDescription": "Navigate up",
+                              "isAccessibilityFocusable": true,
+                              "isImportantForAccessibility": true,
+                              "labeledBy": null,
+                              "text": null
+                            },
+                            {
+                              "axeViewId": -394811402,
+                              "boundsInScreen": {
+                                "bottom": 172,
+                                "left": 189,
+                                "right": 397,
+                                "top": 101
+                              },
+                              "children": [],
+                              "className": "android.widget.TextView",
+                              "contentDescription": null,
+                              "isAccessibilityFocusable": true,
+                              "isImportantForAccessibility": true,
+                              "labeledBy": null,
+                              "text": "Edit Text"
+                            },
+                            {
+                              "axeViewId": 493312649,
+                              "boundsInScreen": {
+                                "bottom": 210,
+                                "left": 1080,
+                                "right": 1080,
+                                "top": 63
+                              },
+                              "children": [],
+                              "className": "android.support.v7.widget.LinearLayoutCompat",
+                              "contentDescription": null,
+                              "isAccessibilityFocusable": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null
+                            }
+                          ],
+                          "className": "android.view.ViewGroup",
+                          "contentDescription": null,
+                          "isAccessibilityFocusable": true,
+                          "isImportantForAccessibility": false,
+                          "labeledBy": null,
+                          "text": null
+                        }
+                      ],
+                      "className": "android.widget.FrameLayout",
+                      "contentDescription": null,
+                      "isAccessibilityFocusable": true,
+                      "isImportantForAccessibility": false,
+                      "labeledBy": null,
+                      "text": null
+                    },
+                    {
+                      "axeViewId": 1323603128,
+                      "boundsInScreen": {
+                        "bottom": 1794,
+                        "left": 0,
+                        "right": 1080,
+                        "top": 210
+                      },
+                      "children": [
+                        {
+                          "axeViewId": -658840835,
+                          "boundsInScreen": {
+                            "bottom": 210,
+                            "left": 0,
+                            "right": 0,
+                            "top": 210
+                          },
+                          "children": [],
+                          "className": "android.view.View",
+                          "contentDescription": null,
+                          "isAccessibilityFocusable": true,
+                          "isImportantForAccessibility": true,
+                          "labeledBy": null,
+                          "text": null
+                        },
+                        {
+                          "axeViewId": -605509694,
+                          "boundsInScreen": {
+                            "bottom": 1794,
+                            "left": 0,
+                            "right": 1080,
+                            "top": 210
+                          },
+                          "children": [
+                            {
+                              "axeViewId": -486939088,
+                              "boundsInScreen": {
+                                "bottom": 1252,
+                                "left": 42,
+                                "right": 1038,
+                                "top": 210
+                              },
+                              "children": [
+                                {
+                                  "axeViewId": 254480046,
+                                  "boundsInScreen": {
+                                    "bottom": 357,
+                                    "left": 42,
+                                    "right": 1038,
+                                    "top": 252
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.TextView",
+                                  "contentDescription": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isImportantForAccessibility": true,
+                                  "labeledBy": null,
+                                  "text": "Introduction"
+                                },
+                                {
+                                  "axeViewId": -1153059972,
+                                  "boundsInScreen": {
+                                    "bottom": 523,
+                                    "left": 42,
+                                    "right": 1038,
+                                    "top": 357
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.TextView",
+                                  "contentDescription": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isImportantForAccessibility": true,
+                                  "labeledBy": null,
+                                  "text": "The entered text in editable views, as well as its purpose, must be available to screen reader users."
+                                },
+                                {
+                                  "axeViewId": -1200369905,
+                                  "boundsInScreen": {
+                                    "bottom": 1210,
+                                    "left": 42,
+                                    "right": 1038,
+                                    "top": 523
+                                  },
+                                  "children": [
+                                    {
+                                      "axeViewId": -445283288,
+                                      "boundsInScreen": {
+                                        "bottom": 1189,
+                                        "left": 42,
+                                        "right": 1038,
+                                        "top": 523
+                                      },
+                                      "children": [
+                                        {
+                                          "axeViewId": 307809741,
+                                          "boundsInScreen": {
+                                            "bottom": 586,
+                                            "left": 84,
+                                            "right": 996,
+                                            "top": 523
+                                          },
+                                          "children": [],
+                                          "className": "android.widget.TextView",
+                                          "contentDescription": null,
+                                          "isAccessibilityFocusable": true,
+                                          "isImportantForAccessibility": true,
+                                          "labeledBy": null,
+                                          "text": "Minor WCAG #1.3.1 Issue"
+                                        },
+                                        {
+                                          "axeViewId": -1311634303,
+                                          "boundsInScreen": {
+                                            "bottom": 801,
+                                            "left": 84,
+                                            "right": 996,
+                                            "top": 607
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": -1311634303,
+                                              "boundsInScreen": {
+                                                "bottom": 801,
+                                                "left": 84,
+                                                "right": 996,
+                                                "top": 607
+                                              },
+                                              "children": [
+                                                {
+                                                  "axeViewId": -1932824487,
+                                                  "boundsInScreen": {
+                                                    "bottom": 801,
+                                                    "left": 84,
+                                                    "right": 806,
+                                                    "top": 607
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "axeViewId": 1203791715,
+                                                      "boundsInScreen": {
+                                                        "bottom": 775,
+                                                        "left": 126,
+                                                        "right": 764,
+                                                        "top": 633
+                                                      },
+                                                      "children": [],
+                                                      "className": "android.widget.EditText",
+                                                      "contentDescription": null,
+                                                      "isAccessibilityFocusable": true,
+                                                      "isImportantForAccessibility": true,
+                                                      "labeledBy": null,
+                                                      "text": "Name"
+                                                    }
+                                                  ],
+                                                  "className": "android.widget.LinearLayout",
+                                                  "contentDescription": null,
+                                                  "isAccessibilityFocusable": true,
+                                                  "isImportantForAccessibility": false,
+                                                  "labeledBy": null,
+                                                  "text": null
+                                                },
+                                                {
+                                                  "axeViewId": -240990781,
+                                                  "boundsInScreen": {
+                                                    "bottom": 767,
+                                                    "left": 869,
+                                                    "right": 995,
+                                                    "top": 641
+                                                  },
+                                                  "children": [],
+                                                  "className": "android.widget.ToggleButton",
+                                                  "contentDescription": "Toggle for more information",
+                                                  "isAccessibilityFocusable": true,
+                                                  "isImportantForAccessibility": true,
+                                                  "labeledBy": null,
+                                                  "text": null
+                                                }
+                                              ],
+                                              "className": "android.widget.LinearLayout",
+                                              "contentDescription": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isImportantForAccessibility": false,
+                                              "labeledBy": null,
+                                              "text": null
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "isAccessibilityFocusable": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null
+                                        },
+                                        {
+                                          "axeViewId": 1150313379,
+                                          "boundsInScreen": {
+                                            "bottom": 927,
+                                            "left": 84,
+                                            "right": 996,
+                                            "top": 864
+                                          },
+                                          "children": [],
+                                          "className": "android.widget.TextView",
+                                          "contentDescription": null,
+                                          "isAccessibilityFocusable": true,
+                                          "isImportantForAccessibility": true,
+                                          "labeledBy": null,
+                                          "text": "Passing"
+                                        },
+                                        {
+                                          "axeViewId": 947511780,
+                                          "boundsInScreen": {
+                                            "bottom": 1126,
+                                            "left": 84,
+                                            "right": 996,
+                                            "top": 948
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": 947511780,
+                                              "boundsInScreen": {
+                                                "bottom": 1126,
+                                                "left": 84,
+                                                "right": 996,
+                                                "top": 948
+                                              },
+                                              "children": [
+                                                {
+                                                  "axeViewId": 326321596,
+                                                  "boundsInScreen": {
+                                                    "bottom": 1126,
+                                                    "left": 84,
+                                                    "right": 806,
+                                                    "top": 948
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "axeViewId": -947576278,
+                                                      "boundsInScreen": {
+                                                        "bottom": 1100,
+                                                        "left": 126,
+                                                        "right": 224,
+                                                        "top": 974
+                                                      },
+                                                      "children": [],
+                                                      "className": "android.widget.TextView",
+                                                      "contentDescription": null,
+                                                      "isAccessibilityFocusable": true,
+                                                      "isImportantForAccessibility": true,
+                                                      "labeledBy": null,
+                                                      "text": "Name"
+                                                    },
+                                                    {
+                                                      "axeViewId": 50978602,
+                                                      "boundsInScreen": {
+                                                        "bottom": 1100,
+                                                        "left": 224,
+                                                        "right": 764,
+                                                        "top": 974
+                                                      },
+                                                      "children": [],
+                                                      "className": "android.widget.EditText",
+                                                      "contentDescription": null,
+                                                      "isAccessibilityFocusable": true,
+                                                      "isImportantForAccessibility": true,
+                                                      "labeledBy": {
+                                                        "axeViewId": -947576278,
+                                                        "boundsInScreen": {
+                                                          "bottom": 1100,
+                                                          "left": 126,
+                                                          "right": 224,
+                                                          "top": 974
+                                                        },
+                                                        "children": [],
+                                                        "className": "android.widget.TextView",
+                                                        "contentDescription": null,
+                                                        "isAccessibilityFocusable": true,
+                                                        "isImportantForAccessibility": true,
+                                                        "labeledBy": null,
+                                                        "text": "Name"
+                                                      },
+                                                      "text": "John"
+                                                    }
+                                                  ],
+                                                  "className": "android.widget.LinearLayout",
+                                                  "contentDescription": null,
+                                                  "isAccessibilityFocusable": true,
+                                                  "isImportantForAccessibility": false,
+                                                  "labeledBy": null,
+                                                  "text": null
+                                                },
+                                                {
+                                                  "axeViewId": 1459006586,
+                                                  "boundsInScreen": {
+                                                    "bottom": 1100,
+                                                    "left": 869,
+                                                    "right": 995,
+                                                    "top": 974
+                                                  },
+                                                  "children": [],
+                                                  "className": "android.widget.ToggleButton",
+                                                  "contentDescription": "Toggle for more information",
+                                                  "isAccessibilityFocusable": true,
+                                                  "isImportantForAccessibility": true,
+                                                  "labeledBy": null,
+                                                  "text": null
+                                                }
+                                              ],
+                                              "className": "android.widget.LinearLayout",
+                                              "contentDescription": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isImportantForAccessibility": false,
+                                              "labeledBy": null,
+                                              "text": null
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "isAccessibilityFocusable": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null
+                                        }
+                                      ],
+                                      "className": "android.widget.LinearLayout",
+                                      "contentDescription": null,
+                                      "isAccessibilityFocusable": true,
+                                      "isImportantForAccessibility": false,
+                                      "labeledBy": null,
+                                      "text": null
+                                    }
+                                  ],
+                                  "className": "android.widget.FrameLayout",
+                                  "contentDescription": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null
+                                }
+                              ],
+                              "className": "android.view.ViewGroup",
+                              "contentDescription": null,
+                              "isAccessibilityFocusable": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null
+                            }
+                          ],
+                          "className": "android.widget.ScrollView",
+                          "contentDescription": null,
+                          "isAccessibilityFocusable": true,
+                          "isImportantForAccessibility": true,
+                          "labeledBy": null,
+                          "text": null
+                        }
+                      ],
+                      "className": "android.widget.FrameLayout",
+                      "contentDescription": null,
+                      "isAccessibilityFocusable": true,
+                      "isImportantForAccessibility": false,
+                      "labeledBy": null,
+                      "text": null
+                    }
+                  ],
+                  "className": "android.view.ViewGroup",
+                  "contentDescription": null,
+                  "isAccessibilityFocusable": true,
+                  "isImportantForAccessibility": false,
+                  "labeledBy": null,
+                  "text": null
+                }
+              ],
+              "className": "android.widget.FrameLayout",
+              "contentDescription": null,
+              "isAccessibilityFocusable": true,
+              "isImportantForAccessibility": false,
+              "labeledBy": null,
+              "text": null
+            }
+          ],
+          "className": "android.widget.LinearLayout",
+          "contentDescription": null,
+          "isAccessibilityFocusable": true,
+          "isImportantForAccessibility": false,
+          "labeledBy": null,
+          "text": null
+        },
+        {
+          "axeViewId": 2082721656,
+          "boundsInScreen": {
+            "bottom": 63,
+            "left": 0,
+            "right": 1080,
+            "top": 0
+          },
+          "children": [],
+          "className": "android.view.View",
+          "contentDescription": null,
+          "isAccessibilityFocusable": true,
+          "isImportantForAccessibility": false,
+          "labeledBy": null,
+          "text": null
+        },
+        {
+          "axeViewId": -1735500234,
+          "boundsInScreen": {
+            "bottom": 1920,
+            "left": 0,
+            "right": 1080,
+            "top": 1794
+          },
+          "children": [],
+          "className": "android.view.View",
+          "contentDescription": null,
+          "isAccessibilityFocusable": true,
+          "isImportantForAccessibility": false,
+          "labeledBy": null,
+          "text": null
+        }
+      ],
+      "className": "android.widget.FrameLayout",
+      "contentDescription": null,
+      "isAccessibilityFocusable": true,
+      "isImportantForAccessibility": true,
+      "labeledBy": null,
+      "text": null
+    },
+    "screenshot": null
+  },
+  "axeRuleResults": [
+    {
+      "axeViewId": 1203791715,
+      "props": {
+        "labeledBy": null,
+        "className": "android.widget.EditText"
+      },
+      "ruleId": "EditTextName",
+      "ruleSummary": "Views that have modifiable Values should get their name from a nearby Label.",
+      "status": "FAIL"
+    },
+    {
+      "axeViewId": 1203791715,
+      "props": {
+        "contentDescription": null,
+        "className": "android.widget.EditText"
+      },
+      "ruleId": "EditTextValue",
+      "ruleSummary": "Editable Views must not override the Value spoken by TalkBack.",
+      "status": "PASS"
+    },
+    {
+      "axeViewId": 50978602,
+      "props": {
+        "labeledBy": "Name",
+        "className": "android.widget.EditText"
+      },
+      "ruleId": "EditTextName",
+      "ruleSummary": "Views that have modifiable Values should get their name from a nearby Label.",
+      "status": "PASS"
+    },
+    {
+      "axeViewId": 50978602,
+      "props": {
+        "contentDescription": null,
+        "className": "android.widget.EditText"
+      },
+      "ruleId": "EditTextValue",
+      "ruleSummary": "Editable Views must not override the Value spoken by TalkBack.",
+      "status": "PASS"
+    }
+  ]
+}

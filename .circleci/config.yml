@@ -1,0 +1,199 @@
+configure_machine: &configure_machine
+  docker:
+    - image: circleci/android:api-28-alpha
+
+save_repo: &save_repo
+  save_cache:
+    key: v{{ .Environment.repo_cache_key }}-repo-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - .
+
+load_repo: &load_repo
+  restore_cache:
+    keys:
+      - v{{ .Environment.repo_cache_key }}-repo-{{ .Branch }}-{{ .Revision }}
+      - v{{ .Environment.repo_cache_key }}-repo-{{ .Branch }}
+      - v{{ .Environment.repo_cache_key }}-repo
+
+save_gradle_deps: &save_gradle_deps
+  save_cache:
+    key: v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - ~/.gradle/caches/
+
+load_gradle_deps: &load_gradle_deps
+  restore_cache:
+    keys:
+      - v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}-{{ .Revision }}
+      - v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}
+      - v{{ .Environment.repo_cache_key }}-gradle_deps
+
+save_gradle_wrapper: &save_gradle_wrapper
+  save_cache:
+    key: v{{ .Environment.repo_cache_key }}-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    paths:
+      - ~/.gradle/wrapper/
+
+load_gradle_wrapper: &load_gradle_wrapper
+  restore_cache:
+    keys:
+      - v{{ .Environment.repo_cache_key }}-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+
+version: 2
+
+jobs:
+
+  JUnit Tests:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - checkout
+      - run:
+          name: Checkout With all Submodules and Tags
+          command: |
+            git fetch --depth=2147483647
+            git fetch --tags
+            git submodule sync
+            git submodule update --init
+      - run:
+          name: Install Certs
+          command: .circleci/certs.sh
+      - *save_repo
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run:
+          name: Test
+          command: ./gradlew test
+      - *save_gradle_wrapper
+      - *save_gradle_deps
+      - store_artifacts:
+          path: build/reports/tests
+          destination: test-results
+      - store_test_results:
+          path: build/test-results
+
+  Code Consistency:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run:
+          name: Check Style Report
+          command: ./gradlew check
+      - store_artifacts:
+          path: build/reports/checkstyle
+          destination: checkstyle
+
+  Code Coverage:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run:
+          name: Code Coverage Report
+          command: ./gradlew codeCoverage
+      - store_artifacts:
+          path: build/jacoco/test/html
+          destination: findbugs.html
+
+  Code Vulnerability:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run:
+          name: SpotBugs Security Checks
+          command: ./gradlew spotbugsMain
+      - store_artifacts:
+          path: build/reports/spotbugs/main.html
+          destination: findbugs.html
+
+  Dependency Report:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run:
+          name: Run Dependency Report
+          command: .circleci/dependencies.sh > dependencyReport.txt
+      - *save_gradle_wrapper
+      - *save_gradle_deps
+      - store_artifacts:
+          path: ./dependencyReport.txt
+
+  Publish Beta:
+    <<: *configure_machine
+    steps:
+      - *load_repo
+      - checkout
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run: .circleci/publish_beta.sh
+
+  Release:
+    <<: *configure_machine
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+          - "c1:cf:ce:38:a2:e0:f0:35:bd:1d:46:a7:4a:77:72:b0"
+      - checkout
+      - run:
+          name: Checkout With all Submodules and Tags
+          command: |
+            git fetch --depth=2147483647
+            git fetch --tags
+            git submodule sync
+            git submodule update --init
+      - *load_gradle_deps
+      - *load_gradle_wrapper
+      - run: .circleci/release.sh
+
+workflows:
+  version: 2
+
+  Change Management:
+    jobs:
+      - JUnit Tests:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
+      - Code Coverage:
+          requires:
+            - JUnit Tests
+      - Code Consistency:
+          requires:
+            - JUnit Tests
+      - Code Vulnerability:
+          requires:
+            - JUnit Tests
+
+  Draft Release:
+    jobs:
+      - Publish Beta:
+          filters:
+            branches:
+              only:
+                - develop
+
+  Publish Release:
+    jobs:
+      - Release:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+
+      - Dependency Report:
+          requires:
+            - Release
+
+
+
+

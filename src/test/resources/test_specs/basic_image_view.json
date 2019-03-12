@@ -1,0 +1,67 @@
+{
+  "testDescription" : "Basic Image View Tests",
+  "axeConf": {
+    "ruleIds" : [
+      "ImageViewName"
+    ],
+    "standards": []
+  },
+  "axeContext" : {
+    "axeView" : {
+      "children" : [
+        {
+          "testCaseDescription": "Passes because it has a content description.",
+          "className": "android.widget.ImageView",
+          "contentDescription": "cd0",
+          "isImportantForAccessibility": true
+        },
+        {
+          "testCaseDescription": "Passes because it is not important.",
+          "className": "android.widget.ImageView",
+          "contentDescription": "cd1",
+          "isImportantForAccessibility": false
+        },
+        {
+          "testCaseDescription": "Should Fail because it important and has no ContentDescription.",
+          "className": "android.widget.ImageView",
+          "isImportantForAccessibility": true
+        }
+      ]
+    }
+  },
+  "axeRuleResults" : [
+    {
+      "status":"PASS",
+      "ruleId":"ImageViewName",
+      "ruleSummary" : "Focusable Informative Views must have Text or a ContentDescription.",
+      "props": {
+        "className":"android.widget.ImageView",
+        "contentDescription":"cd0",
+        "isImportantForAccessibility":true
+      },
+      "axeViewId": 0
+    },
+    {
+      "status":"PASS",
+      "ruleId":"ImageViewName",
+      "ruleSummary" : "Focusable Informative Views must have Text or a ContentDescription.",
+      "props": {
+        "className":"android.widget.ImageView",
+        "contentDescription":"cd1",
+        "isImportantForAccessibility":false
+      },
+      "axeViewId": 0
+    },
+    {
+      "status":"FAIL",
+      "ruleId":"ImageViewName",
+      "ruleSummary" : "Focusable Informative Views must have Text or a ContentDescription.",
+      "props": {
+        "className":"android.widget.ImageView",
+        "isImportantForAccessibility":true,
+        "contentDescription": null
+      },
+      "axeViewId": 0
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="active_views_description">Actionable views must have a speakable name that can be spoken by a screen reader.</string>
+    <string name="active_views_help_url">\"\"</string>
+    <string name="color_contrast_description">In accordance with WCAG 2 AA contrast ratio thresholds, all text elements must have sufficient contrast between text in the foreground and background.</string>
+    <string name="color_contrast_description_short">All text elements must have sufficient contrast between text in the foreground and background.</string>
+    <string name="color_contrast_help_url">\"\"</string>
+    <string name="edit_text_description">Edit texts must communicate their form label, as well as the value of the entered text.</string>
+    <string name="edit_text_help_url">\"\"</string>
+    <string name="image_views_description">ImageViews must have an informative contentDescription attribute or be wrapped within a layout that accessibly presents the same information as the image itself.</string>
+    <string name="image_views_help_url">\"\"</string>
+    <string name="informative_views_description">Visible views that have speakable text must be focusable by assistive technologies.</string>
+    <string name="informative_views_help_url">\"\"</string>
+    <string name="labels_description">Views that have no "Accessible Name", a name conveyed by an accessibility view automatically, must be associated with an accessible TextView.</string>
+    <string name="labels_help_url">\"\"</string>
+    <string name="nested_active_element_description">All active elements must be individually focusable by TalkBack in order for users to interact with them.</string>
+    <string name="nested_active_element_help_url">\"\"</string>
+    <string name="touch_target_size_description">Active views must be at least 48 density independent pixels (dp) by 48 dp.</string>
+    <string name="touch_target_size_help_url">\"\"</string>
+</resources>
