@@ -72,7 +72,7 @@ within 2 weeks AND the view hierarchy that exposed that false positive will rema
 
 ## Utilizing the Analysis Library
 
-Axe Android is simple to use, though requires a bit of knowledge of Android Accessibility to get started. Axe Android is a pure Java library. This helps encapsulate us from the volatile Android Accessibility Ecosystem and guarantees that anyone can run our library on ANY version of the operating system. There are no dependencies on any version of the Operating System nor any particular version of the Support Library. Because of this, you'll need to write a little code to get started. The process can be broken down succintly like this:
+Axe Android is simple to use, though requires a bit of knowledge of Android Accessibility to get started. Axe Android is a pure Java library. This helps encapsulate us from the volatile Android Accessibility Ecosystem and guarantees that anyone can run our library on ANY version of the operating system. There are no dependencies on any version of the Operating System nor any particular version of the Support Library. Because of this, you'll need to write a little code to get started. The process can be broken down succinctly like this:
 
 1. Implement abstract interfaces.
 2. Track the Event Stream.
