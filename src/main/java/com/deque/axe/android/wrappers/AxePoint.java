@@ -1,13 +1,16 @@
 package com.deque.axe.android.wrappers;
 
-import com.deque.axe.android.wrappers.AxeRect;
-
 public class AxePoint {
 
   public final int valueY;
   public final int valueX;
 
-  AxePoint(final int x, final int y) {
+  /**
+   * Constructor for AxePoint.
+   * @param x The x value or column.
+   * @param y The y value or row.
+   */
+  public AxePoint(final int x, final int y) {
 
     this.valueY = y;
     this.valueX = x;
