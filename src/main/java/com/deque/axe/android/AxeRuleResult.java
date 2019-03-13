@@ -14,6 +14,13 @@ import com.google.gson.LongSerializationPolicy;
 public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializable {
 
   /**
+   * A simple interface that allows us to query AxeResult objects.
+   */
+  public interface Matcher {
+    boolean matches(AxeRuleResult ruleResult);
+  }
+
+  /**
    * A unique identifier for an AxeView within a given set of axeRuleResults.
    */
   public final Integer axeViewId;
@@ -43,8 +50,8 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       AxeRule axeRule,
       AxeProps axeProps,
       AxeView axeView) {
-    this.ruleId = axeRule.id;
-    this.ruleSummary = axeRule.summary;
+    this.ruleId = axeRule != null ? axeRule.id : null;
+    this.ruleSummary = axeRule != null ? axeRule.summary : null;
     this.props = axeProps;
     this.status = status;
     this.axeViewId = axeView == null ? null : axeView.axeViewId;
