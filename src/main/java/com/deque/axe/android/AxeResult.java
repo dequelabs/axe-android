@@ -34,4 +34,18 @@ public class AxeResult implements JsonSerializable {
       axeRuleResults.add(axeRuleResult);
     }
   }
+
+  public final List<AxeRuleResult> query(AxeRuleResult.Matcher filter) {
+
+    // Micro optimization. Init with size / 2. Results will always be larger than the filtered set.
+    final ArrayList<AxeRuleResult> results = new ArrayList<>(axeRuleResults.size() / 2);
+
+    for (AxeRuleResult ruleResult : axeRuleResults) {
+      if (filter.matches(ruleResult)) {
+        results.add(ruleResult);
+      }
+    }
+
+    return  results;
+  }
 }
