@@ -139,7 +139,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-          - "c1:cf:ce:38:a2:e0:f0:35:bd:1d:46:a7:4a:77:72:b0"
+            - "c1:cf:ce:38:a2:e0:f0:35:bd:1d:46:a7:4a:77:72:b0"
       - checkout
       - run:
           name: Checkout With all Submodules and Tags
