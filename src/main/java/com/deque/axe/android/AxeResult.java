@@ -35,6 +35,11 @@ public class AxeResult implements JsonSerializable {
     }
   }
 
+  /**
+   * Query the list of Rule Results for a particular subset of results.
+   * @param filter The matcher to filter on.
+   * @return The list of results that match the filter.
+   */
   public final List<AxeRuleResult> query(AxeRuleResult.Matcher filter) {
 
     // Micro optimization. Init with size / 2. Results will always be larger than the filtered set.

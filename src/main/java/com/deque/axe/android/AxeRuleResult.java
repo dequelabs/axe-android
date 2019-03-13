@@ -50,7 +50,7 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       AxeRule axeRule,
       AxeProps axeProps,
       AxeView axeView) {
-    this.ruleId = axeRule!= null ? axeRule.id : null;
+    this.ruleId = axeRule != null ? axeRule.id : null;
     this.ruleSummary = axeRule != null ? axeRule.summary : null;
     this.props = axeProps;
     this.status = status;
