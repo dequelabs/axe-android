@@ -2,6 +2,7 @@ Closes: << Issue Number >> OR DELETE
 
 ## Requester Review Items
 
+- [ ] Ensure the Pull Request is into develop.
 - [ ] Test coverage has not gone down.
 - [ ] Documentation updated or not needed. (Wiki, Issues, etc)
 - [ ] Angular Type leads to proper Semantic Version.

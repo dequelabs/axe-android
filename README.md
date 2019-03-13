@@ -63,10 +63,11 @@ When a false positive is reported to GitHub Issues AND
 - It is not specific to a given flavor.  
 - It is not specific to an Android Version more than 2 major versions back.
 
-we will either
+we will do one of the following
 
 1. Fix the false positive.
-2. Demote it to a Best Practice.
+2. Demote it to `Experimental`.
+3. Respond in some other substantive way given the nature of the report.
 
 within 2 weeks AND the view hierarchy that exposed that false positive will remain a part of our test suite until that test case is no longer valid.
 
@@ -81,25 +82,40 @@ Axe Android is simple to use, though requires a bit of knowledge of Android Acce
 
 ### Implement Abstract Interfaces 
 
+Axe Android is a pure Java library. This allows us to keep our rules very concise and human readable
+and encapsulates us completely from the Android Ecosystem. However, it requires more input from 
+those who want to utilize the library. Namely that the provide implementations of the following 
+abstract interfaces. 
+
 #### AxeView.Builder
 
-An `AxeView.Builder` builds an `AxeView`. You should be able to create a wrapper for this information quite easily by implementing this interface within a Class that contains either an `AccessibilityNodeInfo` instance or a `View` instance. 
+An `AxeView.Builder` builds an `AxeView`. You should be able to create a wrapper for this 
+information quite easily by implementing this interface within a Class that contains either an 
+`AccessibilityNodeInfo` instance or a `View` instance. 
 
-Each function in the `AxeView.Builder` interface has an associated, identically named, `final` property in `AxeView`. The Java Doc for these properties in [AxeView.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/AxeView.java) is the best place to go for documentation on what these functions are expected to return.
+Each function in the `AxeView.Builder` interface has an associated, identically named, `final` 
+property in `AxeView`. The Java Doc for these properties in [AxeView.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/AxeView.java) 
+is the best place to go for documentation on what these functions are expected to return.
 
 #### AxeEvent.Builder
 
-The `AxeEvent.Builder` builds an `AxeEvent`. Is this sounding familiar yet? You should be able to create a wrapper for `AxeEvent` by implementing this interface within a class that contains an `AccessibilityEvent`. 
+The `AxeEvent.Builder` builds an `AxeEvent`. Is this sounding familiar yet? You should be able to 
+create a wrapper for `AxeEvent` by implementing this interface within a class that contains an 
+`AccessibilityEvent`. 
 
-Again, the documentation for what the properties are is best found agains the JavaDoc for the final instance properties of their associated object... [AxeEvent.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/AxeEvent.java).
+Again, the documentation for what the properties are is best found agains the JavaDoc for the final 
+instance properties of their associated object... [AxeEvent.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/AxeEvent.java).
 
 #### AxeImage
 
-We need access to image data to run Color Contrast analysis. An object that wraps a `Bitmap` instance would be the easiest way to supply this information. Look at [AxeImage.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/colorcontrast/AxeImage.java).
+We need access to image data to run Color Contrast analysis. An object that wraps a `Bitmap` 
+instance would be the easiest way to supply this information. Look at 
+[AxeImage.java](https://github.com/dequelabs/axe-android/blob/master/src/main/java/com/deque/axecore/colorcontrast/AxeImage.java).
 
 ### Track Event Stream
 
-This sounds scary but it's really quite simple. Utilizing the `AxeEvent.Builder` interface you built above in conjunction with our `AxeEventStream` object, track AccessibilityEvents as they flow either 
+This sounds scary but it's really quite simple. Utilizing the `AxeEvent.Builder` interface you built 
+above in conjunction with our `AxeEventStream` object, track AccessibilityEvents as they flow either 
 
 - out of yor application
 - into an `AccessibilityService`
@@ -139,11 +155,14 @@ AxeResult axeResult = axe.run(new AxeContext(axeView, axeDevice, axeImage, axeEv
 
 ## Configuration Strategies
 
-There are a lot of different reasons to want to configure Axe. Below are a few configuration strategies and motivations for these strategies. We'd LOVE to hear about other ideas you have.
+There are a lot of different reasons to want to configure Axe. Below are a few configuration 
+strategies and motivations for these strategies. We'd LOVE to hear about other ideas you have.
 
 ### Chipping Away
 
-Accessibility can seem like a **huge** task. One way to make the load seem a little lighter can be to focus on fixing one set of issues at a time. The easiest way to do that would be to set up an `AxeConf` object like this:
+Accessibility can seem like a **huge** task. One way to make the load seem a little lighter can be 
+to focus on fixing one set of issues at a time. The easiest way to do that would be to set up an 
+`AxeConf` object like this:
 
 ```
 AxeConf axeConf = new AxeConf()
@@ -156,7 +175,9 @@ AxeConf axeConf = new AxeConf()
 
 ### Chopping it Off
 
-The motivation for this is similar to **Chipping Away** but instead of focusing on one Rule at a time, you focus on one View at a time. For example, your **Login Workflow** would be a great place to start. A great configuration for this would be:
+The motivation for this is similar to **Chipping Away** but instead of focusing on one Rule at a 
+time, you focus on one View at a time. For example, your **Login Workflow** would be a great place 
+to start. A great configuration for this would be:
 
 ```
 AxeConf axeConf = new AxeConf()
@@ -165,7 +186,8 @@ AxeConf axeConf = new AxeConf()
 
 ### Targeting Standards
 
-If you have an organizational push to be **WCAG 2.0** compliant for example, it can be beneficial to ignore any other rules. The best way to do this would be:
+If you have an organizational push to be **WCAG 2.0** compliant for example, it can be beneficial to 
+ignore any other rules. The best way to do this would be:
 
 ```
 AxeConf axeConf = new AxeConf()
@@ -178,12 +200,15 @@ Notice we removed ALL standards except `AxeStandard.WCAG_20`.
 
 ### Avoiding False Positives
 
-We do our best, but we are not perfect. The BEST response when you run into a False Positive is to [report it](https://github.com/dequelabs/axe-android/issues/new/choose). We are very quick to fix issues in the library. 
+We do our best, but we are not perfect. The BEST response when you run into a False Positive is to 
+[report it](https://github.com/dequelabs/axe-android/issues/new/choose). We are very quick to fix 
+issues in the library. 
 
 - Accepted False Positive tickets are the absolute highest priority. 
 - If we cannot create a 100% false positive free rule, we will demote it to a Best Practice.
 
-HOWEVER, sometimes you cannot wait for a false positive free library. In this case, it is best to remove the associated standard, and add back in any Rules that are working.
+HOWEVER, sometimes you cannot wait for a false positive free library. In this case, it is best to 
+remove the associated standard, and add back in any Rules that are working.
 
 ```
 AxeConf axeConf = new AxeConf()
