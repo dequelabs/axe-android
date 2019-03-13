@@ -5,6 +5,11 @@ public class AxePoint {
   public final int valueY;
   public final int valueX;
 
+  /**
+   * Constructor for AxePoint.
+   * @param x The x value or column.
+   * @param y The y value or row.
+   */
   public AxePoint(final int x, final int y) {
 
     this.valueY = y;
