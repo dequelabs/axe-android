@@ -1,6 +1,7 @@
 package com.deque.axe.android;
 
 import com.deque.axe.android.constants.AndroidClassNames;
+import com.deque.axe.android.utils.AxeTextUtils;
 import com.deque.axe.android.utils.AxeTree;
 import com.deque.axe.android.utils.JsonSerializable;
 import com.deque.axe.android.wrappers.AxeRect;
@@ -13,6 +14,7 @@ import com.google.gson.LongSerializationPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.jetbrains.annotations.NotNull;
 
 public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSerializable {
@@ -158,6 +160,35 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   @NotNull
   public String toString() {
     return toJson();
+  }
+
+  /**
+   * Gets speakable text of the control. Digs down into child views to see what their speakable
+   * text is as well.
+   * @return The speakable text of the control and its children.
+   */
+  public String speakableTextRecursive() {
+
+    final StringBuilder result = new StringBuilder();
+
+    final AtomicBoolean allAreNull = new AtomicBoolean(true);
+
+    forEachRecursive(instance -> {
+
+      final String speakableText = instance.speakableText();
+
+      if (!AxeTextUtils.isNullOrEmpty(speakableText)) {
+        result.append(instance.speakableText()).append(" ");
+      }
+
+      if (speakableText != null) {
+        allAreNull.set(false);
+      }
+
+      return CallBackResponse.CONTINUE;
+    });
+
+    return allAreNull.get() ? null : result.toString();
   }
 
   public String speakableText() {

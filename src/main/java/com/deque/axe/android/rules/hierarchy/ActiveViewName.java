@@ -19,9 +19,10 @@ public class ActiveViewName extends ActiveView {
 
   @Override
   public void collectProps(AxeView axeView, AxeProps axeProps) {
+
     super.collectProps(axeView, axeProps);
 
-    axeProps.put(Name.SPEAKABLE_TEXT, axeView.speakableText());
+    axeProps.put(Name.SPEAKABLE_TEXT, axeView.speakableTextRecursive());
   }
 
   @Override
