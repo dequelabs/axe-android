@@ -8,11 +8,10 @@ This endpoint serves as a wrapper to collect all of the information from an axe 
 - Avoid timing issues that come with multiple requests.
 
 ### Simplified Sample
-
 ```
 {
-  "axeContext" : { [AxeContext](#AxeContext) },
-  "axeResult" : { [AXRL](https://github.com/dequelabs/axrl) },
+  "axeContext" : { @AxeContext },
+  "axeResult" : { AXRL },
   "axeConf" : { TBD by Framework }  
 }
 ```
@@ -33,9 +32,9 @@ for a particular device configuration.
 
 ```
 {
-  "axeView" : [AxeView](#AxeView),
-  "axeDevice" : [AxeDevice](#AxeDevice),
-  "axeEvents" : [AxeEvents](#AxeEvents),
+  "axeView" : @AxeView,
+  "axeDevice" : @AxeDevice,
+  "axeEvents" : @AxeEvents,
   "screenshot" : "base64png data"
 }
 ```
@@ -69,7 +68,6 @@ Serves up properties about the Accessibility Hierarchy of a particular view.
       "children" : []
     }
   ]
-    
 }
 ```
 
@@ -105,6 +103,10 @@ was collected from.
 }
 
 ```
+
+### Requirements
+
+- Property names match the above exactly.
 
 ## AxeEvents
 
