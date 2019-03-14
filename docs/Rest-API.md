@@ -20,6 +20,10 @@ This endpoint serves as a wrapper to collect all of the information from an axe 
 }
 ```
 
+### Requirements
+
+- Data points are collected at the same point in time, or as close as can be expected.
+
 ## AxeContext
 
 Wraps data together that is needed to identify a particular View, with a particular screenshot,
