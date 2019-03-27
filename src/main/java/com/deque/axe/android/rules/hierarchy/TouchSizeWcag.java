@@ -6,7 +6,7 @@ import com.deque.axe.android.rules.hierarchy.base.TouchSize;
 
 public class TouchSizeWcag extends TouchSize {
 
-  private static final int WCAG_TARGET_SIZE = 48;
+  private static final int WCAG_TARGET_SIZE = 44;
 
   /**
    * Active views adhere to WCAG Touch Target Size requirements.
