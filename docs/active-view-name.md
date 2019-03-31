@@ -18,7 +18,7 @@ in different ways, depending on the Version of Android, Device Manufacturer, and
 Assistive Technology.
 
 - Inability to focus the `View` in TalkBack.
-- No [**Name**](active-view-name.md#Name) spoken along with the `View`.
+- No [**Name**](name-role-value.md#Name) spoken along with the `View`.
 
 ## How to Fix?
 
