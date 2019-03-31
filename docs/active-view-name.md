@@ -4,7 +4,7 @@ Active `Views` must have a **Name** that can be spoken by **Screen Readers**.
 
 ## The Algorithm in Simple Terms
 
-Looks for `Views` that 
+Identifies `Views` that 
 
 - Would be **Accessibility Focusable** if they had speakable text
 - Have a basic **Click Action**
