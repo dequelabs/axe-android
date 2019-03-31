@@ -1,10 +1,8 @@
-# Name, Role, State and Value
+# Name, Role, State and Value in Android
 
 **Name**, **Role**, and **Value** is an important concept in accessibility. It is the separation and careful handling 
 of this information that allows for the maintainable support of the wide range of potential**Assistive Technologies** 
 in the Android ecosystem.
-
-### Name, Role, State and Value in Android
 
 Let's start by summarizing these concepts in some Android Code.
 
@@ -16,28 +14,26 @@ TextView puppiesLabel = .......; //Role: TextView
 puppiesLabel.setLabelFor(iLikePuppies.getId()); //This control is acting as a name for another control.
 puppiesLabel.setText("Do you like puppies?"); // Name: Do you like puppies?
 
-EditText puppiesName = .......; //Role: EditText
-puppiesName.setHint("Dodger"); //Value: Dodger
+EditText puppiesLabel = .......; //Role: EditText
+puppiesLabel.setHint("Dodger"); //Value: Dodger
 ```
 
-### puppiesCheckBox
+### TalkBack Announcements for these Controls
 
-**TalkBack Announcement**: "checkbox, checked for Do you like puppies?"
+> puppiesCheckBox -> checkbox, checked for Do you like puppies?
 
 - [**Name**](#name): Do you like puppies?
 - [**Role**](#role): CheckBox
 - [**State**](#state): true
-### puppiesLabel
 
-**TalkBack Announcement**: "Do you like puppies?"
+> Do you like puppies?
 
+- **Variable**: puppiesLabel
 - [**Name**](#name): Do you like puppies?
 - [**Role**](#role): TextView
 
-### puppiesName
-
-**TalkBack Announcement**: "Dodger edit box"
-
+> Dodger edit box
+- **Variable**: puppiesLabel
 - [**Value**](#value): Dodger
 - [**Name**](#name): This view inaccessible, it DOES NOT have a name.
 - [**Role**](#role): EditText
