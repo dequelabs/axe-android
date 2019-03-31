@@ -14,26 +14,30 @@ TextView puppiesLabel = .......; //Role: TextView
 puppiesLabel.setLabelFor(iLikePuppies.getId()); //This control is acting as a name for another control.
 puppiesLabel.setText("Do you like puppies?"); // Name: Do you like puppies?
 
-EditText puppiesLabel = .......; //Role: EditText
-puppiesLabel.setHint("Dodger"); //Value: Dodger
+EditText puppiesName = .......; //Role: EditText
+puppiesName.setHint("Dodger"); //Value: Dodger
 ```
 
 ### TalkBack Announcements for these Controls
 
-> puppiesCheckBox -> checkbox, checked for Do you like puppies?
+#### puppiesCheckBox
+
+> checkbox, checked for Do you like puppies?
 
 - [**Name**](#name): Do you like puppies?
 - [**Role**](#role): CheckBox
 - [**State**](#state): true
 
+#### puppiesLabel
+
 > Do you like puppies?
 
-- **Variable**: puppiesLabel
 - [**Name**](#name): Do you like puppies?
 - [**Role**](#role): TextView
 
-> Dodger edit box
-- **Variable**: puppiesLabel
+#### puppiesName
+
+> Dodger, edit box
 - [**Value**](#value): Dodger
 - [**Name**](#name): This view inaccessible, it DOES NOT have a name.
 - [**Role**](#role): EditText
