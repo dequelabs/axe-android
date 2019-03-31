@@ -1,24 +1,24 @@
 # ActiveViewName
 
-Active elements must have a Name that can be spoken by Screen Readers.
+Active `Views` must have a **Name** that can be spoken by **Screen Readers**.
 
 ## The Algorithm in Simple Terms
 
-Looks for elements that 
+Looks for `Views` that 
 
-- Would be *Accessibility Focusable* if they had text
-- Have a basic *Click Action*
+- Would be **Accessibility Focusable** if they had speakable text
+- Have a basic **Click Action**
 
-and requires that have text that can be spoken by a *Screen Reader*. 
+and **requires** they have text that can be spoken by a *Screen Reader*. 
 
 ## User Impact
 
-Violations of this rule mostly impact *TalkBack* users. Violations would manifest themselves
-in the following ways, depending on the Version of Android, Device Manufacturer, and Version of
+Violations of this rule mostly impact **TalkBack** users. Violations would manifest themselves
+in different ways, depending on the Version of Android, Device Manufacturer, and Version of
 Assistive Technology.
 
-- Inability to focus the View.
-- No [Name](active-view-name.md#Name) spoken along with the View.
+- Inability to focus the `View` in TalkBack.
+- No [**Name**](active-view-name.md#Name) spoken along with the `View`.
 
 ## How to Fix?
 
@@ -27,15 +27,13 @@ The fix depends on the type of control. There are two basic fixes for this probl
 ### Views that Support On Screen Text
 
 ```
-android.widget.Button someButton = .......
-
+Button someButton = .......
 someButton.setText("Button's Name");
 ```
 
 ### Views that Don't have On Screen Text
 ```
-android.widget.ImageButton someButton = .......
-
+ImageButton someButton = .......
 someButton.setContentDescription("Button's Name");
 ```
 
