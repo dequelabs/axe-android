@@ -24,17 +24,12 @@ Assistive Technology.
 
 The fix depends on the type of control. There are two basic fixes for this problem.
 
-### Views that Support On Screen Text
+```
+Button button = .......
+button.setText("Button's Name");
 
-```
-Button someButton = .......
-someButton.setText("Button's Name");
-```
-
-### Views that Don't have On Screen Text
-```
-ImageButton someButton = .......
-someButton.setContentDescription("Button's Name");
+ImageButton imageButton = .......
+imageButton.setContentDescription("Button's Name");
 ```
 
 ## Resources
