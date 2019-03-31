@@ -22,7 +22,9 @@ Assistive Technology.
 
 ## How to Fix?
 
-The fix depends on the type of control. There are two basic fixes for this problem.
+The fix depends on the type of control. Both `Text` and `ContentDescription` can be used to 
+suppply a [**Name**](name-role-value.md#Name) for a control. However, it is important to pick 
+the correct one for the correct control.
 
 ```
 Button button = .......
@@ -32,9 +34,8 @@ ImageButton imageButton = .......
 imageButton.setContentDescription("Button's Name");
 ```
 
-Both `Text` and `ContentDescription` can be used to suppply a [**Name**](name-role-value.md#Name) 
-for a control. However, it is important to pick the correct one for the correct control.
+
 
 ## Resources
 
-[Rule Implementation](https://github.com/dequelabs/axe-android/blob/5cbbddd48be53af11c82406d670dd199a5548f3b/src/main/java/com/deque/axe/android/rules/hierarchy/ActiveViewName.java#L1-L44)
+[Rule Implementation](https://github.com/dequelabs/axe-android/blob/5cbbddd48be53af11c82406d670dd199a5548f3b/src/main/java/com/deque/axe/android/rules/hierarchy/ActiveViewName.java)
