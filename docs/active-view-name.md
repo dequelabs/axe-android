@@ -9,7 +9,7 @@ Identifies `Views` that
 - Would be **Accessibility Focusable** if they had speakable text
 - Have a basic **Click Action**
 
-and **requires** they have text that can be spoken by a *Screen Reader*. 
+and **requires** they have text that can be spoken by a **Screen Reader**. 
 
 ## User Impact
 
