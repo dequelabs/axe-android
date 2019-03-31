@@ -1,7 +1,7 @@
 # Name, Role, State and Value in Android
 
 **Name**, **Role**, and **Value** is an important concept in accessibility. It is the separation and careful handling 
-of this information that allows for the maintainable support of the wide range of potential**Assistive Technologies** 
+of this information that allows for the maintainable support of the wide range of potential **Assistive Technologies** 
 in the Android ecosystem.
 
 Let's start by summarizing these concepts in some Android Code.
