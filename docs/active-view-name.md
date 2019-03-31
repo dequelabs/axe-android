@@ -17,7 +17,7 @@ Violations of this rule mostly impact **TalkBack** users. Violations would manif
 in different ways, depending on the Version of Android, Device Manufacturer, and Version of
 Assistive Technology.
 
-- Inability to focus the `View` in TalkBack.
+- Inability to focus the `View` in **TalkBack**.
 - No [**Name**](name-role-value.md#Name) spoken along with the `View`.
 
 ## How to Fix?
