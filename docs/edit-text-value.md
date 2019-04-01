@@ -1,6 +1,6 @@
 # ActiveViewName
 
-`EditText` elements must reliably share their [**Value**](name-role-value.md#Value).
+`EditText` elements must expose their **entered text** [**Value**](name-role-value.md#Value) to **TalkBack**.
 
 ## The Algorithm in Simple Terms
 
