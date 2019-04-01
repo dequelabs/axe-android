@@ -1,4 +1,4 @@
-# ActiveViewName
+# ImageView Name
 
 `ImageView` elements must have a [**Name**](name-role-value.md#Name).
 
