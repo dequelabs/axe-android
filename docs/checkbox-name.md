@@ -1,4 +1,4 @@
-# ActiveViewName
+# CheckBox Name
 
 `CheckBox` elements must have a **Name** that can be spoken by **Screen Readers**.
 
