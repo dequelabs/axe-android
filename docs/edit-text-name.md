@@ -30,6 +30,7 @@ spoken along with the `EditText`.
 2. Attempt to `AccessibilityFocus` the `EditText` control.
 3. When it should announce like:
     1. Quote: Entered text, EDIT TEXT for A visible label.
+    2. This rule is specifically looking for "for A visible label."
 
 Both of the itmes in step 3 may happen, but even in isolation, both of these events are confusing to the
 user and can result in **entered text** not being shared, duplicate announcements, or a loss of meaning.
