@@ -3,9 +3,9 @@
 Below is a list of rules and a link to deeper information about them. Before reading the help
 pages it may be useful to get a little background in Accessibility. Some useful links:
 
-[Name Role Value](name-role-value.md)
-[WCAG 2.1](https://www.w3.org/TR/WCAG21/)
-[Android Accessibility](https://developer.android.com/guide/topics/ui/accessibility)
+- [Name Role Value](name-role-value.md)
+- [WCAG 2.1](https://www.w3.org/TR/WCAG21/)
+- [Android Accessibility](https://developer.android.com/guide/topics/ui/accessibility)
 
 ### Rules and Impacts
 
