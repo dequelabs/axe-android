@@ -1,4 +1,4 @@
-# ActiveViewName
+# Edit Text Name
 
 `EditText` elements must expose their **entered text** [**Value**](name-role-value.md#Value) to **TalkBack**.
 
@@ -17,12 +17,18 @@ label.setLabelFor(editText.getId()); // Associate the Checkbox with its Name
 
 ## User Impact
 
-Violations of this rule mostly impact **TalkBack** users. 
+Violations of this rule mostly impact **TalkBack** users by hiding important context. An image is worth 1000 words
+at least a short summary should be available in text.
 
-- When an `EditText` is `AccessibilityFocused` it does not read out the entered text.
-- When an `EditText` is `AccessibilityFocused` is reads out the `ContentDescription`.
+### Confirming It is a Violation
 
-Both of these things may happen, but even in isolation, both of these events are confusing to the
+1. Turn on **TalkBack**.
+2. Attempt to `AccessibilityFocus` the Control.
+3. When it is focused either:
+    1. It does not read out the entered text.
+    2. It reads out the `ContentDescription` instead.
+
+Both of the itmes in step 3 may happen, but even in isolation, both of these events are confusing to the
 user and can result in **entered text** not being shared, duplicate announcements, or a loss of meaning.
 
 **Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
