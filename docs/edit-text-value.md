@@ -7,7 +7,7 @@
 Looks for `EditText` elements and **requires** they do not override their entered `Text`
 [**Value**](name-role-value.md#Value) with a `ContentDescription`.
 
-### How to Fix?
+### How to Fix
 
 ```
 EditText editText = .......; // Role: EditText
