@@ -37,9 +37,6 @@ in your `ContentDescription', but a few can help provide blind users the missing
 Both of the itmes in step 3 may happen, but even in isolation, both of these events are confusing to the
 user and can result in **entered text** not being shared, duplicate announcements, or a loss of meaning.
 
-**Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
-Device Manufacturer, and Version of Assistive Technology.
-
 #### Images of Text
 
 Another important consideration is **Images of Text** in which case the `ContentDescription` should
