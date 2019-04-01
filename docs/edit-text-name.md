@@ -1,4 +1,4 @@
-# ActiveViewName
+# EditText Name
 
 `EditText` elements must have a **Name** that can be spoken by **Screen Readers**.
 
