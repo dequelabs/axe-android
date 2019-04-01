@@ -1,4 +1,4 @@
-# ActiveViewName
+# Active View Name
 
 Active `Views` must have a **Name** that can be spoken by **Screen Readers**.
 
