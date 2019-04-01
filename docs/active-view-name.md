@@ -1,4 +1,4 @@
-# ActiveViewName
+# Active View Name
 
 Active `Views` must have a **Name** that can be spoken by **Screen Readers**.
 
@@ -33,6 +33,18 @@ Assistive Technology.
 
 - Inability to focus the `View` in **TalkBack**.
 - No [**Name**](name-role-value.md#Name) spoken along with the `View`.
+
+### Confirming It is a Violation
+
+1. Turn on **TalkBack**.
+2. Attempt to `AccessibilityFocus` the Control.
+3. One of the following will happen:
+    1. INACCESSIBLE: It won't be focusable.
+    2. INACCESSIBLE: It will be focusable, but not announce anything in **TalkBack**.
+    3. ACCESSIBLE: It will announce in **TalkBack**.
+
+**Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
+Device Manufacturer, and Version of Assistive Technology.
 
 ## Resources
 

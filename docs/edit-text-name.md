@@ -1,4 +1,4 @@
-# ActiveViewName
+# EditText Name
 
 `EditText` elements must have a **Name** that can be spoken by **Screen Readers**.
 
@@ -24,8 +24,19 @@ Violations of this rule mostly impact **TalkBack** users.
 - Only the [**Role**](name-role-value.md#State) and [**Value**](name-role-value.md#Value) is
 spoken along with the `EditText`.
 
+### Confirming It is a Violation
+
+1. Turn on **TalkBack**.
+2. Attempt to `AccessibilityFocus` the `EditText` control.
+3. When it should announce like:
+    1. Quote: Entered text, EDIT TEXT for A visible label.
+    2. This rule is specifically looking for "for A visible label."
+
+Both of the itmes in step 3 may happen, but even in isolation, both of these events are confusing to the
+user and can result in **entered text** not being shared, duplicate announcements, or a loss of meaning.
+
 **Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
-Device Manufacturer, and Version of Assistive Technology. 
+Device Manufacturer, and Version of Assistive Technology.
 
 ## Resources
 

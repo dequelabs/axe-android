@@ -1,4 +1,4 @@
-# Edit Text Name
+# EditText Value
 
 `EditText` elements must expose their **entered text** [**Value**](name-role-value.md#Value) to **TalkBack**.
 

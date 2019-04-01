@@ -1,4 +1,4 @@
-# ActiveViewName
+# CheckBox Name
 
 `CheckBox` elements must have a **Name** that can be spoken by **Screen Readers**.
 
@@ -24,6 +24,14 @@ Violations of this rule mostly impact **TalkBack** users.
 
 - Only the [**State**](name-role-value.md#State) and [**Role**](name-role-value.md#Role) is
 spoken along with the `CheckBox`.
+
+### Confirming It is a Violation
+
+1. Turn on **TalkBack**.
+2. Attempt to `AccessibilityFocus` the `CheckBox`.
+3. When it is focused it should do both of the following:
+    1. Announce its [**Name**](name-role-value.md#Name).
+    2. Announce its state [**State**](name-role-value.md#State).
 
 **Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
 Device Manufacturer, and Version of Assistive Technology. 
