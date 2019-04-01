@@ -9,7 +9,7 @@ Looks for `ImageView` elements and **requires** that they
 - Provide their [**Name**](name-role-value.md#Name) with a `ContentDescription` **OR**
 - Have set `importantForAccessibility` to **NO**. 
 
-## How to Fix?
+### How to Fix?
 
 ```
 ImageView image = .......; // Role: Image
@@ -25,6 +25,20 @@ Violations of this rule mostly impact **TalkBack** users.
 
 Informative Images provide important context. An image is worth 1,000 words, do not have 1,000 words
 in your `ContentDescription', but a few can help provide blind users the missing context.
+
+### Confirming It is a Violation
+
+1. Turn on **TalkBack**.
+2. Attempt to `AccessibilityFocus` an Image.
+3. Either the Image:
+    1. Should not be focused because it is not informative.
+    2. It should be spoken out by the **Screen Reader**.
+
+Both of the itmes in step 3 may happen, but even in isolation, both of these events are confusing to the
+user and can result in **entered text** not being shared, duplicate announcements, or a loss of meaning.
+
+**Note**: Violations may manifest themselves in different ways, depending on the Version of Android, 
+Device Manufacturer, and Version of Assistive Technology.
 
 #### Images of Text
 
