@@ -21,7 +21,7 @@ label.setLabelFor(editText.getId()); // Associate the Checkbox with its Name
 
 Violations of this rule mostly impact **TalkBack** users. 
 
-- Only the [**Role**](name-role-value.md#State) and [**Value**](name-role-value.md#Value) is
+- Only the [**Role**](name-role-value.md#Role) and [**Value**](name-role-value.md#Value) is
 spoken along with the `EditText`.
 
 ### Confirming It is a Violation

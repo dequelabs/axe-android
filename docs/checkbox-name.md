@@ -1,6 +1,6 @@
 # CheckBox Name
 
-`CheckBox` elements must have a **Name** that can be spoken by **Screen Readers**.
+`CheckBox` elements must have a [**Name**](name-role-value.md#Name)that can be spoken by **Screen Readers**.
 
 ## The Algorithm in Simple Terms
 

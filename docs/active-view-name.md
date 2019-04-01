@@ -1,6 +1,6 @@
 # Active View Name
 
-Active `Views` must have a **Name** that can be spoken by **Screen Readers**.
+Active `Views` must have a [**Name**](name-role-value.md#Name) that can be spoken by **Screen Readers**.
 
 ## The Algorithm in Simple Terms
 
