@@ -7,7 +7,7 @@
 Looks for `ImageView` elements and **requires** that they 
 
 - Provide their [**Name**](name-role-value.md#Name) with a `ContentDescription` **OR**
-- Have set `importantForAccessibility=NO`. 
+- Have set `importantForAccessibility = NO`. 
 
 ### How to Fix?
 
