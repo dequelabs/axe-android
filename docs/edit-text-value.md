@@ -17,8 +17,8 @@ label.setLabelFor(editText.getId()); // Associate the Checkbox with its Name
 
 ## User Impact
 
-Violations of this rule mostly impact **TalkBack** users by hiding important context. An image is worth 1000 words
-at least a short summary should be available in text.
+Violations of this rule mostly impact **TalkBack** users by hiding important context and information the blind. 
+An image is worth 1000 words at least a short summary should be available in text.
 
 ### Confirming It is a Violation
 
