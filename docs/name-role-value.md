@@ -6,7 +6,7 @@ in the Android ecosystem.
 
 Let's start by summarizing these concepts in some Android Code.
 
-```
+```java
 CheckBox puppiesCheckBox = .....; //Role: CheckBox
 puppiesCheckBox.setChecked(true); //State: true
 
@@ -49,7 +49,7 @@ glancing at an element in isolation... without the context of other elements in 
 
 ### For Example
 
-```
+```java
 button.setText("Go"); //Name: Go
 ```
 
@@ -64,7 +64,7 @@ respond to the *Role* of a thing by changing what they do.
 
 ### For Example
 
-```
+```java
 Button goButton = ....; //Role: Button
 goButton.setText("Go"); //Name: Go
 ``` 
@@ -90,7 +90,7 @@ The *Value* of a control represents `Text` or other value that can change.
 
 ### For Example
 
-```
+```java
 EditText nameField = ......; //Role: EditText 
 nameField.setHint("John Snow"); //Value: John Snow
 ``` 
@@ -105,7 +105,7 @@ the type of `View`.
 
 ### For Example
 
-```
+```java
 CheckBox iLikePuppies = .....; //Role: CheckBox
 iLikePuppies.setChecked(true); //State: true
 ```
