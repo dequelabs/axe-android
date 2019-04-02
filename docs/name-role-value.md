@@ -8,19 +8,19 @@ Let's start by summarizing these concepts in some Android Code.
 
 ```java
 CheckBox puppiesCheckBox = .....; //Role: CheckBox
-puppiesCheckBox.setChecked(true); //State: true
+aCheckBoxVariable.setChecked(true); //State: true
 
 TextView puppiesLabel = .......; //Role: TextView
-puppiesLabel.setLabelFor(iLikePuppies.getId()); //This control is acting as a name for another control.
-puppiesLabel.setText("Do you like puppies?"); // Name: Do you like puppies?
+aTextView.setLabelFor(iLikePuppies.getId()); //This control is acting as a name for another control.
+aTextView.setText("Do you like puppies?"); // Name: Do you like puppies?
 
-EditText puppiesName = .......; //Role: EditText
-puppiesName.setHint("Dodger"); //Value: Dodger
+EditText aEditText = .......; //Role: EditText
+aEditText.setHint("Dodger"); //Value: Dodger
 ```
 
 ### TalkBack Announcements for these Controls
 
-#### puppiesCheckBox
+#### aCheckBoxVariable
 
 > checkbox, checked for Do you like puppies?
 
@@ -28,14 +28,14 @@ puppiesName.setHint("Dodger"); //Value: Dodger
 - [**Role**](#role): CheckBox
 - [**State**](#state): true
 
-#### puppiesLabel
+#### aTextView
 
 > Do you like puppies?
 
 - [**Name**](#name): Do you like puppies?
 - [**Role**](#role): TextView
 
-#### puppiesName
+#### aEditText
 
 > Dodger, edit box
 - [**Value**](#value): Dodger
