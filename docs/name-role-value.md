@@ -7,10 +7,10 @@ in the Android ecosystem.
 Let's start by summarizing these concepts in some Android Code.
 
 ```java
-CheckBox puppiesCheckBox = .....; //Role: CheckBox
-aCheckBoxVariable.setChecked(true); //State: true
+CheckBox aCheckBox = .....; //Role: CheckBox
+aCheckBox.setChecked(true); //State: true
 
-TextView puppiesLabel = .......; //Role: TextView
+TextView aTextView = .......; //Role: TextView
 aTextView.setLabelFor(iLikePuppies.getId()); //This control is acting as a name for another control.
 aTextView.setText("Do you like puppies?"); // Name: Do you like puppies?
 
@@ -20,7 +20,7 @@ aEditText.setHint("Dodger"); //Value: Dodger
 
 ### TalkBack Announcements for these Controls
 
-#### aCheckBoxVariable
+#### aCheckBox
 
 > checkbox, checked for Do you like puppies?
 
