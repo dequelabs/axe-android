@@ -11,7 +11,7 @@ Looks for `ImageView` elements and **requires** that they
 
 ### How to Fix?
 
-```
+```java
 ImageView image = .......; // Role: Image
 image.setContentDescription("Tasty Chocolates"); // Name: Tasty Chocolates.
 ```
@@ -23,8 +23,8 @@ Violations of this rule mostly impact **TalkBack** users.
 - An `ImageView` that provides context cannot be `AccessibilityFocused`.
 - When An `ImageView` is `AccessibilityFocused` **TalkBack** does not announce anything.
 
-Informative Images provide important context. An image is worth 1,000 words, do not have 1,000 words
-in your `ContentDescription', but a few can help provide blind users the missing context.
+Informative Images provide important context. An image is worth 1,000 words, do not put 1,000 words
+in your `ContentDescription`, but a few can help provide blind users needed context.
 
 ### Confirming It is a Violation
 
