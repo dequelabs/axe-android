@@ -1,15 +1,20 @@
 package com.deque.axe.android.utils;
 
 import com.deque.axe.android.colorcontrast.AxeColor;
+import com.deque.axe.android.colorcontrast.AxeImage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.google.gson.LongSerializationPolicy;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 public interface JsonSerializable {
 
@@ -33,7 +38,9 @@ public interface JsonSerializable {
             return new AxeColor(in.nextString());
           }
         }
-      });
+      }).registerTypeAdapter(AxeImage.class,
+          (JsonSerializer<AxeImage>) (axeImage, type, jsonSerializationContext) ->
+              new JsonPrimitive(axeImage.toBase64Png()));
 
   static GsonBuilder getDefaultBuilder() {
     return DEFAULT_BUILDER;
