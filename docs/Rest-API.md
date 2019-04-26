@@ -82,7 +82,7 @@ Serves up properties about the Accessibility Hierarchy of a particular view.
 ### Requirements
 
 - The Arbitrary property names of the children are identical to the root. 
-- If a property is omitted from a child it is assumed to be present and NULL.
+- If a property is omitted from a child it is assumed to be not present or NULL.
 - Arbitrary property names are NOT calculated, but are values present in the respective OS APIs.
 
 ## AxeDevice
