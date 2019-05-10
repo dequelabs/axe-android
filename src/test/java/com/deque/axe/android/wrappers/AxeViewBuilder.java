@@ -128,6 +128,11 @@ public class AxeViewBuilder implements Builder {
     return labeledBy;
   }
 
+  @Override
+  public String packageName() {
+    return "com.placeholder";
+  }
+
   public AxeViewBuilder text(final String newValue) {
     this.text = newValue;
     return this;
