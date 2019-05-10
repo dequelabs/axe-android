@@ -73,7 +73,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * A unique Identifier for a given view... conflicts possible but unlikely.
    */
-  public final int axeViewId;
+  public final String axeViewId;
 
   /**
    * The Children of this view as AxeView objects.
@@ -132,7 +132,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
-    this.axeViewId = this.hashCode();
+    this.axeViewId = Integer.toHexString(this.hashCode());
   }
 
   /**
@@ -191,6 +191,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return allAreNull.get() ? null : result.toString();
   }
 
+  @SuppressWarnings("WeakerAccess")
   public String speakableText() {
     return text == null ? contentDescription : text;
   }
