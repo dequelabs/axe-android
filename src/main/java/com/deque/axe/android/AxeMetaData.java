@@ -7,12 +7,12 @@ class AxeMetaData implements JsonSerializable {
 
   private final String libVersion = getClass().getPackage().getSpecificationVersion();
 
-  private final String subject;
+  private final String appIdentifier;
 
   private final long timestamp;
 
-  AxeMetaData(final String subject, final long timestamp) {
-    this.subject = subject;
+  AxeMetaData(final String appIdentifier, final long timestamp) {
+    this.appIdentifier = appIdentifier;
     this.timestamp = timestamp;
   }
 }
