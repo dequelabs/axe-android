@@ -2,14 +2,14 @@ package com.deque.axe.android;
 
 import com.deque.axe.android.utils.JsonSerializable;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"FieldCanBeLocal", "unused", "WeakerAccess"})
 class AxeMetaData implements JsonSerializable {
 
-  private final String libVersion = getClass().getPackage().getSpecificationVersion();
+  public final String libVersion = getClass().getPackage().getSpecificationVersion();
 
-  private final String appIdentifier;
+  public final String appIdentifier;
 
-  private final long timestamp;
+  public final long timestamp;
 
   AxeMetaData(final String appIdentifier, final long timestamp) {
     this.appIdentifier = appIdentifier;
