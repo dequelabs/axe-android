@@ -39,7 +39,7 @@
         "contentDescription":"cd0",
         "isImportantForAccessibility":true
       },
-      "axeViewId": 0
+      "axeViewId": null
     },
     {
       "status":"PASS",
@@ -50,7 +50,7 @@
         "contentDescription":"cd1",
         "isImportantForAccessibility":false
       },
-      "axeViewId": 0
+      "axeViewId": null
     },
     {
       "status":"FAIL",
@@ -61,7 +61,7 @@
         "isImportantForAccessibility":true,
         "contentDescription": null
       },
-      "axeViewId": 0
+      "axeViewId": null
     }
   ]
 }

@@ -122,7 +122,13 @@ public class AxeTest {
 
     Axe axe = new Axe(axeConf);
 
-    AxeResult axeResult = axe.run(new AxeContext(new AxeViewBuilder().build(), null, null, null));
+    AxeResult axeResult = axe.run(new AxeContext(
+        new AxeViewBuilder().build(),
+        null,
+        null,
+        null,
+        null)
+    );
 
     Assert.assertEquals(1, axeResult.axeRuleResults.size());
     Assert.assertTrue(
@@ -158,7 +164,13 @@ public class AxeTest {
 
     axe.axeConf.customRules.add(AxeRuleThrows.class);
 
-    AxeResult axeResult = axe.run(new AxeContext(new AxeViewBuilder().build(), null, null, null));
+    AxeResult axeResult = axe.run(new AxeContext(
+        new AxeViewBuilder().build(),
+        null,
+        null,
+        null,
+        null)
+    );
 
     Assert.assertTrue(!axeResult.axeRuleResults.isEmpty());
     Assert.assertEquals("blah", axeResult.axeRuleResults.get(0).props.get(Name.EXCEPTION));
@@ -169,7 +181,12 @@ public class AxeTest {
 
     Axe axe = new Axe(new AxeConf());
 
-    axe.run(new AxeContext(new AxeViewBuilder().build(), null, null, null));
+    axe.run(new AxeContext(new AxeViewBuilder().build(),
+        null,
+        null,
+        null,
+        null)
+    );
 
     Assert.assertEquals("Default run should run all rules.",
         Constants.AXE_RULE_CLASSES.size(), axe.axeConf.ruleInstances().size());
@@ -177,8 +194,6 @@ public class AxeTest {
 
   @Test
   public void testOneStandardAndOneRule() {
-
-    final @AxeStandard String standard = AxeStandard.WCAG_21;
 
     AxeConf axeConf = new AxeConf();
     axeConf.standards.clear();

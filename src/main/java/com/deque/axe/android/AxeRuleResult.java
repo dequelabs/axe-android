@@ -23,7 +23,7 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
   /**
    * A unique identifier for an AxeView within a given set of axeRuleResults.
    */
-  public final Integer axeViewId;
+  public final String axeViewId;
 
   /**
    * The properties used in determining that the AxeView was in violation.
