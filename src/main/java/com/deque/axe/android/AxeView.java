@@ -191,7 +191,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return allAreNull.get() ? null : result.toString();
   }
 
-  private String speakableText() {
+  @SuppressWarnings("WeakerAccess")
+  public String speakableText() {
     return text == null ? contentDescription : text;
   }
 
