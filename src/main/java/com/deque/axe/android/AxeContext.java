@@ -26,19 +26,21 @@ public class AxeContext implements JsonSerializable {
    * @param axeDevice The device the context was built on.
    * @param screenshot The screenshot at the time the Context was built.
    * @param axeEventStream The AccessibilityEvent Stream since the last view refresh.
-   * @param axeMetaData A set of metadata that describes a given run.
    */
   public AxeContext(
       final AxeView axeView,
       final AxeDevice axeDevice,
       final AxeImage screenshot,
-      final AxeEventStream axeEventStream,
-      final AxeMetaData axeMetaData
+      final AxeEventStream axeEventStream
   ) {
     this.axeView = axeView;
     this.axeDevice = axeDevice;
     this.screenshot = screenshot;
     this.axeEventStream = axeEventStream;
-    this.axeMetaData = axeMetaData;
+
+    this.axeMetaData = new AxeMetaData(
+        axeView.appIdentifier(),
+        System.currentTimeMillis()
+    );
   }
 }

@@ -126,7 +126,6 @@ public class AxeTest {
         new AxeViewBuilder().build(),
         null,
         null,
-        null,
         null)
     );
 
@@ -168,8 +167,8 @@ public class AxeTest {
         new AxeViewBuilder().build(),
         null,
         null,
-        null,
-        null)
+        null
+        )
     );
 
     Assert.assertTrue(!axeResult.axeRuleResults.isEmpty());
@@ -184,8 +183,8 @@ public class AxeTest {
     axe.run(new AxeContext(new AxeViewBuilder().build(),
         null,
         null,
-        null,
-        null)
+        null
+        )
     );
 
     Assert.assertEquals("Default run should run all rules.",

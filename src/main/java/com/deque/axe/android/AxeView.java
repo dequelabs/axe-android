@@ -66,6 +66,12 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final AxeView labeledBy;
 
   /**
+   * The packageName that the View belongs to.
+   * FIXME: Make non transient before a 1.0 release.
+   */
+  public final transient String packageName;
+
+  /**
    * Direct copy of the associated Android Property.
    */
   public final String text;
@@ -98,6 +104,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     AxeView labeledBy();
 
+    String packageName();
+
     String text();
 
     List<AxeView> children();
@@ -116,6 +124,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean isEnabled,
       final boolean isImportantForAccessibility,
       final AxeView labeledBy,
+      final String packageName,
       final String text,
       final List<AxeView> children
   ) {
@@ -127,6 +136,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.isEnabled = isEnabled;
     this.isImportantForAccessibility = isImportantForAccessibility;
     this.labeledBy = labeledBy;
+    this.packageName = packageName;
     this.text = text;
     this.children = children;
 
@@ -151,9 +161,36 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.isEnabled(),
         builder.isImportantForAccessibility(),
         builder.labeledBy(),
+        builder.packageName(),
         builder.text(),
         builder.children()
     );
+  }
+
+  /**
+   * Recurse through the view hierarchy and grab the package name of the first
+   * non Android System UI view.
+   * @return A non Android System UI packageName.
+   */
+  @SuppressWarnings("WeakerAccess")
+  public String appIdentifier() {
+
+    final StringBuilder result = new StringBuilder();
+
+    forEachRecursive(instance -> {
+
+      result.setLength(0);
+
+      result.append(instance.packageName);
+
+      if (instance.className.endsWith("ContentFrameLayout")) {
+        return CallBackResponse.STOP;
+      } else {
+        return CallBackResponse.CONTINUE;
+      }
+    });
+
+    return result.toString();
   }
 
   @Override
@@ -272,6 +309,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    * @param matcher A matcher function.
    * @return The list of views that match.
    */
+  @SuppressWarnings("WeakerAccess")
   public List<AxeView> query(final Matcher matcher) {
 
     final ArrayList<AxeView> results = new ArrayList<>();
