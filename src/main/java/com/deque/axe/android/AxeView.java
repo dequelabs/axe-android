@@ -142,7 +142,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
-    this.axeViewId = Integer.toHexString(this.hashCode());
+    this.axeViewId = Integer.toString(this.hashCode());
   }
 
   /**
