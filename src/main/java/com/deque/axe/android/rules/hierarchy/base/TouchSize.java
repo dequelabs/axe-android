@@ -46,8 +46,7 @@ public abstract class TouchSize extends ActiveView {
     final int screenHeight = axeProps.get(AxeProps.Name.SCREEN_HEIGHT, Integer.class);
     final int screenWidth = axeProps.get(AxeProps.Name.SCREEN_WIDTH, Integer.class);
 
-    if (dpi <= 0 || height < 0 || width < 0
-            || touchTargetOffscreen(frame, screenHeight, screenWidth)) {
+    if (isRendered(dpi, height, width) || isOffScreen(frame, screenHeight, screenWidth)) {
       return AxeStatus.INCOMPLETE;
     }
 
@@ -62,7 +61,11 @@ public abstract class TouchSize extends ActiveView {
     }
   }
 
-  private boolean touchTargetOffscreen(AxeRect frame, int screenHeight, int screenWidth) {
+  private boolean isRendered(float dpi, long height, long width) {
+    return dpi <= 0 || height < 0 || width < 0;
+  }
+
+  private boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
     if (screenHeight > 0 && screenWidth > 0) {
       return frame.top < 0
               || frame.left < 0
