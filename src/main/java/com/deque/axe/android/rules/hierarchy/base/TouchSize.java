@@ -23,6 +23,8 @@ public abstract class TouchSize extends ActiveView {
     final AxeDevice axeDevice = axeContext.axeDevice;
 
     axeProps.put(AxeProps.Name.DPI, axeDevice == null ? -1 : axeDevice.dpi);
+    axeProps.put(AxeProps.Name.SCREEN_HEIGHT, axeDevice == null ? -1 : axeDevice.screenHeight);
+    axeProps.put(AxeProps.Name.SCREEN_WIDTH, axeDevice == null ? -1 : axeDevice.screenWidth);
   }
 
   @Override
@@ -30,8 +32,6 @@ public abstract class TouchSize extends ActiveView {
     super.collectProps(axeView, axeProps);
 
     axeProps.put(AxeProps.Name.FRAME, axeView.boundsInScreen);
-    axeProps.put(AxeProps.Name.HEIGHT, axeView.boundsInScreen.height());
-    axeProps.put(AxeProps.Name.WIDTH, axeView.boundsInScreen.width());
   }
 
   @Override
@@ -43,17 +43,35 @@ public abstract class TouchSize extends ActiveView {
     final long height = frame.height();
     final long width = frame.width();
 
-    if (dpi <= 0 || height < 0 || width < 0) {
+    final int screenHeight = axeProps.get(AxeProps.Name.SCREEN_HEIGHT, Integer.class);
+    final int screenWidth = axeProps.get(AxeProps.Name.SCREEN_WIDTH, Integer.class);
+
+    if (isRendered(dpi, height, width) || isOffScreen(frame, screenHeight, screenWidth)) {
       return AxeStatus.INCOMPLETE;
     }
 
     final long adjustedHeight = Math.round(height / dpi);
     final long adjustedWidth = Math.round(width / dpi);
 
+
     if (adjustedHeight < expectedSize || adjustedWidth < expectedSize) {
       return AxeStatus.FAIL;
     } else {
       return AxeStatus.PASS;
     }
+  }
+
+  private boolean isRendered(float dpi, long height, long width) {
+    return dpi <= 0 || height < 0 || width < 0;
+  }
+
+  private boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
+    if (screenHeight > 0 && screenWidth > 0) {
+      return frame.top < 0
+              || frame.left < 0
+              || frame.bottom > screenHeight
+              || frame.right > screenWidth;
+    }
+    return false;
   }
 }
