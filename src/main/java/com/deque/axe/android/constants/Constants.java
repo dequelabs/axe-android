@@ -26,6 +26,8 @@ public class Constants {
 
   private static final Map<Integer, String> AXE_EVENT_TYPE_NAMES = new HashMap<>();
 
+  public static final String DEFAULT_SCREEN_TITLE = "No Screen Title Available";
+
   static {
     AXE_STANDARDS.add(AxeStandard.WCAG_21);
     AXE_STANDARDS.add(AxeStandard.WCAG_20);

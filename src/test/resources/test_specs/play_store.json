@@ -1928,6 +1928,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1970,6 +1971,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -2012,6 +2014,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -2022,6 +2025,7 @@
       },
       "ruleId": "ActiveViewName",
       "ruleSummary": "Views that users can interact with must have a Name.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -2208,6 +2212,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -2222,6 +2227,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -2236,6 +2242,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {

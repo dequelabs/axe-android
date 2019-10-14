@@ -2,6 +2,7 @@ package com.deque.axe.android;
 
 import android.support.annotation.NonNull;
 
+import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.utils.JsonSerializable;
 import com.deque.axe.android.wrappers.AxeProps;
@@ -41,20 +42,28 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
   public final String ruleSummary;
 
   /**
+   * The impact of the rule [0=MINOR, 1=MODERATE, 2=SERIOUS, 3=CRITICAL, 4=BLOCKER].
+   */
+  public @AxeImpact int impact;
+
+  /**
    * One of [PASS, FAIL, INCOMPLETE, INAPPLICABLE].
    */
   public final @AxeStatus String status;
 
 
-  AxeRuleResult(@AxeStatus String status,
+  AxeRuleResult(
+      @AxeStatus String status,
       AxeRule axeRule,
       AxeProps axeProps,
-      AxeView axeView) {
+      AxeView axeView
+  ) {
     this.ruleId = axeRule != null ? axeRule.id : null;
     this.ruleSummary = axeRule != null ? axeRule.summary : null;
     this.props = axeProps;
     this.status = status;
     this.axeViewId = axeView == null ? null : axeView.axeViewId;
+    this.impact = axeRule != null ? axeRule.impact : 0;
   }
 
   @Override
@@ -98,7 +107,11 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       return false;
     }
 
-    AxeRuleResult axeRuleResult = (AxeRuleResult) object;
+    final AxeRuleResult axeRuleResult = (AxeRuleResult) object;
+
+    if (impact != axeRuleResult.impact) {
+      return false;
+    }
 
     return axeRuleResult.compareTo(this) == 0;
   }
