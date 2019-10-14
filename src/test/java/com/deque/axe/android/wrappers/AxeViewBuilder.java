@@ -44,6 +44,7 @@ public class AxeViewBuilder implements Builder {
     isEnabled = deepCopyThis.isEnabled;
     isImportantForAccessibility = deepCopyThis.isImportantForAccessibility;
     labeledBy = deepCopyThis.labeledBy;
+    viewIdResourceName = deepCopyThis.viewIdResourceName;
     text = deepCopyThis.text;
     paneTitle = deepCopyThis.paneTitle;
   }

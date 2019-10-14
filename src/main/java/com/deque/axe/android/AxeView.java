@@ -355,7 +355,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   }
 
   private boolean isContentView() {
-    return viewIdResourceName.endsWith("content");
+    return viewIdResourceName.endsWith("content") && !children.isEmpty();
   }
 
   private AxeView getContentView() {
@@ -373,14 +373,23 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    */
   public String getScreenTitle() {
 
-    final StringBuilder result = new StringBuilder();
 
-    getContentView().children.forEach(axeView -> {
-      if (result.length() == 0) {
-        result.append(axeView.viewIdResourceName);
-      }
-    });
+    final AxeView contentView = getContentView();
 
-    return result.toString();
+    if (contentView.isContentView()) {
+
+      final StringBuilder result = new StringBuilder();
+
+      contentView.children.forEach(axeView -> {
+        if (result.length() == 0) {
+          result.append(axeView.viewIdResourceName);
+        }
+      });
+
+      return result.toString();
+    }
+
+
+    return Constants.DEFAULT_SCREEN_TITLE;
   }
 }
