@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("WeakerAccess")
 public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSerializable {
 
   /**
@@ -372,8 +372,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    * @return The screen title.
    */
   public String getScreenTitle() {
-
-
+    
     final AxeView contentView = getContentView();
 
     if (contentView.isContentView()) {
@@ -388,7 +387,6 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
       return result.toString();
     }
-
 
     return Constants.DEFAULT_SCREEN_TITLE;
   }
