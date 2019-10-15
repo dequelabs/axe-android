@@ -40,6 +40,7 @@ public class AxeContext implements JsonSerializable {
 
     this.axeMetaData = new AxeMetaData(
         axeView.appIdentifier(),
+        axeView.getScreenTitle(),
         System.currentTimeMillis()
     );
   }

@@ -1398,6 +1398,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1411,6 +1412,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1422,6 +1424,7 @@
       },
       "ruleId": "ImageViewName",
       "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1431,6 +1434,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1440,6 +1444,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1449,6 +1454,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     },
     {
@@ -1458,6 +1464,7 @@
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 2,
       "status": "PASS"
     }
   ]

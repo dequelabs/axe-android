@@ -1,6 +1,7 @@
 package com.deque.axe.android;
 
 import com.deque.axe.android.constants.AndroidClassNames;
+import com.deque.axe.android.constants.Constants;
 import com.deque.axe.android.utils.AxeTextUtils;
 import com.deque.axe.android.utils.AxeTree;
 import com.deque.axe.android.utils.JsonSerializable;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("WeakerAccess")
 public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSerializable {
 
   /**
@@ -72,6 +74,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final transient String packageName;
 
   /**
+   * Direct copy of the associated Android property.
+   */
+  public final transient String paneTitle;
+
+  /**
    * Direct copy of the associated Android Property.
    */
   public final String text;
@@ -80,6 +87,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    * A unique Identifier for a given view... conflicts possible but unlikely.
    */
   public final String axeViewId;
+
+  /**
+   * Direct copy of the associated Android Property.
+   */
+  public final String viewIdResourceName;
 
   /**
    * The Children of this view as AxeView objects.
@@ -106,7 +118,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     String packageName();
 
+    String paneTitle();
+
     String text();
+
+    String viewIdResourceName();
 
     List<AxeView> children();
 
@@ -125,7 +141,9 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean isImportantForAccessibility,
       final AxeView labeledBy,
       final String packageName,
+      final String paneTitle,
       final String text,
+      final String viewIdResourceName,
       final List<AxeView> children
   ) {
     this.boundsInScreen = boundsInScreen;
@@ -137,7 +155,9 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.isImportantForAccessibility = isImportantForAccessibility;
     this.labeledBy = labeledBy;
     this.packageName = packageName;
+    this.paneTitle = paneTitle;
     this.text = text;
+    this.viewIdResourceName = viewIdResourceName;
     this.children = children;
 
     // This should be the last thing we do in case we decide parent/children relationships
@@ -162,7 +182,9 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.isImportantForAccessibility(),
         builder.labeledBy(),
         builder.packageName(),
+        builder.paneTitle(),
         builder.text(),
+        builder.viewIdResourceName(),
         builder.children()
     );
   }
@@ -330,5 +352,42 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     });
 
     return results;
+  }
+
+  private boolean isContentView() {
+    return viewIdResourceName.endsWith("content") && !children.isEmpty();
+  }
+
+  private AxeView getContentView() {
+
+    if (isContentView() || children.isEmpty()) {
+      return this;
+    } else {
+      return children.get(0).getContentView();
+    }
+  }
+
+  /**
+   * Calculate the screen title for a hierarchy.
+   * @return The screen title.
+   */
+  public String getScreenTitle() {
+    
+    final AxeView contentView = getContentView();
+
+    if (contentView.isContentView()) {
+
+      final StringBuilder result = new StringBuilder();
+
+      contentView.children.forEach(axeView -> {
+        if (result.length() == 0) {
+          result.append(axeView.viewIdResourceName);
+        }
+      });
+
+      return result.toString();
+    }
+
+    return Constants.DEFAULT_SCREEN_TITLE;
   }
 }

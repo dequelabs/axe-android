@@ -26,7 +26,11 @@ public class AxeViewBuilder implements Builder {
 
   private AxeView labeledBy = null;
 
+  private String paneTitle = null;
+
   private String text = null;
+
+  private String viewIdResourceName = "";
 
   public AxeViewBuilder() { }
 
@@ -40,7 +44,9 @@ public class AxeViewBuilder implements Builder {
     isEnabled = deepCopyThis.isEnabled;
     isImportantForAccessibility = deepCopyThis.isImportantForAccessibility;
     labeledBy = deepCopyThis.labeledBy;
+    viewIdResourceName = deepCopyThis.viewIdResourceName;
     text = deepCopyThis.text;
+    paneTitle = deepCopyThis.paneTitle;
   }
 
   /**
@@ -133,6 +139,16 @@ public class AxeViewBuilder implements Builder {
     return "com.placeholder";
   }
 
+  @Override
+  public String paneTitle() {
+    return paneTitle;
+  }
+
+  public AxeViewBuilder painTitle(final String paneTitle) {
+    this.paneTitle = paneTitle;
+    return this;
+  }
+
   public AxeViewBuilder text(final String newValue) {
     this.text = newValue;
     return this;
@@ -140,6 +156,16 @@ public class AxeViewBuilder implements Builder {
 
   public String text() {
     return text;
+  }
+
+  @Override
+  public String viewIdResourceName() {
+    return viewIdResourceName;
+  }
+
+  public AxeViewBuilder viewIdResourceName(final String viewIdResourceName) {
+    this.viewIdResourceName = viewIdResourceName;
+    return this;
   }
 
   @Override

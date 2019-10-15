@@ -17,12 +17,9 @@ public class AxeResultTest {
     axeResult.add(new AxeRuleResult(AxeStatus.PASS, null, null, null));
     axeResult.add(new AxeRuleResult(AxeStatus.INCOMPLETE, null, null, null));
 
-    List<AxeRuleResult> ruleResultList = axeResult.query(new Matcher() {
-      @Override
-      public boolean matches(AxeRuleResult ruleResult) {
-        return ruleResult.status.contentEquals(AxeStatus.FAIL);
-      }
-    });
+    List<AxeRuleResult> ruleResultList = axeResult.query(
+        ruleResult -> ruleResult.status.contentEquals(AxeStatus.FAIL)
+    );
 
     Assert.assertEquals(1, ruleResultList.size());
     Assert.assertEquals(AxeStatus.FAIL, ruleResultList.get(0).status);
