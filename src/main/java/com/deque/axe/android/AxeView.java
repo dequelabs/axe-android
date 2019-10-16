@@ -355,7 +355,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   }
 
   private boolean isContentView() {
-    return viewIdResourceName.endsWith("content") && !children.isEmpty();
+    return viewIdResourceName != null
+            && (viewIdResourceName.endsWith("content") && !children.isEmpty());
   }
 
   private AxeView getContentView() {
