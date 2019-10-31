@@ -32,6 +32,10 @@ public class AxeViewBuilder implements Builder {
 
   private String viewIdResourceName = "";
 
+  private boolean isWebView = false;
+
+  private boolean isWebViewChild = false;
+
   public AxeViewBuilder() { }
 
   private AxeViewBuilder(AxeViewBuilder deepCopyThis) {
@@ -47,6 +51,8 @@ public class AxeViewBuilder implements Builder {
     viewIdResourceName = deepCopyThis.viewIdResourceName;
     text = deepCopyThis.text;
     paneTitle = deepCopyThis.paneTitle;
+    isWebView = deepCopyThis.isWebView;
+    isWebViewChild = deepCopyThis.isWebViewChild;
   }
 
   /**
@@ -166,6 +172,16 @@ public class AxeViewBuilder implements Builder {
   public AxeViewBuilder viewIdResourceName(final String viewIdResourceName) {
     this.viewIdResourceName = viewIdResourceName;
     return this;
+  }
+
+  @Override
+  public boolean isWebView() {
+    return this.isWebView;
+  }
+
+  @Override
+  public boolean isWebViewChild() {
+    return this.isWebViewChild;
   }
 
   @Override
