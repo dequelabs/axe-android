@@ -14,8 +14,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jetbrains.annotations.NotNull;
 
@@ -95,16 +96,6 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final String viewIdResourceName;
 
   /**
-   * Is view an instance of WebView.
-   */
-  private final boolean isWebView;
-
-  /**
-   * Is view a child of a WebView.
-   */
-  private final boolean isWebViewChild;
-
-  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
@@ -112,7 +103,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Enums representing the presence/absence of properties calculated from AccessibilityNodeInfo.
    */
-  public final List<DequeProp> dequeProps = new ArrayList<>();
+  public final Map<DequeProp, Object> dequeProps = new HashMap<>();
 
   public interface Builder {
 
@@ -145,10 +136,6 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     default AxeView build() {
       return new AxeView(this);
     }
-
-    boolean isWebView();
-
-    boolean isWebViewChild();
   }
 
   private AxeView(
@@ -164,9 +151,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final String paneTitle,
       final String text,
       final String viewIdResourceName,
-      final List<AxeView> children,
-      final boolean isWebView,
-      final boolean isWebViewChild
+      final List<AxeView> children
   ) {
     this.boundsInScreen = boundsInScreen;
     this.className = className;
@@ -181,10 +166,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.text = text;
     this.viewIdResourceName = viewIdResourceName;
     this.children = children;
-    this.isWebView = isWebView;
-    this.isWebViewChild = isWebViewChild;
 
-    getDequeProps();
+    initDequeProps();
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -211,9 +194,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.paneTitle(),
         builder.text(),
         builder.viewIdResourceName(),
-        builder.children(),
-        builder.isWebView(),
-        builder.isWebViewChild()
+        builder.children()
     );
   }
 
@@ -353,7 +334,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public interface Matcher {
     boolean matches(final AxeView view);
   }
-  
+
   /**
    * Find all AxeView objects in the hierarchy that match.
    * @param matcher A matcher function.
@@ -422,11 +403,15 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return Constants.DEFAULT_SCREEN_TITLE;
   }
 
-  private void getDequeProps() {
-    if (isWebView) {
-      dequeProps.add(DequeProp.IS_WEBVIEW);
-    } else if (isWebViewChild) {
-      dequeProps.add(DequeProp.IS_WEBVIEW_CHILD);
+  private void initDequeProps() {
+    isWebView();
+  }
+
+  private void isWebView() {
+    if (classNameIsOfType(this.className, AndroidClassNames.WEBVIEW)) {
+      dequeProps.put(DequeProp.IS_WEBVIEW, true);
+    } else {
+      dequeProps.put(DequeProp.IS_WEBVIEW, false);
     }
   }
 }
