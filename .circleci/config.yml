@@ -1,6 +1,20 @@
 configure_machine: &configure_machine
   docker:
-    - image: circleci/android:api-28-alpha
+    - image: circleci/android:api-29
+
+python_deps: &python_deps
+  run:
+    name: Install Python Packages
+    command: sudo pip install requests
+
+checkout_all: &checkout_all
+  run:
+    name: Checkout With all Submodules and Tags
+    command: |
+      git fetch --depth=2147483647
+      git fetch --tags
+      git submodule sync
+      git submodule update --init
 
 save_repo: &save_repo
   save_cache:
@@ -48,24 +62,19 @@ jobs:
     steps:
       - *load_repo
       - checkout
-      - run:
-          name: Checkout With all Submodules and Tags
-          command: |
-            git fetch --depth=2147483647
-            git fetch --tags
-            git submodule sync
-            git submodule update --init
-      - run:
-          name: Install Certs
-          command: .circleci/certs.sh
+      - *checkout_all
       - *save_repo
       - *load_gradle_deps
       - *load_gradle_wrapper
+      - *python_deps
       - run:
           name: Test
-          command: ./gradlew test
+          command: python -B .circleci/mobile-release-process/build_and_test.py
       - *save_gradle_wrapper
       - *save_gradle_deps
+      - store_artifacts:
+          path: .circleci/artifacts/dependency_report.txt
+          destination: dependencies/
       - store_artifacts:
           path: build/reports/tests
           destination: test-results
@@ -111,20 +120,6 @@ jobs:
           path: build/reports/spotbugs/main.html
           destination: findbugs.html
 
-  Dependency Report:
-    <<: *configure_machine
-    steps:
-      - *load_repo
-      - *load_gradle_deps
-      - *load_gradle_wrapper
-      - run:
-          name: Run Dependency Report
-          command: .circleci/dependencies.sh > dependencyReport.txt
-      - *save_gradle_wrapper
-      - *save_gradle_deps
-      - store_artifacts:
-          path: ./dependencyReport.txt
-
   Publish Beta:
     <<: *configure_machine
     steps:
@@ -132,7 +127,9 @@ jobs:
       - checkout
       - *load_gradle_deps
       - *load_gradle_wrapper
-      - run: .circleci/publish_beta.sh
+      - run:
+          name: Release
+          command: python -B .circleci/mobile-release-process/publish_release_candidate.py
 
   Release:
     <<: *configure_machine
@@ -141,16 +138,15 @@ jobs:
           fingerprints:
             - "bb:e9:c0:14:a4:f6:1d:2b:91:cb:0a:f0:aa:93:79:fc"
       - checkout
-      - run:
-          name: Checkout With all Submodules and Tags
-          command: |
-            git fetch --depth=2147483647
-            git fetch --tags
-            git submodule sync
-            git submodule update --init
+      - *checkout_all
       - *load_gradle_deps
       - *load_gradle_wrapper
-      - run: .circleci/release.sh
+      - run:
+          name: Release
+          command: python -B .circleci/mobile-release-process/publish_release.py
+      - store_artifacts:
+          path: .circleci/artifacts/dependency_report.txt
+          destination: /dependencies
 
 workflows:
   version: 2
@@ -189,11 +185,3 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-
-      - Dependency Report:
-          requires:
-            - Release
-
-
-
-
