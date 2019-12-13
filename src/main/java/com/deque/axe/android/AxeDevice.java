@@ -6,6 +6,8 @@ public class AxeDevice {
 
   public final String name;
 
+  public final String os;
+
   public final String osVersion;
 
   public final int screenHeight;
@@ -29,6 +31,7 @@ public class AxeDevice {
   ) {
     this.dpi = dpi;
     this.name = name;
+    this.os = "Android";
     this.osVersion = "Android " + osVersion;
     this.screenHeight = screenHeight;
     this.screenWidth = screenWidth;
