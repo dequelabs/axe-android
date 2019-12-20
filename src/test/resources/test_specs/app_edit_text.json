@@ -72,6 +72,7 @@
                               "isAccessibilityFocusable": true,
                               "isImportantForAccessibility": true,
                               "labeledBy": null,
+                              "labelFor":  null,
                               "text": null
                             },
                             {
@@ -88,6 +89,7 @@
                               "isAccessibilityFocusable": true,
                               "isImportantForAccessibility": true,
                               "labeledBy": null,
+                              "labelFor":  null,
                               "text": "Edit Text"
                             },
                             {
@@ -104,6 +106,7 @@
                               "isAccessibilityFocusable": true,
                               "isImportantForAccessibility": false,
                               "labeledBy": null,
+                              "labelFor":  null,
                               "text": null
                             }
                           ],
@@ -112,6 +115,7 @@
                           "isAccessibilityFocusable": true,
                           "isImportantForAccessibility": false,
                           "labeledBy": null,
+                          "labelFor":  null,
                           "text": null
                         }
                       ],
@@ -120,6 +124,7 @@
                       "isAccessibilityFocusable": true,
                       "isImportantForAccessibility": false,
                       "labeledBy": null,
+                      "labelFor":  null,
                       "text": null
                     },
                     {
@@ -145,6 +150,7 @@
                           "isAccessibilityFocusable": true,
                           "isImportantForAccessibility": true,
                           "labeledBy": null,
+                          "labelFor":  null,
                           "text": null
                         },
                         {
@@ -179,6 +185,7 @@
                                   "isAccessibilityFocusable": true,
                                   "isImportantForAccessibility": true,
                                   "labeledBy": null,
+                                  "labelFor":  null,
                                   "text": "Introduction"
                                 },
                                 {
@@ -195,6 +202,7 @@
                                   "isAccessibilityFocusable": true,
                                   "isImportantForAccessibility": true,
                                   "labeledBy": null,
+                                  "labelFor":  null,
                                   "text": "The entered text in editable views, as well as its purpose, must be available to screen reader users."
                                 },
                                 {
@@ -229,6 +237,7 @@
                                           "isAccessibilityFocusable": true,
                                           "isImportantForAccessibility": true,
                                           "labeledBy": null,
+                                          "labelFor":  null,
                                           "text": "Minor WCAG #1.3.1 Issue"
                                         },
                                         {
@@ -272,6 +281,7 @@
                                                       "isAccessibilityFocusable": true,
                                                       "isImportantForAccessibility": true,
                                                       "labeledBy": null,
+                                                      "labelFor":  null,
                                                       "text": "Name"
                                                     }
                                                   ],
@@ -280,6 +290,7 @@
                                                   "isAccessibilityFocusable": true,
                                                   "isImportantForAccessibility": false,
                                                   "labeledBy": null,
+                                                  "labelFor":  null,
                                                   "text": null
                                                 },
                                                 {
@@ -296,6 +307,7 @@
                                                   "isAccessibilityFocusable": true,
                                                   "isImportantForAccessibility": true,
                                                   "labeledBy": null,
+                                                  "labelFor":  null,
                                                   "text": null
                                                 }
                                               ],
@@ -304,6 +316,7 @@
                                               "isAccessibilityFocusable": true,
                                               "isImportantForAccessibility": false,
                                               "labeledBy": null,
+                                              "labelFor":  null,
                                               "text": null
                                             }
                                           ],
@@ -312,6 +325,7 @@
                                           "isAccessibilityFocusable": true,
                                           "isImportantForAccessibility": false,
                                           "labeledBy": null,
+                                          "labelFor":  null,
                                           "text": null
                                         },
                                         {
@@ -328,6 +342,7 @@
                                           "isAccessibilityFocusable": true,
                                           "isImportantForAccessibility": true,
                                           "labeledBy": null,
+                                          "labelFor":  null,
                                           "text": "Passing"
                                         },
                                         {
@@ -371,6 +386,7 @@
                                                       "isAccessibilityFocusable": true,
                                                       "isImportantForAccessibility": true,
                                                       "labeledBy": null,
+                                                      "labelFor":  null,
                                                       "text": "Name"
                                                     },
                                                     {
@@ -400,6 +416,7 @@
                                                         "isAccessibilityFocusable": true,
                                                         "isImportantForAccessibility": true,
                                                         "labeledBy": null,
+                                                        "labelFor":  null,
                                                         "text": "Name"
                                                       },
                                                       "text": "John"
@@ -410,6 +427,7 @@
                                                   "isAccessibilityFocusable": true,
                                                   "isImportantForAccessibility": false,
                                                   "labeledBy": null,
+                                                  "labelFor":  null,
                                                   "text": null
                                                 },
                                                 {
@@ -426,6 +444,7 @@
                                                   "isAccessibilityFocusable": true,
                                                   "isImportantForAccessibility": true,
                                                   "labeledBy": null,
+                                                  "labelFor":  null,
                                                   "text": null
                                                 }
                                               ],
@@ -434,6 +453,7 @@
                                               "isAccessibilityFocusable": true,
                                               "isImportantForAccessibility": false,
                                               "labeledBy": null,
+                                              "labelFor":  null,
                                               "text": null
                                             }
                                           ],
@@ -442,6 +462,7 @@
                                           "isAccessibilityFocusable": true,
                                           "isImportantForAccessibility": false,
                                           "labeledBy": null,
+                                          "labelFor":  null,
                                           "text": null
                                         }
                                       ],
@@ -450,6 +471,7 @@
                                       "isAccessibilityFocusable": true,
                                       "isImportantForAccessibility": false,
                                       "labeledBy": null,
+                                      "labelFor":  null,
                                       "text": null
                                     }
                                   ],
@@ -458,6 +480,7 @@
                                   "isAccessibilityFocusable": true,
                                   "isImportantForAccessibility": false,
                                   "labeledBy": null,
+                                  "labelFor":  null,
                                   "text": null
                                 }
                               ],
@@ -466,6 +489,7 @@
                               "isAccessibilityFocusable": true,
                               "isImportantForAccessibility": false,
                               "labeledBy": null,
+                              "labelFor":  null,
                               "text": null
                             }
                           ],
@@ -474,6 +498,7 @@
                           "isAccessibilityFocusable": true,
                           "isImportantForAccessibility": true,
                           "labeledBy": null,
+                          "labelFor":  null,
                           "text": null
                         }
                       ],
@@ -482,6 +507,7 @@
                       "isAccessibilityFocusable": true,
                       "isImportantForAccessibility": false,
                       "labeledBy": null,
+                      "labelFor":  null,
                       "text": null
                     }
                   ],
@@ -490,6 +516,7 @@
                   "isAccessibilityFocusable": true,
                   "isImportantForAccessibility": false,
                   "labeledBy": null,
+                  "labelFor":  null,
                   "text": null
                 }
               ],
@@ -498,6 +525,7 @@
               "isAccessibilityFocusable": true,
               "isImportantForAccessibility": false,
               "labeledBy": null,
+              "labelFor":  null,
               "text": null
             }
           ],
@@ -506,6 +534,7 @@
           "isAccessibilityFocusable": true,
           "isImportantForAccessibility": false,
           "labeledBy": null,
+          "labelFor":  null,
           "text": null
         },
         {
@@ -522,6 +551,7 @@
           "isAccessibilityFocusable": true,
           "isImportantForAccessibility": false,
           "labeledBy": null,
+          "labelFor":  null,
           "text": null
         },
         {
@@ -538,6 +568,7 @@
           "isAccessibilityFocusable": true,
           "isImportantForAccessibility": false,
           "labeledBy": null,
+          "labelFor":  null,
           "text": null
         }
       ],
@@ -546,6 +577,7 @@
       "isAccessibilityFocusable": true,
       "isImportantForAccessibility": true,
       "labeledBy": null,
+      "labelFor":  null,
       "text": null
     },
     "screenshot": null
@@ -555,6 +587,7 @@
       "axeViewId": 1203791715,
       "props": {
         "labeledBy": null,
+        "labelFor":  null,
         "className": "android.widget.EditText"
       },
       "ruleId": "EditTextName",

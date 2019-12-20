@@ -26,6 +26,8 @@ public class AxeViewBuilder implements Builder {
 
   private AxeView labeledBy = null;
 
+  private AxeView labelFor = null;
+
   private String paneTitle = null;
 
   private String text = null;
@@ -44,6 +46,7 @@ public class AxeViewBuilder implements Builder {
     isEnabled = deepCopyThis.isEnabled;
     isImportantForAccessibility = deepCopyThis.isImportantForAccessibility;
     labeledBy = deepCopyThis.labeledBy;
+    labelFor = deepCopyThis.labelFor;
     viewIdResourceName = deepCopyThis.viewIdResourceName;
     text = deepCopyThis.text;
     paneTitle = deepCopyThis.paneTitle;
@@ -132,6 +135,11 @@ public class AxeViewBuilder implements Builder {
   @Override
   public AxeView labeledBy() {
     return labeledBy;
+  }
+
+  @Override
+  public AxeView labelFor() {
+    return labelFor;
   }
 
   @Override

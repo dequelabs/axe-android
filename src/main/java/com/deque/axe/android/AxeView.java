@@ -68,6 +68,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final AxeView labeledBy;
 
   /**
+   * The AxeView of the View that this is acting as the Name of.
+   */
+  private final AxeView labelFor;
+
+  /**
    * The packageName that the View belongs to.
    * FIXME: Make non transient before a 1.0 release.
    */
@@ -116,6 +121,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     AxeView labeledBy();
 
+    AxeView labelFor();
+
     String packageName();
 
     String paneTitle();
@@ -140,6 +147,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean isEnabled,
       final boolean isImportantForAccessibility,
       final AxeView labeledBy,
+      final AxeView labelFor,
       final String packageName,
       final String paneTitle,
       final String text,
@@ -154,6 +162,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.isEnabled = isEnabled;
     this.isImportantForAccessibility = isImportantForAccessibility;
     this.labeledBy = labeledBy;
+    this.labelFor = labelFor;
     this.packageName = packageName;
     this.paneTitle = paneTitle;
     this.text = text;
@@ -181,6 +190,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.isEnabled(),
         builder.isImportantForAccessibility(),
         builder.labeledBy(),
+        builder.labelFor(),
         builder.packageName(),
         builder.paneTitle(),
         builder.text(),
