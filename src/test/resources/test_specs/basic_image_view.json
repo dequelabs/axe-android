@@ -8,6 +8,7 @@
   },
   "axeContext" : {
     "axeView" : {
+      "className": "android.support.v7.widget.LinearLayoutCompat",
       "children" : [
         {
           "testCaseDescription": "Passes because it has a content description.",
