@@ -18,6 +18,7 @@ public class AxeDeviceTest {
 
     Assert.assertEquals(name, axeDevice.name);
     Assert.assertEquals(dpi, axeDevice.dpi, 0.0);
+    Assert.assertEquals("Android", axeDevice.os);
     Assert.assertEquals("Android " + osVersion, axeDevice.osVersion);
     Assert.assertEquals(width, axeDevice.screenWidth);
     Assert.assertEquals(height, axeDevice.screenHeight);
