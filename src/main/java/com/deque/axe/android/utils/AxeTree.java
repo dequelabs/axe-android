@@ -11,6 +11,8 @@ public interface AxeTree<T extends AxeTree<T>> {
 
   T getTreeNode();
 
+  String getNodeId();
+
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({0, 1, 2})
   @interface CallBackResponse {

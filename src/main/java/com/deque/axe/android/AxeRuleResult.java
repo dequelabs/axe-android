@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStatus;
+import com.deque.axe.android.utils.AxeTree;
 import com.deque.axe.android.utils.JsonSerializable;
 import com.deque.axe.android.wrappers.AxeProps;
 import com.google.gson.ExclusionStrategy;
@@ -56,13 +57,13 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       @AxeStatus String status,
       AxeRule axeRule,
       AxeProps axeProps,
-      AxeView axeView
+      AxeTree axeView
   ) {
     this.ruleId = axeRule != null ? axeRule.id : null;
     this.ruleSummary = axeRule != null ? axeRule.summary : null;
     this.props = axeProps;
     this.status = status;
-    this.axeViewId = axeView == null ? null : axeView.axeViewId;
+    this.axeViewId = axeView == null ? null : axeView.getNodeId();
     this.impact = axeRule != null ? axeRule.impact : 0;
   }
 
