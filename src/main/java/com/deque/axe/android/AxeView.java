@@ -286,6 +286,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   }
 
   @Override
+  public String getNodeId() {
+    return axeViewId;
+  }
+
+  @Override
   public int compareTo(@NotNull AxeView o) {
     return JsonSerializable.compareTo(this, o);
   }
