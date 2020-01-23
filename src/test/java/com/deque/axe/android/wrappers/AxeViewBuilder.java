@@ -144,7 +144,7 @@ public class AxeViewBuilder implements Builder {
     return paneTitle;
   }
 
-  public AxeViewBuilder painTitle(final String paneTitle) {
+  public AxeViewBuilder paneTitle(final String paneTitle) {
     this.paneTitle = paneTitle;
     return this;
   }
