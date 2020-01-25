@@ -116,6 +116,16 @@ public class ColorContrastTests {
   }
 
   @Test
+  public void imageTest_textOverlaysImage() {
+    new ImageResourceResult(
+            "text_overlays_image.png",
+            new AxeColor(255,0,0,0),   // Placeholder
+            new AxeColor(255,255,255,255),
+            ColorContrastRunner.Confidence.NONE
+    ).runTest(new AxeRect(62, 1017, 1488, 1602));
+  }
+
+  @Test
   public void example_Inaccessible() {
     new ImageResourceResult(
         "color_contrast_example.png",
