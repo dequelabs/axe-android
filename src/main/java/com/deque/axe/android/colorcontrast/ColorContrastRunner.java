@@ -85,7 +85,7 @@ public class ColorContrastRunner {
 
     ColorContrastResult result = new ColorContrastResult();
 
-    // Check for image underlay
+    // Check for image overlay
     long overlayDetectionHeuristic = openTransitions.size() * countExactColors.size() * countExactPairs.size();
 
     if (overlayDetectionHeuristic > OverlayDetectionThreshold) {
