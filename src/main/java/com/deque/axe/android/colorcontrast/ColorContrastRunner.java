@@ -17,8 +17,6 @@ import java.util.Set;
 
 public class ColorContrastRunner {
 
-  private final long OverlayDetectionThreshold = 100000;
-
   private final Map<AxeColor, Transition> openTransitions = new HashMap<>();
 
   private final CountMap<AxeColor> countExactColors = new CountMap<>();
@@ -84,13 +82,6 @@ public class ColorContrastRunner {
   ColorContrastResult onRowEnd() {
 
     ColorContrastResult result = new ColorContrastResult();
-
-    // Check for image underlay
-    long overlayDetectionHeuristic = openTransitions.size() * countExactColors.size() * countExactPairs.size();
-
-    if (overlayDetectionHeuristic > OverlayDetectionThreshold) {
-      return result;
-    }
 
     CountMap<ColorPair> pairsWithSimilarTextColor = new CountMap<>();
 
