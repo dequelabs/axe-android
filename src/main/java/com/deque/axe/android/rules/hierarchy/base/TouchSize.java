@@ -10,6 +10,7 @@ import com.deque.axe.android.wrappers.AxeRect;
 public abstract class TouchSize extends ActiveView {
 
   private final int expectedSize;
+  private AxeDevice axeDevice;
 
   protected TouchSize(String standard, int impact, String summary, int expectedSize) {
     super(standard, impact, summary);
@@ -19,8 +20,7 @@ public abstract class TouchSize extends ActiveView {
 
   @Override
   public void setup(AxeContext axeContext, AxeProps axeProps) {
-
-    final AxeDevice axeDevice = axeContext.axeDevice;
+    axeDevice = axeContext.axeDevice;
 
     axeProps.put(AxeProps.Name.DPI, axeDevice == null ? -1 : axeDevice.dpi);
     axeProps.put(AxeProps.Name.SCREEN_HEIGHT, axeDevice == null ? -1 : axeDevice.screenHeight);
@@ -31,6 +31,14 @@ public abstract class TouchSize extends ActiveView {
   public void collectProps(AxeView axeView, AxeProps axeProps) {
     super.collectProps(axeView, axeProps);
 
+    axeProps.put(AxeProps.Name.IS_RENDERED,
+            axeView.isRendered(axeDevice.dpi, axeDevice.screenHeight, axeDevice.screenWidth));
+    axeProps.put(AxeProps.Name.IS_OFF_SCREEN,
+            axeView.isOffScreen(axeView.boundsInScreen,
+                    axeDevice.screenHeight, axeDevice.screenWidth));
+    axeProps.put(AxeProps.Name.IS_PARTIALLY_VISIBLE,
+            axeView.isPartiallyVisible(axeView.boundsInScreen,
+                    axeDevice.screenHeight, axeDevice.screenWidth));
     axeProps.put(AxeProps.Name.FRAME, axeView.boundsInScreen);
   }
 
@@ -43,35 +51,22 @@ public abstract class TouchSize extends ActiveView {
     final long height = frame.height();
     final long width = frame.width();
 
-    final int screenHeight = axeProps.get(AxeProps.Name.SCREEN_HEIGHT, Integer.class);
-    final int screenWidth = axeProps.get(AxeProps.Name.SCREEN_WIDTH, Integer.class);
+    final boolean isRendered = axeProps.get(AxeProps.Name.IS_RENDERED, Boolean.class);
+    final boolean isOffScreen = axeProps.get(AxeProps.Name.IS_OFF_SCREEN, Boolean.class);
+    final boolean isPartiallyVisible = axeProps.get(
+            AxeProps.Name.IS_PARTIALLY_VISIBLE, Boolean.class);
 
-    if (isRendered(dpi, height, width) || isOffScreen(frame, screenHeight, screenWidth)) {
+    if (isRendered || isOffScreen || isPartiallyVisible) {
       return AxeStatus.INCOMPLETE;
     }
 
     final long adjustedHeight = Math.round(height / dpi);
     final long adjustedWidth = Math.round(width / dpi);
 
-
     if (adjustedHeight < expectedSize || adjustedWidth < expectedSize) {
       return AxeStatus.FAIL;
     } else {
       return AxeStatus.PASS;
     }
-  }
-
-  private boolean isRendered(float dpi, long height, long width) {
-    return dpi <= 0 || height < 0 || width < 0;
-  }
-
-  private boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
-    if (screenHeight > 0 && screenWidth > 0) {
-      return frame.top < 0
-              || frame.left < 0
-              || frame.bottom > screenHeight
-              || frame.right > screenWidth;
-    }
-    return false;
   }
 }
