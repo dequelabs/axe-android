@@ -1,6 +1,7 @@
 package com.deque.axe.android;
 
 import com.deque.axe.android.constants.Constants;
+import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
 import org.junit.Assert;
 import org.junit.Test;
@@ -60,5 +61,24 @@ public class AxeViewTest {
     AxeView axeView = parent.build();
 
     Assert.assertEquals(Constants.DEFAULT_SCREEN_TITLE, axeView.getScreenTitle());
+  }
+
+  @Test
+  public void isPartiallyVisible_buttonIsNotOffScreen_returnsFalse() {
+    AxeRect parentRect = new AxeRect(0, 100, 0, 200);
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.viewIdResourceName("id:content");
+    parent.boundsInScreen(parentRect);
+
+    AxeRect childRect = new AxeRect(1, 45, 1, 45);
+    AxeViewBuilder child = new AxeViewBuilder();
+    child.viewIdResourceName("id:button1");
+    child.boundsInScreen(childRect);
+
+    parent.addChild(child);
+
+    AxeView axeView = parent.build();
+
+    Assert.assertFalse(axeView.isPartiallyVisible(axeView.boundsInScreen, 220, 101));
   }
 }

@@ -14,31 +14,34 @@ public class AxeProps extends HashMap<String, Object>
 
   @Retention(RetentionPolicy.SOURCE)
   @StringDef({
-      Name.CLASS_NAME,
-      Name.CONTENT_DESCRIPTION,
-      Name.DPI,
-      Name.FRAME,
-      Name.HEIGHT,
-      Name.IMPORTANT,
-      Name.IS_CLICKABLE,
-      Name.IS_ENABLED,
-      Name.LABELED_BY,
-      Name.SPEAKABLE_TEXT,
-      Name.WIDTH,
-      Name.EXCEPTION,
-      Name.STACK_TRACE,
-      Name.EVENT_STREAM,
-      Name.IS_FOCUS_CHANGE_OK,
-      Name.IS_TOUCH_EXPLORATION_GESTURE,
-      Name.IS_TOUCH_STARTED,
-      Name.ACCESSIBILITY_EVENT,
-      Name.VISIBLE_TEXT,
-      Name.COLOR_BACKGROUND,
-      Name.COLOR_FOREGROUND,
-      Name.COLOR_CONTRAST,
-      Name.CONFIDENCE,
-      Name.SCREEN_HEIGHT,
-      Name.SCREEN_WIDTH
+          Name.CLASS_NAME,
+          Name.CONTENT_DESCRIPTION,
+          Name.DPI,
+          Name.FRAME,
+          Name.HEIGHT,
+          Name.IMPORTANT,
+          Name.IS_CLICKABLE,
+          Name.IS_ENABLED,
+          Name.LABELED_BY,
+          Name.SPEAKABLE_TEXT,
+          Name.WIDTH,
+          Name.EXCEPTION,
+          Name.STACK_TRACE,
+          Name.EVENT_STREAM,
+          Name.IS_FOCUS_CHANGE_OK,
+          Name.IS_TOUCH_EXPLORATION_GESTURE,
+          Name.IS_TOUCH_STARTED,
+          Name.ACCESSIBILITY_EVENT,
+          Name.VISIBLE_TEXT,
+          Name.COLOR_BACKGROUND,
+          Name.COLOR_FOREGROUND,
+          Name.COLOR_CONTRAST,
+          Name.CONFIDENCE,
+          Name.SCREEN_HEIGHT,
+          Name.SCREEN_WIDTH,
+          Name.IS_OFF_SCREEN,
+          Name.IS_RENDERED,
+          Name.IS_PARTIALLY_VISIBLE
   })
   public @interface Name {
     String CLASS_NAME = "className";
@@ -66,6 +69,9 @@ public class AxeProps extends HashMap<String, Object>
     String CONFIDENCE = "Confidence in Color Detection";
     String SCREEN_HEIGHT = "Screen Height";
     String SCREEN_WIDTH = "Screen Width";
+    String IS_RENDERED = "isRendered";
+    String IS_OFF_SCREEN = "isOffScreen";
+    String IS_PARTIALLY_VISIBLE = "isPartiallyVisible";
   }
 
   @Override

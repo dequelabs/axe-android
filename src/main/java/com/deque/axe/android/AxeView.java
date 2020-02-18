@@ -9,14 +9,15 @@ import com.deque.axe.android.wrappers.AxeRect;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-
 import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("WeakerAccess")
 public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSerializable {
@@ -94,6 +95,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final String viewIdResourceName;
 
   /**
+   * Adds a copy of the parent(this) to every child.
+   */
+  public AxeView parentAxeView;
+
+  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
@@ -159,6 +165,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.text = text;
     this.viewIdResourceName = viewIdResourceName;
     this.children = children;
+
+    assignParentToChild(children);
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -330,7 +338,6 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public interface Matcher {
     boolean matches(final AxeView view);
   }
-
   /**
    * Find all AxeView objects in the hierarchy that match.
    * @param matcher A matcher function.
@@ -359,6 +366,12 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return results;
   }
 
+  private void assignParentToChild(List<AxeView> children) {
+    for (int i = 0; i < children.size(); i++) {
+      children.get(i).parentAxeView = this;
+    }
+  }
+
   private boolean isContentView() {
     return viewIdResourceName != null
             && (viewIdResourceName.endsWith("content") && !children.isEmpty());
@@ -370,6 +383,18 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       return this;
     } else {
       return children.get(0).getContentView();
+    }
+  }
+
+  private AxeView getContentAxeViewFromHierarchy(AxeView axeView) {
+    if (axeView.parentAxeView != null) {
+      if (axeView.parentAxeView.viewIdResourceName != null && axeView.parentAxeView.viewIdResourceName.endsWith("content")) {
+        return axeView;
+      } else {
+        return getContentAxeViewFromHierarchy(axeView.parentAxeView);
+      }
+    } else {
+      return null;
     }
   }
 
@@ -397,5 +422,30 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     }
 
     return Constants.DEFAULT_SCREEN_TITLE;
+  }
+
+  public boolean isRendered(float dpi, long height, long width) {
+    return dpi <= 0 || height < 0 || width < 0;
+  }
+
+  public boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
+    if (screenHeight > 0 && screenWidth > 0) {
+      return frame.top < 0
+              || frame.left < 0
+              || frame.bottom > screenHeight
+              || frame.right > screenWidth;
+    }
+    return false;
+  }
+
+  public boolean isPartiallyVisible(AxeRect frame, int screenHeight, int screenWidth) {
+    if (screenHeight > 0 && screenWidth > 0 && parentAxeView != null) {
+      AxeView contentView  = getContentAxeViewFromHierarchy(this);
+      return frame.top <= contentView.boundsInScreen.top
+              || frame.left <= 0
+              || frame.bottom >= contentView.boundsInScreen.bottom
+              || frame.right >= screenWidth;
+    }
+    return false;
   }
 }
