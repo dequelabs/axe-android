@@ -129,7 +129,7 @@ public class AxeTest {
 
     AxeResult axeResult = axe.run(new AxeContext(
         new AxeViewBuilder().build(),
-        null,
+        new AxeDevice(222, "Samsung", "android", 200, 100),
         null,
         null)
     );
@@ -170,7 +170,7 @@ public class AxeTest {
 
     AxeResult axeResult = axe.run(new AxeContext(
         new AxeViewBuilder().build(),
-        null,
+        new AxeDevice(222, "Samsung", "android", 200, 100),
         null,
         null
         )
@@ -186,7 +186,7 @@ public class AxeTest {
     Axe axe = new Axe(new AxeConf());
 
     axe.run(new AxeContext(new AxeViewBuilder().build(),
-        null,
+        new AxeDevice(222, "Samsung", "android", 200, 100),
         null,
         null
         )

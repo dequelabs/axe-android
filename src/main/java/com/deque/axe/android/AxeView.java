@@ -94,6 +94,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final String viewIdResourceName;
 
   /**
+   * Maintains a copy of Content View Axe Rect.
+   */
+  public static AxeRect contentViewAxeRect;
+
+  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
@@ -159,6 +164,10 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.text = text;
     this.viewIdResourceName = viewIdResourceName;
     this.children = children;
+
+    if (this.viewIdResourceName != null && this.viewIdResourceName.contains("content")) {
+      contentViewAxeRect = boundsInScreen;
+    }
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -408,5 +417,47 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     }
 
     return Constants.DEFAULT_SCREEN_TITLE;
+  }
+
+  /**
+   * Returns true if the view is Rendered on screen.
+   * @param dpi device dots per inch.
+   * @param height device height.
+   * @param width device width.
+   */
+  public boolean isRendered(float dpi, long height, long width) {
+    return dpi <= 0 || height < 0 || width < 0;
+  }
+
+  /**
+   * Returns true if the view is created but not visible on the screen because of scroll.
+   * @param frame rectangle containing the view.
+   * @param screenHeight device height.
+   * @param screenWidth device width.
+   */
+  public boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
+    if (screenHeight > 0 && screenWidth > 0) {
+      return frame.top < 0
+              || frame.left < 0
+              || frame.bottom > screenHeight
+              || frame.right > screenWidth;
+    }
+    return false;
+  }
+
+  /**
+   * Returns true if only part of the view is visible on screen.
+   * @param frame rectangle containing the view.
+   * @param screenHeight device height.
+   * @param screenWidth device width.
+   */
+  public boolean isPartiallyVisible(AxeRect frame, int screenHeight, int screenWidth) {
+    if (screenHeight > 0 && screenWidth > 0 && contentViewAxeRect != null) {
+      return frame.top <= contentViewAxeRect.top
+              || frame.left <= 0
+              || frame.bottom >= contentViewAxeRect.bottom
+              || frame.right >= screenWidth;
+    }
+    return false;
   }
 }
