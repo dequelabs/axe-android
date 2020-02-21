@@ -184,6 +184,7 @@ workflows:
   Publish Release:
     jobs:
       - Release:
+          context: mobile-team
           filters:
             tags:
               only: /.*/
