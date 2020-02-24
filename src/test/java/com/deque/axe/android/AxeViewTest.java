@@ -32,7 +32,7 @@ public class AxeViewTest {
 
     AxeViewBuilder parent = new AxeViewBuilder();
 
-    parent.viewIdResourceName("id:content");
+    parent.viewIdResourceName("android:id/content");
 
     AxeViewBuilder child = new AxeViewBuilder();
 
@@ -67,7 +67,7 @@ public class AxeViewTest {
   public void isPartiallyVisible_buttonIsNotOffScreen_returnsFalse() {
     AxeRect parentRect = new AxeRect(0, 100, 0, 200);
     AxeViewBuilder parent = new AxeViewBuilder();
-    parent.viewIdResourceName("id:content");
+    parent.viewIdResourceName("android:id/content");
     parent.boundsInScreen(parentRect);
 
     AxeRect childRect = new AxeRect(1, 45, 1, 45);
@@ -86,7 +86,7 @@ public class AxeViewTest {
   public void isOffScreen_viewOutOfScreen_returnsTrue() {
     AxeRect parentRect = new AxeRect(-1, 100, 0, 200);
     AxeViewBuilder parent = new AxeViewBuilder();
-    parent.viewIdResourceName("id:content");
+    parent.viewIdResourceName("android:id/content");
     parent.boundsInScreen(parentRect);
 
     AxeView axeView = parent.build();
@@ -98,7 +98,7 @@ public class AxeViewTest {
   public void isOffScreen_viewInsideScreen_returnsFalse() {
     AxeRect parentRect = new AxeRect(0, 100, 0, 200);
     AxeViewBuilder parent = new AxeViewBuilder();
-    parent.viewIdResourceName("id:content");
+    parent.viewIdResourceName("android:id/content");
     parent.boundsInScreen(parentRect);
 
     AxeView axeView = parent.build();
