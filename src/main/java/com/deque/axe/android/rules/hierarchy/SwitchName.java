@@ -15,19 +15,23 @@ public class SwitchName extends ModifiableViewName {
 
   @Override
   public void collectProps(AxeView axeView, AxeProps axeProps) {
-    axeProps.put(AxeProps.Name.VISIBLE_TEXT, axeView.text);
-
+    axeProps.put(AxeProps.Name.VISIBLE_TEXT,
+            axeView.hasOperatingSystemTextOnlyOrIsNull(axeView.text) ? null : axeView.text);
     super.collectProps(axeView, axeProps);
   }
 
   @Override
   public String runRule(AxeProps axeProps) {
     final String visibleText = axeProps.get(AxeProps.Name.VISIBLE_TEXT, String.class);
+    final String labeledBy = axeProps.get(AxeProps.Name.LABELED_BY, String.class);
 
-    if (!AxeTextUtils.isNullOrEmpty(visibleText)
-            && !visibleText.equalsIgnoreCase("on") && !visibleText.equalsIgnoreCase("off")) {
+    if ((AxeTextUtils.isNullOrEmpty(labeledBy)
+            && (AxeTextUtils.isNullOrEmpty(visibleText)))
+            || (!AxeTextUtils.isNullOrEmpty(labeledBy)
+            && (!AxeTextUtils.isNullOrEmpty(visibleText)))) {
+      return AxeStatus.FAIL;
+    } else {
       return AxeStatus.PASS;
     }
-    return super.runRule(axeProps);
   }
 }

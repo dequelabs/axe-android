@@ -24,10 +24,15 @@ public class CheckBoxName extends ModifiableViewName {
   @Override
   public String runRule(AxeProps axeProps) {
     final String visibleText = axeProps.get(AxeProps.Name.VISIBLE_TEXT, String.class);
+    final String labeledBy = axeProps.get(AxeProps.Name.LABELED_BY, String.class);
 
-    if (!AxeTextUtils.isNullOrEmpty(visibleText)) {
+    if (AxeTextUtils.isNullOrEmpty(visibleText)
+            && AxeTextUtils.isNullOrEmpty(labeledBy)
+            || (!AxeTextUtils.isNullOrEmpty(visibleText)
+            && !AxeTextUtils.isNullOrEmpty(labeledBy))) {
+      return AxeStatus.FAIL;
+    } else {
       return AxeStatus.PASS;
     }
-    return super.runRule(axeProps);
   }
 }
