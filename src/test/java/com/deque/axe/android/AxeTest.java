@@ -20,15 +20,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests for the base Axe class.
@@ -260,7 +263,44 @@ public class AxeTest {
         other.impact = 0;
         axeResult.impact = 0;
 
-        assertEquals(axeResult, other);
+        assertEquals(axeResult.axeViewId, other.axeViewId);
+        assertEquals(axeResult.impact, other.impact);
+//        assertEquals(axeResult.props, other.props);
+
+        assertThat(axeResult, is(other));
+
+//        JSONObject jsonObject = new JSONObject(axeResult.toJson().trim());
+//        Iterator<String> keys = jsonObject.keys();
+//
+//        JSONObject jsonObjectNew = new JSONObject(other.toJson().trim());
+//        Iterator<String> keysNew = jsonObjectNew.keys();
+//
+//        ArrayList<String> keysToRemove = new ArrayList<>();
+//
+//        while (keys.hasNext()) {
+//          String key = keys.next();
+//          while (keysNew.hasNext()) {
+//            String keyNew = keysNew.next();
+//            if (jsonObject.get(key) == jsonObjectNew.get(keyNew)) {
+//              keysToRemove.add(keyNew);
+//            }
+//          }
+//        }
+//
+//        keysToRemove.forEach(s -> {
+//          if (jsonObjectNew.has(s)) {
+//            jsonObjectNew.remove(s);
+//          }
+//        });
+//
+//        //After above code we know that jsonObjectNew contains all the elements which are not in the old JSON
+//
+//        Iterator<String> remainingKeys = jsonObjectNew.keys();
+//        while (remainingKeys.hasNext()) {
+//          System.out.println(jsonObjectNew.get(remainingKeys.next()));
+//        }
+
+        //assertEquals(axeResult, other);
 
         results.remove(0);
       });

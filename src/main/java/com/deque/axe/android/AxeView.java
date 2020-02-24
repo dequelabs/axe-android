@@ -96,7 +96,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Maintains a copy of Content View Axe Rect.
    */
-  public static AxeRect contentViewAxeRect;
+  static AxeRect contentViewAxeRect;
 
   /**
    * The Children of this view as AxeView objects.
@@ -165,9 +165,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.viewIdResourceName = viewIdResourceName;
     this.children = children;
 
-    if (this.viewIdResourceName != null && this.viewIdResourceName.contains("content")) {
-      contentViewAxeRect = boundsInScreen;
-    }
+    setContentView(viewIdResourceName, boundsInScreen);
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -368,9 +366,15 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return results;
   }
 
+  private static void setContentView(String viewIdResourceName, AxeRect boundsInScreen) {
+    if (viewIdResourceName != null && viewIdResourceName.equals("android:id/content")) {
+      AxeView.contentViewAxeRect = boundsInScreen;
+    }
+  }
+
   private boolean isContentView() {
     return viewIdResourceName != null
-            && (viewIdResourceName.endsWith("content") && !children.isEmpty());
+            && (viewIdResourceName.endsWith("android:id/content") && !children.isEmpty());
   }
 
   private AxeView getContentView() {
@@ -419,7 +423,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   }
 
   /**
-   * Returns true if the view is created but not visible on the screen because of scroll.
+   * Returns true if the view is created in hierarchy but not visible on the screen.
    * @param frame rectangle containing the view.
    * @param screenHeight device height.
    * @param screenWidth device width.
