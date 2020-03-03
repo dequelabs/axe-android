@@ -1102,7 +1102,7 @@
     {
       "axeViewId": 1998661099,
       "props": {
-        "Color Contrast Ratio": 1.0961458236989559,
+        "Color Contrast Ratio": 5.648269876566381,
         "Background Color": "ff666666",
         "Visible Text": "In accordance with WCAG 2 AA contrast ratio thresholds all text elements must have sufficient contrast between text in the foreground and background.",
         "Confidence in Color Detection": "High",
@@ -1404,11 +1404,10 @@
     {
       "axeViewId": 897613724,
       "props": {
-        "Color Contrast Ratio": 7.3709355625018365,
-        "Background Color": "ff000000",
+        "Background Color": null,
         "Visible Text": "EditText views have dynamic requirements for color contrast. They must be tested manually.",
-        "Confidence in Color Detection": "High",
-        "Foreground Color": "ff999999"
+        "Confidence in Color Detection": "None",
+        "Foreground Color": null
       },
       "ruleId": "ColorContrast",
       "ruleSummary": "Text adequately contrasts with its background.",

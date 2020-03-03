@@ -234,6 +234,13 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     forEachRecursive(instance -> {
 
+      if (!AxeTextUtils.isNullOrEmpty(contentDescription) && isAccessibilityFocusable) {
+        result.append(instance.speakableText());
+        allAreNull.set(false);
+
+        return CallBackResponse.SKIP_BRANCH;
+      }
+
       final String speakableText = instance.speakableText();
 
       if (!AxeTextUtils.isNullOrEmpty(speakableText)) {

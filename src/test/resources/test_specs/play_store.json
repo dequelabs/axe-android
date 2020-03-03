@@ -2290,7 +2290,7 @@
     {
       "axeViewId": 1391472539,
       "props": {
-        "Speakable Text": "Developer Contact ",
+        "Speakable Text": "Developer contact ",
         "isActive": true
       },
       "ruleId": "ActiveViewName",
