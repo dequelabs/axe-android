@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -213,7 +214,7 @@ public class AxeTest {
   }
 
   @Test
-  public void jsonTestSpecs() throws IOException {
+  public void backwardCompatibilityTest() throws IOException {
 
     ClassLoader classLoader = getClass().getClassLoader();
 
@@ -271,6 +272,8 @@ public class AxeTest {
         }
 
         assertEquals(axeResult.ruleId, other.ruleId);
+        List<Object> missingKeys = new ArrayList<>();
+        List<String> unknownMissingKeys = new ArrayList<>();
 
         if (axeResult.props != other.props) {
           for (Map.Entry<String, Object> stringObjectEntry : axeResult.props.entrySet()) {
@@ -284,10 +287,18 @@ public class AxeTest {
                         new AxeComparatorInterface() {});
                 comparatorInterface.compare(key.toString(), expected, actual);
               }
+            } else {
+              missingKeys.add(key);
+            }
+          }
+          for (Object missingKey: missingKeys) {
+            if (!ignorePropsList.contains(missingKey.toString())) {
+              unknownMissingKeys.add(missingKey.toString());
             }
           }
         }
 
+        assertEquals(unknownMissingKeys.size(), 0);
         assertEquals(axeResult.ruleSummary, other.ruleSummary);
         assertEquals(axeResult.impact, other.impact);
         assertEquals(axeResult.status, other.status);
@@ -323,8 +334,13 @@ public class AxeTest {
   }
 
   private static final Map<String, AxeComparatorInterface> comparators = new HashMap<>();
+  private static final List<String> ignorePropsList = new ArrayList<>();
 
   static {
+    //Add all props that we know are present in old result but not anymore in new result
+    ignorePropsList.add("height");
+    ignorePropsList.add("width");
+
     comparators.put("boundsInScreen", new AxeComparatorInterface() {
       @Override
       public void compare(String key, Object expected, Object actual) {
