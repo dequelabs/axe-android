@@ -234,7 +234,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     forEachRecursive(instance -> {
 
-      if (isChildSpeakableTextNotRequired()) {
+      if (isChildSpeakableTextIgnoredByTalkback()) {
         result.append(instance.speakableText());
         allAreNull.set(false);
 
@@ -380,7 +380,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     }
   }
 
-  private boolean isChildSpeakableTextNotRequired() {
+  private boolean isChildSpeakableTextIgnoredByTalkback() {
     return (!AxeTextUtils.isNullOrEmpty(contentDescription)) && isAccessibilityFocusable;
   }
 

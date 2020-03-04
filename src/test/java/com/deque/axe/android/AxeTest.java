@@ -298,7 +298,8 @@ public class AxeTest {
           }
         }
 
-        assertEquals(unknownMissingKeys.size(), 0);
+        assertEquals("It looks like a prop has been removed or renamed \n",
+                unknownMissingKeys.size(), 0);
         assertEquals(axeResult.ruleSummary, other.ruleSummary);
         assertEquals(axeResult.impact, other.impact);
         assertEquals(axeResult.status, other.status);
