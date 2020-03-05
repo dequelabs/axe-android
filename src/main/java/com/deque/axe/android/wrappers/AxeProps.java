@@ -38,7 +38,10 @@ public class AxeProps extends HashMap<String, Object>
       Name.COLOR_CONTRAST,
       Name.CONFIDENCE,
       Name.SCREEN_HEIGHT,
-      Name.SCREEN_WIDTH
+      Name.SCREEN_WIDTH,
+      Name.IS_OFF_SCREEN,
+      Name.IS_RENDERED,
+      Name.IS_PARTIALLY_VISIBLE
   })
   public @interface Name {
     String CLASS_NAME = "className";
@@ -66,6 +69,9 @@ public class AxeProps extends HashMap<String, Object>
     String CONFIDENCE = "Confidence in Color Detection";
     String SCREEN_HEIGHT = "Screen Height";
     String SCREEN_WIDTH = "Screen Width";
+    String IS_RENDERED = "isRendered";
+    String IS_OFF_SCREEN = "isOffScreen";
+    String IS_PARTIALLY_VISIBLE = "isPartiallyVisible";
   }
 
   @Override
