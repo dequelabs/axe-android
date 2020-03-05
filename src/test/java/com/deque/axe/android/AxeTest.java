@@ -302,7 +302,6 @@ public class AxeTest {
                 unknownMissingKeys.size(), 0);
         assertEquals(axeResult.ruleSummary, other.ruleSummary);
         assertEquals(axeResult.impact, other.impact);
-        assertEquals(axeResult.status, other.status);
 
         actualResults.remove(0);
       });
