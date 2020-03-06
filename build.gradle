@@ -124,6 +124,22 @@ publishing {
     }
 }
 
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: DQ_MAVEN_CENTRAL_USERNAME, password: DQ_MAVEN_CENTRAL_APIKEY)
+            }
+        }
+    }
+}
+
+artifacts {
+    archives jar
+}
+
 apply plugin: 'com.jfrog.artifactory'
 
 artifactory {
