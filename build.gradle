@@ -130,7 +130,14 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: DQ_MAVEN_CENTRAL_USERNAME, password: DQ_MAVEN_CENTRAL_APIKEY)
+                if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME')
+                        && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
+                    authentication(
+                            userName: DQ_MAVEN_CENTRAL_USERNAME,
+                            password: DQ_MAVEN_CENTRAL_APIKEY)
+                } else {
+                    print ("No Maven Central Info. Publishing to Maven Cenrtal impossible.")
+                }
             }
         }
     }
