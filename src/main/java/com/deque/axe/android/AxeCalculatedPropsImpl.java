@@ -4,6 +4,8 @@ import com.deque.axe.android.utils.AxeTextUtils;
 
 class AxeCalculatedPropsImpl {
 
+  private static final String SPACE_HOLDER = " ";
+
   public static class ControlsCalculatedProps implements AxeCalculatedProps {
 
     private final String text;
@@ -29,8 +31,8 @@ class AxeCalculatedPropsImpl {
 
     @Override
     public String calculatedNameProp() {
-      return getPropAfterNullCheck(text)
-              + getPropAfterNullCheck(contentDescription)
+      return getPropAfterNullCheck(text) + SPACE_HOLDER
+              + getPropAfterNullCheck(contentDescription) + SPACE_HOLDER
               + getPropAfterNullCheck(labelText);
     }
 
@@ -72,13 +74,14 @@ class AxeCalculatedPropsImpl {
 
     @Override
     public String calculatedNameProp() {
+      //TODO: Consider Text also.
       if (!AxeTextUtils.isNullOrEmpty(contentDescription)
               && !AxeTextUtils.isNullOrEmpty(hint)) {
-        return getPropAfterNullCheck(hint)
+        return getPropAfterNullCheck(hint) + SPACE_HOLDER
                   + getPropAfterNullCheck(labelText);
       } else {
-        return getPropAfterNullCheck(contentDescription)
-                  + getPropAfterNullCheck(hint)
+        return getPropAfterNullCheck(contentDescription) + SPACE_HOLDER
+                  + getPropAfterNullCheck(hint) + SPACE_HOLDER
                   + getPropAfterNullCheck(labelText);
       }
     }
@@ -118,8 +121,8 @@ class AxeCalculatedPropsImpl {
 
     @Override
     public String calculatedNameProp() {
-      return getPropAfterNullCheck(text)
-              + getPropAfterNullCheck(contentDescription)
+      return getPropAfterNullCheck(text) + SPACE_HOLDER
+              + getPropAfterNullCheck(contentDescription) + SPACE_HOLDER
               + getPropAfterNullCheck(labelText);
     }
 
@@ -153,7 +156,7 @@ class AxeCalculatedPropsImpl {
 
     @Override
     public String calculatedNameProp() {
-      return getPropAfterNullCheck(text)
+      return getPropAfterNullCheck(text) + SPACE_HOLDER
               + getPropAfterNullCheck(contentDescription);
     }
 
