@@ -99,6 +99,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final String hintText;
 
   /**
+   * Direct copy of value.
+   */
+  public final String value;
+
+  /**
    * Maintains a copy of Content View Axe Rect.
    */
   static AxeRect contentViewAxeRect;
@@ -136,6 +141,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     String hintText();
 
+    String value();
+
     List<AxeView> children();
 
     default AxeView build() {
@@ -157,6 +164,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final String text,
       final String viewIdResourceName,
       final String hintText,
+      final String value,
       final List<AxeView> children
   ) {
     this.boundsInScreen = boundsInScreen;
@@ -172,6 +180,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.text = text;
     this.viewIdResourceName = viewIdResourceName;
     this.hintText = hintText;
+    this.value = value;
     this.children = children;
 
     setContentView(viewIdResourceName, boundsInScreen);
@@ -202,6 +211,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.text(),
         builder.viewIdResourceName(),
         builder.hintText(),
+        builder.value(),
         builder.children()
     );
   }
