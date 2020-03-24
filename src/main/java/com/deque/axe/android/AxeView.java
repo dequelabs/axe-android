@@ -113,7 +113,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Library of calculated props name, role, state, value.
    */
-  static final Map<String, String> calculatedProp = new HashMap<>();
+  static Map<String, String> calculatedProp = new HashMap<>();
 
   /**
    * The Children of this view as AxeView objects.
@@ -405,89 +405,15 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     String labelText = labeledBy == null ? "" : labeledBy.text;
 
-    switch (className) {
-      case AndroidClassNames.SWITCH:
-      case AndroidClassNames.CHECKBOX:
-        AxeCalculatedPropsImpl.ControlsCalculatedProps controlsCalculatedProps =
-                new AxeCalculatedPropsImpl.ControlsCalculatedProps(
-                        text,
-                        contentDescription,
-                        labelText,
-                        value,
-                        isEnabled,
-                        className);
-        setCalculatedProps(
-                controlsCalculatedProps.calculatedNameProp(),
-                controlsCalculatedProps.calculatedRoleProp(),
-                controlsCalculatedProps.calculatedValueProp(),
-                controlsCalculatedProps.calculatedStateProp());
-        break;
+    AxePropCalculator axePropCalculator = new AxePropCalculator(text,
+            contentDescription,
+            labelText,
+            value,
+            isEnabled,
+            className,
+            hintText);
 
-      case AndroidClassNames.EDIT_TEXT:
-        AxeCalculatedPropsImpl.EditTextCalculatedProps editTextCalculatedProps =
-                new AxeCalculatedPropsImpl.EditTextCalculatedProps(
-                        text,
-                        contentDescription,
-                        labelText,
-                        hintText,
-                        className);
-        setCalculatedProps(
-                editTextCalculatedProps.calculatedNameProp(),
-                editTextCalculatedProps.calculatedRoleProp(),
-                editTextCalculatedProps.calculatedValueProp(),
-                editTextCalculatedProps.calculatedValueProp());
-        break;
-
-      case AndroidClassNames.TEXT_VIEW:
-        AxeCalculatedPropsImpl.TextViewCalculatedProps textViewCalculatedProps =
-                new AxeCalculatedPropsImpl.TextViewCalculatedProps(
-                        text,
-                        contentDescription,
-                        className);
-
-        setCalculatedProps(
-                textViewCalculatedProps.calculatedNameProp(),
-                textViewCalculatedProps.calculatedRoleProp(),
-                textViewCalculatedProps.calculatedValueProp(),
-                textViewCalculatedProps.calculatedStateProp());
-        break;
-
-      case AndroidClassNames.IMAGE_VIEW:
-        AxeCalculatedPropsImpl.ImageViewCalculatedProps imageViewCalculatedProps =
-                new AxeCalculatedPropsImpl.ImageViewCalculatedProps(
-                        text,
-                        contentDescription,
-                        labelText,
-                        className);
-
-        setCalculatedProps(
-                imageViewCalculatedProps.calculatedNameProp(),
-                imageViewCalculatedProps.calculatedRoleProp(),
-                imageViewCalculatedProps.calculatedValueProp(),
-                imageViewCalculatedProps.calculatedStateProp());
-        break;
-
-      default:
-        AxeCalculatedPropsImpl.UnknownViewCalculatedProps unknownViewCalculatedProps =
-                new AxeCalculatedPropsImpl.UnknownViewCalculatedProps(
-                        text,
-                        contentDescription,
-                        className);
-
-        setCalculatedProps(
-                unknownViewCalculatedProps.calculatedNameProp(),
-                unknownViewCalculatedProps.calculatedRoleProp(),
-                unknownViewCalculatedProps.calculatedValueProp(),
-                unknownViewCalculatedProps.calculatedStateProp());
-        break;
-    }
-  }
-
-  private void setCalculatedProps(String name, String role, String value, String state) {
-    calculatedProp.put("name", name);
-    calculatedProp.put("role", role);
-    calculatedProp.put("value", value);
-    calculatedProp.put("state", state);
+    calculatedProp = axePropCalculator.getCalculatedProps();
   }
 
   private static void setContentView(String viewIdResourceName, AxeRect boundsInScreen) {
