@@ -109,6 +109,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   static AxeRect contentViewAxeRect;
 
   /**
+   * Maintains a copy of parent Axe View.
+   */
+  public transient AxeView parent;
+  
+  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
@@ -183,11 +188,19 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.value = value;
     this.children = children;
 
+    setParent();
+
     setContentView(viewIdResourceName, boundsInScreen);
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
     this.axeViewId = Integer.toString(this.hashCode());
+  }
+
+  private void setParent() {
+    for (AxeView child : children) {
+      child.parent = this;
+    }
   }
 
   /**

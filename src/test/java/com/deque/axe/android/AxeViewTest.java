@@ -28,6 +28,24 @@ public class AxeViewTest {
   }
 
   @Test
+  public void getParent() {
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    AxeViewBuilder child = new AxeViewBuilder();
+
+    parent.contentDescription("No empty.");
+    child.contentDescription("I love puppies.");
+
+    parent.addChild(child);
+
+    AxeView parentAxeView = parent.build();
+    AxeView childAxeView = parentAxeView.children.get(0);
+
+    AxeView actual = childAxeView.parent;
+    Assert.assertEquals(parentAxeView, actual);
+  }
+
+  @Test
   public void screenTitle_basic() {
 
     AxeViewBuilder parent = new AxeViewBuilder();
