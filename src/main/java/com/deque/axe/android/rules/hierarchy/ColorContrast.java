@@ -1,6 +1,8 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import com.deque.axe.android.Axe;
 import com.deque.axe.android.AxeContext;
+import com.deque.axe.android.AxeDevice;
 import com.deque.axe.android.AxeView;
 import com.deque.axe.android.colorcontrast.AxeColor;
 import com.deque.axe.android.colorcontrast.AxeImage;
@@ -17,6 +19,7 @@ import com.deque.axe.android.wrappers.AxeProps.Name;
 public class ColorContrast extends InformativeView {
 
   private transient AxeImage axeBitmap;
+  private AxeDevice axeDevice;
 
   public ColorContrast() {
     super(AxeStandard.WCAG_21, AxeImpact.SERIOUS,
@@ -25,6 +28,7 @@ public class ColorContrast extends InformativeView {
 
   public void setup(final AxeContext axeContext, final AxeProps axeProps) {
     axeBitmap = axeContext.screenshot;
+    axeDevice = axeContext.axeDevice;
   }
 
   @Override
@@ -51,6 +55,9 @@ public class ColorContrast extends InformativeView {
       axeProps.put(Name.COLOR_BACKGROUND, background);
       axeProps.put(Name.COLOR_FOREGROUND, foreground);
       axeProps.put(Name.CONFIDENCE, result.getConfidence());
+      axeProps.put(Name.IS_OFF_SCREEN,
+              axeView.isOffScreen(axeView.boundsInScreen,
+                      axeDevice.screenHeight, axeDevice.screenWidth));
 
       if (background != null && foreground != null) {
         axeProps.put(Name.COLOR_CONTRAST, background.contrast(foreground));
@@ -64,6 +71,11 @@ public class ColorContrast extends InformativeView {
   public String runRule(AxeProps axeProps) {
 
     String confidence = axeProps.get(Name.CONFIDENCE, String.class);
+
+    if (axeProps.get(Name.IS_OFF_SCREEN) != null
+            && axeProps.get(Name.IS_OFF_SCREEN, Boolean.class)) {
+      return AxeStatus.INAPPLICABLE;
+    }
 
     if (EditTextValue.EDITABLE_TYPE_NAMES.contains(axeProps.get(Name.CLASS_NAME, String.class))) {
       return AxeStatus.INCOMPLETE;
