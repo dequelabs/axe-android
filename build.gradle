@@ -118,30 +118,23 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.deque.axe'
             artifactId = 'axeandroid'
-            version = mavenVersion()
+            version = '0.0.1'
             from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            credentials {
+                username "$DQ_MAVEN_CENTRAL_USERNAME"
+                password "$DQ_MAVEN_CENTRAL_APIKEY"
+            }
         }
     }
 }
 
 apply plugin: 'maven'
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME')
-                        && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
-                    authentication(
-                            userName: DQ_MAVEN_CENTRAL_USERNAME,
-                            password: DQ_MAVEN_CENTRAL_APIKEY)
-                } else {
-                    print ("No Maven Central Info. Publishing to Maven Cenrtal impossible.")
-                }
-            }
-        }
-    }
-}
 
 artifacts {
     archives jar
@@ -175,3 +168,19 @@ artifactoryPublish {
     dependsOn jar
 }
 
+if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                    authentication(
+                            userName: DQ_MAVEN_CENTRAL_USERNAME,
+                            password: DQ_MAVEN_CENTRAL_APIKEY
+                    )
+                }
+            }
+        }
+    }
+} else {
+    print ("No Maven Central Info. Publishing to Maven Cenrtal impossible.")
+}
