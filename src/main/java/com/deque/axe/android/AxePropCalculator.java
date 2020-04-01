@@ -18,6 +18,8 @@ class AxePropCalculator {
   private final String className;
   private final String hintText;
 
+  private String calculatedProp;
+
   AxePropCalculator(String text,
                     String contentDescription,
                     String labelText,
@@ -51,7 +53,8 @@ class AxePropCalculator {
     switch (className) {
       case AndroidClassNames.SWITCH:
       case AndroidClassNames.CHECKBOX:
-        propMap.put(Props.NAME.getProp(), new AxePropInterface() {
+
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getNameProp(String text,
                                     String contentDescription,
@@ -59,21 +62,25 @@ class AxePropCalculator {
                                     String hint) {
 
             return getPropAfterNullCheck(text) + SPACE
-                     + getPropAfterNullCheck(contentDescription) + SPACE
-                     + getPropAfterNullCheck(labelText);
+                    + getPropAfterNullCheck(contentDescription) + SPACE
+                    + getPropAfterNullCheck(labelText);
           }
-        }.getNameProp(text, contentDescription, labelText, hintText));
+        }.getNameProp(text, contentDescription, labelText, hintText);
 
-        propMap.put(Props.STATE.getProp(), new AxePropInterface() {
+        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
+
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getStateProp(String state) {
             return isEnabled ? "enabled" : "disabled";
           }
-        }.getStateProp(""));
+        }.getStateProp("");
+
+        setCalculatedProp(Props.STATE.getProp(), calculatedProp);
 
         break;
       case AndroidClassNames.EDIT_TEXT:
-        propMap.put(Props.NAME.getProp(), new AxePropInterface() {
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getNameProp(String text,
                                     String contentDescription,
@@ -89,28 +96,33 @@ class AxePropCalculator {
                         + getPropAfterNullCheck(labelText);
                 }
             }
-          }.getNameProp(text, contentDescription, labelText, hintText));
+          }.getNameProp(text, contentDescription, labelText, hintText);
 
+        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
 
-        propMap.put(Props.VALUE.getProp(), new AxePropInterface() {
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getValueProp(String value) {
             return text;
           }
-        }.getValueProp(text));
+        }.getValueProp(text);
+
+        setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
 
         break;
       case AndroidClassNames.TEXT_VIEW:
-        propMap.put(Props.VALUE.getProp(), new AxePropInterface() {
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getValueProp(String value) {
             return text;
           }
-        }.getValueProp(text));
+        }.getValueProp(text);
+
+        setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
 
         break;
       case AndroidClassNames.IMAGE_VIEW:
-        propMap.put(Props.NAME.getProp(), new AxePropInterface() {
+        calculatedProp = new AxePropInterface() {
           @Override
           public String getNameProp(String text,
                                     String contentDescription,
@@ -120,7 +132,9 @@ class AxePropCalculator {
                     + getPropAfterNullCheck(contentDescription) + SPACE
                     + getPropAfterNullCheck(labelText);
             }
-          }.getNameProp(text, contentDescription, labelText, hintText));
+          }.getNameProp(text, contentDescription, labelText, hintText);
+
+        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
 
         break;
 
@@ -128,6 +142,10 @@ class AxePropCalculator {
         break;
     }
     return propMap;
+  }
+
+  private void setCalculatedProp(String key, String value) {
+    propMap.put(key, value);
   }
 
   enum Props {
