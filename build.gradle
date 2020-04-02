@@ -129,6 +129,7 @@ uploadArchives {
 
             pom.project {
                 name 'Axe Android'
+                groupId 'com.deque.android'
                 packaging 'jar'
                 version = '0.0.1'
                 // optionally artifactId can be defined here
@@ -190,21 +191,4 @@ artifactory {
 
 artifactoryPublish {
     dependsOn jar
-}
-
-if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                    authentication(
-                            userName: DQ_MAVEN_CENTRAL_USERNAME,
-                            password: DQ_MAVEN_CENTRAL_APIKEY
-                    )
-                }
-            }
-        }
-    }
-} else {
-    print ("No Maven Central Info. Publishing to Maven Cenrtal impossible.")
 }
