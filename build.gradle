@@ -114,27 +114,29 @@ if (!(hasProperty('artifactory_username') && hasProperty('artifactory_apikey')))
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-            }
+if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
 
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-            }
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+                }
 
-            pom.project {
-                name 'Axe Android'
-                groupId 'com.deque.android'
-                packaging 'jar'
-                version = '0.0.1'
-                // optionally artifactId can be defined here
-                description 'Axe for Android'
-                url 'https://www.deque.com'
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+                }
+
+                pom.project {
+                    name 'Axe Android'
+                    groupId 'com.deque.android'
+                    packaging 'jar'
+                    version = version
+                    description 'Axe for Android'
+                    url 'https://www.deque.com'
+                }
             }
         }
     }
@@ -145,18 +147,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.deque.axe'
             artifactId = 'axeandroid'
-            version = '0.0.1'
             from components.java
-        }
-    }
-
-    repositories {
-        maven {
-            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
-            credentials {
-                username "$DQ_MAVEN_CENTRAL_USERNAME"
-                password "$DQ_MAVEN_CENTRAL_APIKEY"
-            }
         }
     }
 }
