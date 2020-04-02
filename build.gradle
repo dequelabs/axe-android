@@ -112,6 +112,32 @@ if (!(hasProperty('artifactory_username') && hasProperty('artifactory_apikey')))
 }
 
 apply plugin: 'maven-publish'
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
+
+            pom.project {
+                name 'Axe Android'
+                packaging 'jar'
+                version = '0.0.1'
+                // optionally artifactId can be defined here
+                description 'Axe for Android'
+                url 'https://www.deque.com'
+            }
+        }
+    }
+}
 
 publishing {
     publications {
@@ -133,8 +159,6 @@ publishing {
         }
     }
 }
-
-apply plugin: 'maven'
 
 artifacts {
     archives jar
