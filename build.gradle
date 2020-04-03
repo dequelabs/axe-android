@@ -120,6 +120,7 @@ if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_AP
     uploadArchives {
         repositories {
             mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
                 repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
                     authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
@@ -135,7 +136,27 @@ if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_AP
                     packaging 'jar'
                     version = version
                     description 'Axe for Android'
-                    url 'https://www.deque.com'
+                    url 'https://github.com/dequelabs/axe-android'
+                    licenses {
+                        license {
+                            name = 'LICENSE'
+                            url = 'https://github.com/dequelabs/axe-android/blob/develop/LICENSE'
+                        }
+                    }
+
+                    scm {
+                        connection 'scm:git:https://github.com/dequelabs/axe-android.git'
+                        developerConnection 'scm:git:ssh:git@github.com:dequelabs/axe-android.git'
+                        url 'https://github.com/dequelabs/axe-android'
+                    }
+
+                    developers {
+                        developer {
+                            id "chriscm2006"
+                            name "Chris McMeeking"
+                            email "chris.mcmeeking@deque.com"
+                        }
+                    }
                 }
             }
         }
