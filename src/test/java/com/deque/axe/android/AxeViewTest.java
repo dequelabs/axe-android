@@ -32,17 +32,24 @@ public class AxeViewTest {
 
     AxeViewBuilder parent = new AxeViewBuilder();
     AxeViewBuilder child = new AxeViewBuilder();
+    AxeViewBuilder childOfChild = new AxeViewBuilder();
 
     parent.contentDescription("No empty.");
     child.contentDescription("I love puppies.");
+    childOfChild.contentDescription("I love cats.");
 
     parent.addChild(child);
+    child.addChild(childOfChild);
 
     AxeView parentAxeView = parent.build();
     AxeView childAxeView = parentAxeView.children.get(0);
+    AxeView childOfChildAxeView = parentAxeView.children.get(0).children.get(0);
 
     AxeView actual = childAxeView.parent;
     Assert.assertEquals(parentAxeView, actual);
+
+    AxeView parentOfYoungestChild = childOfChildAxeView.parent;
+    Assert.assertEquals(parentOfYoungestChild, childAxeView);
   }
 
   @Test

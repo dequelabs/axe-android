@@ -187,14 +187,14 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.hintText = hintText;
     this.value = value;
     this.children = children;
-
-    setParent();
-
-    setContentView(viewIdResourceName, boundsInScreen);
+    this.parent = null;
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
     this.axeViewId = Integer.toString(this.hashCode());
+
+    setParent();
+    setContentView(viewIdResourceName, boundsInScreen);
   }
 
   private void setParent() {
