@@ -1,0 +1,3 @@
+[submodule ".circleci/mobile-release-process"]
+	path = .circleci/mobile-release-process
+	url = git@github.com:dequelabs/mobile-release-process.git
