@@ -2,13 +2,13 @@
 cd $( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
 source ./env.sh
 
-sudo mkdir -p /sauron
-sudo chmod 777 /sauron
-sudo chown ${USER} /sauron
+sudo mkdir -p /axe-android
+sudo chmod 777 /axe-android
+sudo chown ${USER} /axe-android
 
-mkdir -p /sauron/h2
+mkdir -p /axe-android/h2
 
-./gradlew :attest-db:dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
+./gradlew :axe-android:dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
 ./gradlew build
 ./gradlew test
 ./gradlew check

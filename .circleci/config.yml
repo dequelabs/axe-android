@@ -143,13 +143,4 @@ workflows:
             branches:
               ignore: /.*/
 
-  Publish Maven Central:
-    jobs:
-      - Publish Maven Central:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
-
 
