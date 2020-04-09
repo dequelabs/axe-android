@@ -115,53 +115,60 @@ apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
 version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
-if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
+signing {
+    sign configurations.archives
+}
 
-    signing {
-        sign configurations.archives
-    }
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
 
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
+
+            pom.project {
+                name 'Axe Android'
+                groupId 'com.deque.android'
+                packaging 'jar'
+                version = version
+                description 'Axe for Android'
+                url 'https://github.com/dequelabs/axe-android'
+                licenses {
+                    license {
+                        name = 'LICENSE'
+                        url = 'https://github.com/dequelabs/axe-android/blob/develop/LICENSE'
+                    }
                 }
 
-                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                    authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-                }
-
-                pom.project {
-                    name 'Axe Android'
-                    groupId 'com.deque.android'
-                    packaging 'jar'
-                    version = version
-                    description 'Axe for Android'
+                scm {
+                    connection 'scm:git:https://github.com/dequelabs/axe-android.git'
+                    developerConnection 'scm:git:ssh:git@github.com:dequelabs/axe-android.git'
                     url 'https://github.com/dequelabs/axe-android'
-                    licenses {
-                        license {
-                            name = 'LICENSE'
-                            url = 'https://github.com/dequelabs/axe-android/blob/develop/LICENSE'
-                        }
-                    }
+                }
 
-                    scm {
-                        connection 'scm:git:https://github.com/dequelabs/axe-android.git'
-                        developerConnection 'scm:git:ssh:git@github.com:dequelabs/axe-android.git'
-                        url 'https://github.com/dequelabs/axe-android'
-                    }
-
-                    developers {
-                        developer {
-                            id "chriscm2006"
-                            name "Chris McMeeking"
-                            email "chris.mcmeeking@deque.com"
-                        }
+                developers {
+                    developer {
+                        id "chriscm2006"
+                        name "Chris McMeeking"
+                        email "chris.mcmeeking@deque.com"
                     }
                 }
             }
@@ -180,7 +187,7 @@ publishing {
 }
 
 artifacts {
-    archives jar
+    archives jar, javadocJar, sourcesJar
 }
 
 apply plugin: 'com.jfrog.artifactory'
