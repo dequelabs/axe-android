@@ -118,6 +118,11 @@ apply plugin: 'signing'
 version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
 if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY')) {
+
+    signing {
+        sign configurations.archives
+    }
+
     uploadArchives {
         repositories {
             mavenDeployer {
@@ -162,10 +167,6 @@ if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_AP
             }
         }
     }
-}
-
-signing {
-    sign configurations.archives
 }
 
 publishing {
