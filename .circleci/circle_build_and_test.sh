@@ -8,7 +8,7 @@ sudo chown ${USER} /axe-android
 
 mkdir -p /axe-android/h2
 
-./gradlew :axe-android:dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
+./gradlew :dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
 ./gradlew build
 ./gradlew test
 ./gradlew check
