@@ -113,6 +113,7 @@ if (!(hasProperty('artifactory_username') && hasProperty('artifactory_apikey')))
 
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
@@ -161,6 +162,10 @@ if (hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_AP
             }
         }
     }
+}
+
+signing {
+    sign configurations.archives
 }
 
 publishing {
