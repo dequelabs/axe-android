@@ -16,10 +16,10 @@ public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
 
   /**
    * Similar to the Android.Rect object, but does way cooler things.
-   * @param left The left most pixel. (left < right)
-   * @param right The right most pixel. (right > left)
-   * @param top The top most pixel. (top < bottom)
-   * @param bottom The bottom most pixel. (bottom > top)
+   * @param left The left most pixel. (left {@literal <} right)
+   * @param right The right most pixel. (right {@literal >} left)
+   * @param top The top most pixel. (top {@literal <} bottom)
+   * @param bottom The bottom most pixel. (bottom {@literal >} top)
    */
   public AxeRect(final int left, final int right, final int top, final int bottom) {
     this.left = left < right ? left : right;
