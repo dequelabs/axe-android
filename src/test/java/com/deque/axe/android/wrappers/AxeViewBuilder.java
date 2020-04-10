@@ -32,6 +32,8 @@ public class AxeViewBuilder implements Builder {
 
   private String hintText = null;
 
+  private String value = null;
+
   private String viewIdResourceName = "";
 
   public AxeViewBuilder() { }
@@ -49,6 +51,7 @@ public class AxeViewBuilder implements Builder {
     viewIdResourceName = deepCopyThis.viewIdResourceName;
     text = deepCopyThis.text;
     hintText = deepCopyThis.hintText;
+    value = deepCopyThis.value;
     paneTitle = deepCopyThis.paneTitle;
   }
 
@@ -163,6 +166,10 @@ public class AxeViewBuilder implements Builder {
 
   public String hintText() {
     return hintText;
+  }
+
+  public String value() {
+    return value;
   }
 
   @Override
