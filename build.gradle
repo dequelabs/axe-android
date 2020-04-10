@@ -131,6 +131,11 @@ signing {
     sign configurations.archives
 }
 
+if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
+    print ("No artifactory Info. Maven Central Publishing impossible.")
+    return
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
