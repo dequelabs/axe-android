@@ -140,6 +140,11 @@ public class AxeViewBuilder implements Builder {
     return labeledBy;
   }
 
+  public AxeViewBuilder labeledBy(AxeView labelAxeView) {
+    this.labeledBy = labelAxeView;
+    return this;
+  }
+
   @Override
   public String packageName() {
     return "com.placeholder";
@@ -162,6 +167,11 @@ public class AxeViewBuilder implements Builder {
 
   public String text() {
     return text;
+  }
+
+  public AxeViewBuilder hintText(final String newValue) {
+    this.hintText = newValue;
+    return this;
   }
 
   public String hintText() {

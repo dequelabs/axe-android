@@ -14,7 +14,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.jetbrains.annotations.NotNull;
 
@@ -109,6 +111,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   static AxeRect contentViewAxeRect;
 
   /**
+   * Library of calculated props name, role, state, value.
+   */
+  static Map<String, String> calculatedProp = new HashMap<>();
+
+  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
@@ -184,6 +191,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.children = children;
 
     setContentView(viewIdResourceName, boundsInScreen);
+    calculateProps();
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -391,6 +399,21 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     });
 
     return results;
+  }
+
+  private void calculateProps() {
+
+    String labelText = labeledBy == null ? "" : labeledBy.text;
+
+    AxePropCalculator axePropCalculator = new AxePropCalculator(text,
+            contentDescription,
+            labelText,
+            value,
+            isEnabled,
+            className,
+            hintText);
+
+    calculatedProp = axePropCalculator.getCalculatedProps();
   }
 
   private static void setContentView(String viewIdResourceName, AxeRect boundsInScreen) {

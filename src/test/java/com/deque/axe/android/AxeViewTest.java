@@ -1,5 +1,9 @@
 package com.deque.axe.android;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import com.deque.axe.android.constants.AndroidClassNames;
 import com.deque.axe.android.constants.Constants;
 import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
@@ -24,7 +28,7 @@ public class AxeViewTest {
     AxeView actual = parent.build().query(
         view -> view.contentDescription.contentEquals("I love puppies.")).get(0);
 
-    Assert.assertEquals(expected, actual);
+    assertEquals(expected, actual);
   }
 
   @Test
@@ -42,7 +46,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    Assert.assertEquals("My Title", axeView.getScreenTitle());
+    assertEquals("My Title", axeView.getScreenTitle());
   }
 
   @Test
@@ -60,7 +64,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    Assert.assertEquals(Constants.DEFAULT_SCREEN_TITLE, axeView.getScreenTitle());
+    assertEquals(Constants.DEFAULT_SCREEN_TITLE, axeView.getScreenTitle());
   }
 
   @Test
@@ -104,5 +108,51 @@ public class AxeViewTest {
     AxeView axeView = parent.build();
 
     Assert.assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+  }
+
+  @Test
+  public void calculateProps_switch() {
+    AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
+    labelAxeViewBuilder.text("Control");
+
+    AxeView labelAxeView = labelAxeViewBuilder.build();
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.text("Control Switch");
+    parent.contentDescription("Switch Control");
+    parent.labeledBy(labelAxeView);
+    parent.isEnabled(true);
+    parent.className(AndroidClassNames.SWITCH);
+
+    AxeView axeView = parent.build();
+
+    assertEquals(axeView.calculatedProp.size(), 4);
+    assertEquals(axeView.calculatedProp.get("name"), "Control Switch Switch Control Control");
+    assertEquals(axeView.calculatedProp.get("role"), "android.widget.Switch");
+    assertNull(axeView.calculatedProp.get("value"));
+    assertEquals(axeView.calculatedProp.get("state"), "enabled");
+  }
+
+  @Test
+  public void calculateProps_editText() {
+    AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
+    labelAxeViewBuilder.text("Enter Name");
+
+    AxeView labelAxeView = labelAxeViewBuilder.build();
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.text(null);
+    parent.contentDescription("Name");
+    parent.labeledBy(labelAxeView);
+    parent.hintText("John");
+    parent.className(AndroidClassNames.EDIT_TEXT);
+
+    AxeView axeView = parent.build();
+
+    assertEquals(axeView.calculatedProp.size(), 4);
+    assertEquals(axeView.calculatedProp.get("name"), "John Enter Name");
+    assertEquals(axeView.calculatedProp.get("role"), "android.widget.EditText");
+    assertNull(axeView.calculatedProp.get("value"));
+    assertNull(axeView.calculatedProp.get("state"));
   }
 }
