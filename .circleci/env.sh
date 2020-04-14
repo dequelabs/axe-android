@@ -7,11 +7,11 @@ cd "${0%/*}"
 export TAB=$'\t'
 export NEW=$'\n'
 
-export CIRCLE_DIR=$PWD
-export PROJECT_DIR=${CIRCLE_DIR}/..
-export RM_SCRIPT_DIR=${CIRCLE_DIR}/release_management_scripts
+CIRCLE_CI_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )
+ROOT_PATH=${CIRCLE_CI_PATH}/../
+ARTIFACTS_PATH=${CIRCLE_CI_PATH}/artifacts
 
-cd ${PROJECT_DIR}
+cd ${ROOT_PATH}
 
 function debug() {
   >&2 echo "DEBUG:$1"

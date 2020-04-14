@@ -15,18 +15,11 @@ load_repo: &load_repo
       - v{{ .Environment.repo_cache_key }}-repo-{{ .Branch }}
       - v{{ .Environment.repo_cache_key }}-repo
 
-save_gradle_deps: &save_gradle_deps
+save_gradle_deps: &save_deps
   save_cache:
     key: v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}-{{ .Revision }}
     paths:
       - ~/.gradle/caches/
-
-load_gradle_deps: &load_gradle_deps
-  restore_cache:
-    keys:
-      - v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}-{{ .Revision }}
-      - v{{ .Environment.repo_cache_key }}-gradle_deps-{{ .Branch }}
-      - v{{ .Environment.repo_cache_key }}-gradle_deps
 
 save_gradle_wrapper: &save_gradle_wrapper
   save_cache:
@@ -39,100 +32,73 @@ load_gradle_wrapper: &load_gradle_wrapper
     keys:
       - v{{ .Environment.repo_cache_key }}-gradle-wrapper-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
+python_deps: &python_deps
+  run:
+    name: Install Python Packages
+    command: |
+      sudo apt-get update
+      sudo apt-get install python-pip
+      sudo pip install requests
+
+checkout_all: &checkout_all
+  run:
+    name: Checkout With all Submodules and Tags
+    command: |
+      git fetch --depth=2147483647
+      git fetch --tags
+      git submodule sync
+      git submodule update --init
+
+load_deps: &load_deps
+  restore_cache:
+    keys:
+      - v{{ .Environment.repo_cache_key }}-deps-{{ .Branch }}-{{ .Revision }}
+      - v{{ .Environment.repo_cache_key }}-deps-{{ .Branch }}
+      - v{{ .Environment.repo_cache_key }}-deps
+
 version: 2
 
 jobs:
 
-  JUnit Tests:
+  Build and Test:
     <<: *configure_machine
     steps:
       - *load_repo
+      - *python_deps
       - checkout
-      - run:
-          name: Checkout With all Submodules and Tags
-          command: |
-            git fetch --depth=2147483647
-            git fetch --tags
-            git submodule sync
-            git submodule update --init
+      - *checkout_all
       - run:
           name: Install Certs
           command: .circleci/certs.sh
       - *save_repo
-      - *load_gradle_deps
+      - *load_deps
       - *load_gradle_wrapper
       - run:
           name: Test
-          command: ./gradlew test
+          command: python -B .circleci/mobile-release-process/build_and_test.py
       - *save_gradle_wrapper
-      - *save_gradle_deps
+      - *save_deps
+      - store_artifacts:
+          path: .circleci/artifacts/dependency_report.txt
+          destination: dependency_report.txt
       - store_artifacts:
           path: build/reports/tests
           destination: test-results
       - store_test_results:
           path: build/test-results
 
-  Code Consistency:
-    <<: *configure_machine
-    steps:
-      - *load_repo
-      - *load_gradle_deps
-      - *load_gradle_wrapper
-      - run:
-          name: Check Style Report
-          command: ./gradlew check
-      - store_artifacts:
-          path: build/reports/checkstyle
-          destination: checkstyle
-
-  Code Coverage:
-    <<: *configure_machine
-    steps:
-      - *load_repo
-      - *load_gradle_deps
-      - *load_gradle_wrapper
-      - run:
-          name: Code Coverage Report
-          command: ./gradlew codeCoverage
-      - store_artifacts:
-          path: build/jacoco/test/html
-          destination: findbugs.html
-
-  Code Vulnerability:
-    <<: *configure_machine
-    steps:
-      - *load_repo
-      - *load_gradle_deps
-      - *load_gradle_wrapper
-      - run:
-          name: SpotBugs Security Checks
-          command: ./gradlew spotbugsMain
-      - store_artifacts:
-          path: build/reports/spotbugs/main.html
-          destination: findbugs.html
-
-  Dependency Report:
-    <<: *configure_machine
-    steps:
-      - *load_repo
-      - *load_gradle_deps
-      - *load_gradle_wrapper
-      - run:
-          name: Run Dependency Report
-          command: .circleci/dependencies.sh > dependencyReport.txt
-      - *save_gradle_wrapper
-      - *save_gradle_deps
-      - store_artifacts:
-          path: ./dependencyReport.txt
-
   Publish Beta:
     <<: *configure_machine
     steps:
       - *load_repo
+      - *python_deps
       - checkout
-      - *load_gradle_deps
+      - *checkout_all
+      - *load_deps
       - *load_gradle_wrapper
-      - run: .circleci/publish_beta.sh
+      - run:
+          name: Publish Beta
+          command: python -B .circleci/mobile-release-process/publish_release_candidate.py
 
   Release:
     <<: *configure_machine
@@ -141,39 +107,25 @@ jobs:
           fingerprints:
             - "bb:e9:c0:14:a4:f6:1d:2b:91:cb:0a:f0:aa:93:79:fc"
       - checkout
-      - run:
-          name: Checkout With all Submodules and Tags
-          command: |
-            git fetch --depth=2147483647
-            git fetch --tags
-            git submodule sync
-            git submodule update --init
-      - *load_gradle_deps
+      - *python_deps
+      - *checkout_all
+      - *load_deps
       - *load_gradle_wrapper
-      - run: .circleci/release.sh
+      - run: python -B .circleci/mobile-release-process/publish_release.py
 
 workflows:
   version: 2
 
   Change Management:
     jobs:
-      - JUnit Tests:
+      - Build and Test:
           filters:
             branches:
               ignore:
                 - develop
                 - master
-      - Code Coverage:
-          requires:
-            - JUnit Tests
-      - Code Consistency:
-          requires:
-            - JUnit Tests
-      - Code Vulnerability:
-          requires:
-            - JUnit Tests
 
-  Draft Release:
+  Publish Release Candidate:
     jobs:
       - Publish Beta:
           filters:
@@ -190,11 +142,5 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-
-      - Dependency Report:
-          requires:
-            - Release
-
-
 
 

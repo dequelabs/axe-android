@@ -82,7 +82,7 @@ public class AxeColor implements Comparable<AxeColor> {
 
   /**
    * Return the red component of a color int. This is the same as saying
-   * (color >> 16) & 0xFF
+   * (color {@literal >} {@literal >} 16) {@literal &} 0xFF
    */
   @IntRange(from = 0, to = 255)
   public int red() {
@@ -91,7 +91,7 @@ public class AxeColor implements Comparable<AxeColor> {
 
   /**
    * Return the green component of a color int. This is the same as saying
-   * (color >> 8) & 0xFF
+   * (color {@literal >} {@literal >} 8) {@literal &} 0xFF
    */
   @IntRange(from = 0, to = 255)
   public int green() {
@@ -100,7 +100,7 @@ public class AxeColor implements Comparable<AxeColor> {
 
   /**
    * Return the blue component of a color int. This is the same as saying
-   * color & 0xFF
+   * color {@literal &} 0xFF
    */
   @IntRange(from = 0, to = 255)
   public int blue() {
