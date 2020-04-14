@@ -33,6 +33,9 @@ def mavenVersion = { ->
     }
 }
 
+def groupId = 'com.deque.android'
+def artifactId = 'axe-android'
+
 repositories {
     google()
     jcenter()
@@ -151,7 +154,8 @@ uploadArchives {
 
             pom.project {
                 name 'Axe Android'
-                groupId 'com.deque.android'
+                groupId
+                artifactId
                 packaging 'jar'
                 version = version
                 description 'Axe for Android'
@@ -184,8 +188,8 @@ uploadArchives {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.deque.axe'
-            artifactId = 'axeandroid'
+            groupId
+            artifactId
             from components.java
         }
     }
