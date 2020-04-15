@@ -113,7 +113,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Library of calculated props name, role, state, value.
    */
-  public Map<String, String> calculatedProp;
+  public final Map<String, String> calculatedProps;
 
   /**
    * The Children of this view as AxeView objects.
@@ -191,7 +191,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.children = children;
 
     setContentView(viewIdResourceName, boundsInScreen);
-    this.calculatedProp = calculateProps();
+    this.calculatedProps = calculateProps();
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.

@@ -1,15 +1,18 @@
 package com.deque.axe.android;
 
 import com.deque.axe.android.constants.AndroidClassNames;
-import com.deque.axe.android.utils.AxeTextUtils;
 
+import com.deque.axe.android.utils.AxeTextUtils;
+import com.deque.axe.android.utils.JsonSerializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-class AxePropCalculator {
+class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializable {
 
   private static final String SPACE = " ";
-  private static Map<String, String> propMap = new HashMap<>();
+  private Map<String, String> propMap = new HashMap<>();
   private final String text;
   private final String contentDescription;
   private final String labelText;
@@ -146,6 +149,38 @@ class AxePropCalculator {
 
   private void setCalculatedProp(String key, String value) {
     propMap.put(key, value);
+  }
+
+  @Override
+  public int compareTo(@NotNull AxePropCalculator axePropCalculator) {
+    return JsonSerializable.compareTo(this, axePropCalculator);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (!(o instanceof AxePropCalculator)) {
+      return false;
+    }
+
+    AxePropCalculator that = (AxePropCalculator) o;
+    return isEnabled == that.isEnabled
+            && Objects.equals(text, that.text)
+            && Objects.equals(contentDescription, that.contentDescription)
+            && Objects.equals(labelText, that.labelText)
+            && Objects.equals(value, that.value)
+            && Objects.equals(className, that.className)
+            && Objects.equals(hintText, that.hintText)
+            && Objects.equals(calculatedProp, that.calculatedProp);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(text, contentDescription, labelText, value,
+            isEnabled, className, hintText, calculatedProp);
   }
 
   enum Props {

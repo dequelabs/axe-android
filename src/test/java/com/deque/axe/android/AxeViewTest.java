@@ -126,11 +126,11 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProp.size(), 4);
-    assertEquals(axeView.calculatedProp.get("name"), "Control Switch Switch Control Control");
-    assertEquals(axeView.calculatedProp.get("role"), "android.widget.Switch");
-    assertNull(axeView.calculatedProp.get("value"));
-    assertEquals(axeView.calculatedProp.get("state"), "enabled");
+    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.get("name"), "Control Switch Switch Control Control");
+    assertEquals(axeView.calculatedProps.get("role"), "android.widget.Switch");
+    assertNull(axeView.calculatedProps.get("value"));
+    assertEquals(axeView.calculatedProps.get("state"), "enabled");
   }
 
   @Test
@@ -149,10 +149,10 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProp.size(), 4);
-    assertEquals(axeView.calculatedProp.get("name"), "John Enter Name");
-    assertEquals(axeView.calculatedProp.get("role"), "android.widget.EditText");
-    assertNull(axeView.calculatedProp.get("value"));
-    assertNull(axeView.calculatedProp.get("state"));
+    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.get("name"), "John Enter Name");
+    assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
+    assertNull(axeView.calculatedProps.get("value"));
+    assertNull(axeView.calculatedProps.get("state"));
   }
 }
