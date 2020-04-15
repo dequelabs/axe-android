@@ -113,7 +113,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Library of calculated props name, role, state, value.
    */
-  static Map<String, String> calculatedProp = new HashMap<>();
+  public Map<String, String> calculatedProp;
 
   /**
    * The Children of this view as AxeView objects.
@@ -191,7 +191,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.children = children;
 
     setContentView(viewIdResourceName, boundsInScreen);
-    calculateProps();
+    this.calculatedProp = calculateProps();
 
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
@@ -401,7 +401,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return results;
   }
 
-  private void calculateProps() {
+  private Map<String, String> calculateProps() {
 
     String labelText = labeledBy == null ? "" : labeledBy.text;
 
@@ -413,7 +413,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
             className,
             hintText);
 
-    calculatedProp = axePropCalculator.getCalculatedProps();
+    return axePropCalculator.getCalculatedProps();
   }
 
   private static void setContentView(String viewIdResourceName, AxeRect boundsInScreen) {
