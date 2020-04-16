@@ -14,7 +14,7 @@ import java.lang.annotation.RetentionPolicy;
     AndroidClassNames.TEXT_VIEW
 })
 public @interface AndroidClassNames {
-  String CHECKBOX = "android.widget.Checkbox";
+  String CHECKBOX = "android.widget.CheckBox";
   String EDIT_TEXT = "android.widget.EditText";
   String IMAGE_VIEW = "android.widget.ImageView";
   String SWITCH = "android.widget.Switch";

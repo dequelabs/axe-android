@@ -16,6 +16,7 @@ public abstract class ActiveView extends AxeRuleViewHierarchy {
   @CallSuper
   public void collectProps(AxeView axeView, AxeProps axeProps) {
     axeProps.put(AxeProps.Name.IS_CLICKABLE, axeView.isClickable);
+    axeProps.put(AxeProps.Name.CLASS_NAME, axeView.className);
   }
 
   @Override
