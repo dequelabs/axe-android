@@ -2,10 +2,12 @@ package com.deque.axe.android.constants;
 
 import com.deque.axe.android.AxeRule;
 import com.deque.axe.android.rules.hierarchy.ActiveViewName;
+import com.deque.axe.android.rules.hierarchy.CheckBoxName;
 import com.deque.axe.android.rules.hierarchy.ColorContrast;
 import com.deque.axe.android.rules.hierarchy.EditTextName;
 import com.deque.axe.android.rules.hierarchy.EditTextValue;
 import com.deque.axe.android.rules.hierarchy.ImageViewName;
+import com.deque.axe.android.rules.hierarchy.SwitchName;
 import com.deque.axe.android.rules.hierarchy.TouchSizeWcag;
 import com.deque.axe.android.rules.stateful.DontMoveAccessibilityFocus;
 
@@ -47,6 +49,8 @@ public class Constants {
     temp.add(TouchSizeWcag.class);
     temp.add(DontMoveAccessibilityFocus.class);
     temp.add(ColorContrast.class);
+    temp.add(CheckBoxName.class);
+    temp.add(SwitchName.class);
 
     AXE_RULE_CLASSES = Collections.unmodifiableSet(temp);
 

@@ -45,17 +45,4 @@ public abstract class ModifiableViewName extends AxeRuleViewHierarchy {
 
     return applicableClass.contentEquals(className);
   }
-
-  @Override
-  @CallSuper
-  public String runRule(AxeProps axeProps) {
-
-    final String labeledBy = axeProps.get(Name.LABELED_BY, String.class);
-
-    if (AxeTextUtils.isNullOrEmpty(labeledBy)) {
-      return AxeStatus.FAIL;
-    } else {
-      return AxeStatus.PASS;
-    }
-  }
 }

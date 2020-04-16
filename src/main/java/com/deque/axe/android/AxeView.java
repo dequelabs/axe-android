@@ -301,6 +301,19 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return labeledBy == null ? null : labeledBy.speakableText();
   }
 
+  /**
+   * Checks if the text has Operating System Text or is Null.
+   * @param text to check.
+   * @return true if text is Operating System Text or is Null.
+   */
+  public boolean hasOperatingSystemTextOnlyOrIsNull(String text) {
+    if (text == null) {
+      return true;
+    } else {
+      return text.equalsIgnoreCase("on") || text.equalsIgnoreCase("off");
+    }
+  }
+
   @Override
   public boolean equals(Object object) {
 
