@@ -1,12 +1,38 @@
 package com.deque.axe.android;
 
+import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.Constants;
 
+import com.deque.axe.android.rules.hierarchy.ColorContrast;
+import com.deque.axe.android.utils.JsonSerializable;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class AxeConf {
+
+  static class RuleConf implements JsonSerializable {
+
+    final @AxeImpact int impact;
+    final String standard;
+    final String summary;
+    boolean ignored = false;
+
+    RuleConf(
+        final @AxeImpact int impact,
+        final String standard,
+        final String summary
+    ) {
+      this.impact = impact;
+      this.standard = standard;
+      this.summary = summary;
+    }
+  }
 
   /**
    * The default standards to apply to every new Axe Instance.
@@ -20,6 +46,18 @@ public class AxeConf {
     DEFAULT_STANDARDS.add(AxeStandard.WCAG_21);
   }
 
+  public AxeConf() {
+
+    rules.put(
+        ColorContrast.class.getSimpleName(),
+        new RuleConf(
+            AxeImpact.MODERATE,
+            AxeStandard.WCAG_20,
+            "Text adequately contrasts with its background."
+        )
+    );
+  }
+
   /**
    * A Set of AxeTypes to include in this AxeRun.
    */
@@ -28,19 +66,79 @@ public class AxeConf {
   /**
    * A set of AxeRules that will be included Regardless of any other setting.
    */
+  @Deprecated
   final Set<String> ruleIds = new HashSet<>();
 
-  public AxeConf addRule(final Class<? extends AxeRuleViewHierarchy> rule) {
-    ruleIds.add(rule.getSimpleName());
+  final Map<String, RuleConf> rules = new HashMap<>();
+
+  public final transient Set<Class<? extends AxeRuleViewHierarchy>> customRules = new HashSet<>();
+
+  public AxeConf ignore(final List<String> ruleIds, boolean ignore) {
+    ruleIds.forEach(s -> ignore(s, ignore));
     return this;
   }
 
+  public AxeConf ignore(final String ruleId, final boolean ignore) {
+    rules.get(ruleId).ignored = ignore;
+
+    if (ignore) {
+      ruleIds.remove(ruleId);
+    } else {
+      ruleIds.add(ruleId);
+    }
+
+    return this;
+  }
+
+  @Deprecated
+  public AxeConf addRule(final Class<? extends AxeRuleViewHierarchy> rule) {
+
+    final AxeRule axeRule;
+
+    try {
+      axeRule = rule.newInstance();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+    ruleIds.add(rule.getSimpleName());
+
+    rules.put(rule.getSimpleName(), new RuleConf(
+        axeRule.impact,
+        axeRule.standard,
+        axeRule.summary
+    ));
+
+    return this;
+  }
+
+  @Deprecated
   public AxeConf removeStandard(@AxeStandard String standard) {
     standards.remove(standard);
     return this;
   }
 
+  private void normalize() {
+
+    // Make sure that all RulesIDs were trying to run are classes we have access to.
+    ruleIds.forEach(s -> {
+      if (!rules.containsKey(s)) {
+        throw new RuntimeException("Tried to run a RuleID that doesn't exist.");
+      }
+    });
+
+    // Make sure that the RuleIDs list matches the rules data structure.
+    ruleIds.clear();
+    rules.forEach((s, ruleConf) -> {
+      if (!ruleConf.ignored) {
+        ruleIds.add(s);
+      }
+    });
+  }
+
   Set<AxeRule> ruleInstances() {
+
+    normalize();
 
     final Set<AxeRule> ruleInstances = new HashSet<>();
 
@@ -71,11 +169,9 @@ public class AxeConf {
     return ruleInstances;
   }
 
+  @Deprecated
   public AxeConf includeBestPractices() {
     standards.add(AxeStandard.BEST_PRACTICE);
     return this;
   }
-
-  public final transient Set<Class<? extends AxeRuleViewHierarchy>> customRules = new HashSet<>();
-
 }
