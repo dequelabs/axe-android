@@ -21,6 +21,7 @@ public abstract class AxeRule {
   public AxeRule(final RuleConf ruleConf) {
     this(ruleConf.standard, ruleConf.impact, ruleConf.summary);
   }
+
   /**
    * Construct an AxeRule.
    * @param standard The Standard the rule applies to.

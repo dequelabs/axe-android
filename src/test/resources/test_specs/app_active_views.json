@@ -2,9 +2,9 @@
   "axeConf": {
     "ruleIds": [
       "ActiveViewName",
-      "EditableViewName",
+      "EditTextName",
       "InformativeViewName",
-      "EditableViewValue"
+      "EditTextValue"
     ],
     "standards": []
   },
