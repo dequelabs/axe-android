@@ -9,7 +9,7 @@ public abstract class AxeRuleStateful extends AxeRule {
   protected AxeEventStream applicableEventStream = new AxeEventStream();
 
   protected AxeRuleStateful(String standard, int impact, String summary) {
-    super(standard, impact, summary);
+    super(new AxeConf.RuleConf(impact, standard, summary));
   }
 
   /**

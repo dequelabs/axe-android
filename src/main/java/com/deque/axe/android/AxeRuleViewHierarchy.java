@@ -6,7 +6,7 @@ import com.deque.axe.android.wrappers.AxeProps;
 public abstract class AxeRuleViewHierarchy extends AxeRule {
 
   protected AxeRuleViewHierarchy(String standard, int impact, String summary) {
-    super(standard, impact, summary);
+    super(new AxeConf.RuleConf(impact, standard, summary));
   }
 
   public void setup(final AxeContext axeContext, final AxeProps axeProps) { }
