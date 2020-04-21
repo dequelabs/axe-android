@@ -12,7 +12,6 @@ import com.deque.axe.android.rules.hierarchy.EditTextValue;
 import com.deque.axe.android.rules.hierarchy.ImageViewName;
 import com.deque.axe.android.rules.hierarchy.SwitchName;
 import com.deque.axe.android.rules.hierarchy.TouchSizeWcag;
-import com.deque.axe.android.rules.hierarchy.base.ActiveView;
 import com.deque.axe.android.rules.stateful.DontMoveAccessibilityFocus;
 import com.deque.axe.android.utils.JsonSerializable;
 import java.util.HashMap;
@@ -20,8 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 public class AxeConf {
 
@@ -42,6 +39,8 @@ public class AxeConf {
       this.summary = summary;
     }
   }
+
+  private final Set<Class<? extends AxeRule>> addedRulesList = new HashSet<>();
 
   /**
    * The default standards to apply to every new Axe Instance.
@@ -198,6 +197,8 @@ public class AxeConf {
         axeRule.summary
     ));
 
+    addedRulesList.add(rule);
+
     return this;
   }
 
@@ -246,6 +247,10 @@ public class AxeConf {
           ruleIds.add(axeRule.getClass().getSimpleName());
         }
 
+      }
+
+      for (Class<? extends AxeRule> axeRuleClass : addedRulesList) {
+        ruleInstances.add(axeRuleClass.newInstance());
       }
 
       for (Class<? extends AxeRuleViewHierarchy> axeRuleClass : customRules) {

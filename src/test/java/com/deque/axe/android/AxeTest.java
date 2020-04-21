@@ -220,35 +220,38 @@ public class AxeTest {
   public void testRuleSize() {
 
     AxeConf axeConf = new AxeConf();
-    axeConf.standards.clear();
-    axeConf.standards.add(AxeStandard.WCAG_21);
 
     Axe axe = new Axe(axeConf);
     axe.axeConf.ruleInstances();
 
-    Assert.assertEquals(axeConf.ruleIds.size(), 9);
+    assertEquals(axe.axeConf.ruleIds.size(), 9);
+    assertEquals(axe.axeConf.ruleInstances().size(), 9);
+  }
+
+  @Test
+  public void tesAxeConf() {
+    AxeConf axeConf = new AxeConf();
+
+    assertEquals(axeConf.rules.size(), 9);
   }
 
   @Test
   public void testIgnoreRule() {
 
     AxeConf axeConf = new AxeConf();
-    axeConf.standards.clear();
-    axeConf.standards.add(AxeStandard.WCAG_21);
 
     Axe axe = new Axe(axeConf);
     axe.axeConf.ruleInstances();
     axe.axeConf.ignore(EditTextName.class.getSimpleName(), true);
 
-    Assert.assertEquals(axeConf.ruleIds.size(), 8);
+    Assert.assertEquals(axe.axeConf.ruleIds.size(), 8);
+    assertEquals(axe.axeConf.ruleInstances().size(), 9);
   }
 
   @Test
   public void testIgnoreMultipleRules() {
 
     AxeConf axeConf = new AxeConf();
-    axeConf.standards.clear();
-    axeConf.standards.add(AxeStandard.WCAG_21);
 
     Axe axe = new Axe(axeConf);
     axe.axeConf.ruleInstances();
@@ -259,7 +262,22 @@ public class AxeTest {
 
     axe.axeConf.ignore(rulesToIgnore, true);
 
-    Assert.assertEquals(axeConf.ruleIds.size(), 7);
+    Assert.assertEquals(axe.axeConf.ruleIds.size(), 7);
+    assertEquals(axe.axeConf.ruleInstances().size(), 9);
+  }
+
+  @Test
+  public void testAddRule() {
+
+    AxeConf axeConf = new AxeConf();
+    axeConf.addRule(SampleRuleClass.class);
+
+    Axe axe = new Axe(axeConf);
+    axe.axeConf.ruleInstances();
+
+    assertEquals(axe.axeConf.rules.size(), 10);
+    assertEquals(axe.axeConf.ruleIds.size(), 10);
+    assertEquals(axe.axeConf.ruleInstances().size(), 10);
   }
 
   @Test
@@ -360,7 +378,7 @@ public class AxeTest {
 
       // Ensure the axeRuleResults array is empty when the run is done.
       if (!actualResults.isEmpty()) {
-        //fail("Unexpected result present: " + actualResults.toString());
+        fail("Unexpected result present: " + actualResults.toString());
       }
 
     }
@@ -474,5 +492,28 @@ public class AxeTest {
                 actual.toString());
       }
     });
+  }
+
+  static class SampleRuleClass extends AxeRuleViewHierarchy {
+
+    protected SampleRuleClass() {
+      super(AxeStandard.WCAG_20, AxeImpact.CRITICAL,
+              "Sample Rule Violation Description");
+    }
+
+    @Override
+    public void collectProps(AxeView axeView, AxeProps axeProps) {
+
+    }
+
+    @Override
+    public boolean isApplicable(AxeProps axeProps) {
+      return false;
+    }
+
+    @Override
+    public String runRule(AxeProps axeProps) {
+      return null;
+    }
   }
 }
