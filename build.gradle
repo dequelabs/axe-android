@@ -34,7 +34,7 @@ def mavenVersion = { ->
 }
 
 def group = 'com.deque.android'
-def artifactId = 'axe-android'
+def artifactId = 'axe-core'
 
 repositories {
     google()
