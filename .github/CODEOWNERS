@@ -1,1 +1,4 @@
-* @dequelabs/mobileadmin
+* @dequelabs/mobile
+
+# backward compatibility
+*/test/*/android/* @chriscm2006
