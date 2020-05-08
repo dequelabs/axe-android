@@ -130,13 +130,13 @@ task sourcesJar(type: Jar) {
 
 version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
-signing {
-    sign configurations.archives
-}
-
 if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
     print ("No artifactory Info. Maven Central Publishing impossible.")
     return
+}
+
+signing {
+    sign configurations.archives
 }
 
 uploadArchives {

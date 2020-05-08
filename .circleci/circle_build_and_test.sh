@@ -13,4 +13,3 @@ mkdir -p /axe-android/h2
 ./gradlew test
 ./gradlew check
 ./gradlew codeCoverage
-./gradlew spotbugsMain
