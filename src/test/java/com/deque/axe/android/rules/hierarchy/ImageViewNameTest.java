@@ -1,5 +1,10 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.wrappers.AxeProps;
 
@@ -8,9 +13,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-
 public class ImageViewNameTest {
 
   @Mock
@@ -18,6 +20,9 @@ public class ImageViewNameTest {
 
   private ImageViewName subject;
 
+  /**
+   * setup to initialize test subject.
+   */
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -27,14 +32,16 @@ public class ImageViewNameTest {
 
   @Test
   public void imageViewClass_isApplicable() {
-    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.ImageView");
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.ImageView");
 
     assertTrue(subject.isApplicable(axeProps));
   }
 
   @Test
   public void switchClass_isApplicable() {
-    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.Switch");
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.Switch");
 
     assertFalse(subject.isApplicable(axeProps));
   }

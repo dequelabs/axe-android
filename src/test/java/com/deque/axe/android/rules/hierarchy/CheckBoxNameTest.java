@@ -1,5 +1,8 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.wrappers.AxeProps;
 
@@ -8,9 +11,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
 public class CheckBoxNameTest {
 
   private CheckBoxName subject;
@@ -18,6 +18,9 @@ public class CheckBoxNameTest {
   @Mock
   private AxeProps axeProps;
 
+  /**
+   * setup to initialize test subject.
+   */
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);

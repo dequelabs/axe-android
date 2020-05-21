@@ -1,5 +1,6 @@
 package com.deque.axe.android;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -18,6 +19,8 @@ import com.deque.axe.android.wrappers.AxeProps.Name;
 import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.stream.JsonReader;
@@ -25,6 +28,7 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -281,6 +286,141 @@ public class AxeTest {
   }
 
   @Test
+  public void jsonAxeRuleResultTestSpecs() throws IOException {
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    final Axe axe = new Axe(testSpec.axeConf);
+
+    final AxeResult axeResult = axe.run(testSpec.axeContext);
+
+    final List<AxeRuleResult> actualResults = axeResult.axeRuleResults;
+
+    final List<AxeRuleResult> expectedResults = testSpec.axeRuleResults;
+
+    actualResults.sort((o1, o2) -> o1.compareTo(o2));
+
+    expectedResults.sort((o1, o2) -> o1.compareTo(o2));
+
+    expectedResults.forEach(expectedAxeRuleResult -> {
+      AxeRuleResult actualRuleResult = actualResults.get(0);
+      assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);
+      assertEquals(expectedAxeRuleResult.axeViewId,
+              expectedAxeRuleResult.status,
+              actualRuleResult.status);
+
+      AxeComparatorInterface comparatorInterface;
+
+      for (Map.Entry<String, Object> stringObjectEntry : expectedAxeRuleResult.props.entrySet()) {
+        Object key = ((Map.Entry) stringObjectEntry).getKey();
+        if (actualRuleResult.props.containsKey(key)) {
+          if (stringObjectEntry.getValue() != null && actualRuleResult.props.get(key) != null) {
+            Object expected = stringObjectEntry.getValue();
+            Object actual = actualRuleResult.props.get(key);
+            comparatorInterface = comparators.getOrDefault(
+                    key,
+                    new AxeComparatorInterface() {});
+            comparatorInterface.compare(
+                    expectedAxeRuleResult.axeViewId + key.toString(),
+                    expected,
+                    actual);
+          }
+        }
+      }
+
+      actualResults.remove(0);
+    });
+  }
+
+  @Test
+  public void axeViewJsonTest() throws IOException {
+    JsonParser jsonParser = new JsonParser();
+
+    Object obj = jsonParser.parse(
+            new FileReader("src/test/resources/api_test_spec/api_test.json"));
+
+    JsonObject jsonObject = (JsonObject) obj;
+
+    JsonObject axeViewJsonObject = jsonObject
+            .getAsJsonObject("axeContext")
+            .getAsJsonObject("axeView");
+
+    Set<String> keySet = axeViewJsonObject.keySet();
+
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    String actualAxeViewJson = testSpec.axeContext.axeView.toJson();
+
+    Object actualAxeObj = jsonParser.parse(actualAxeViewJson);
+
+    JsonObject actualAxeViewJsonObject = (JsonObject) actualAxeObj;
+
+    Set<String> actualAxeViewKeySet = actualAxeViewJsonObject.keySet();
+
+    assertEquals(actualAxeViewKeySet, keySet);
+
+    for (String key: keySet) {
+      if (actualAxeViewKeySet.contains(key) && !key.equals("children")) {
+        assertEquals(key, actualAxeViewJsonObject.get(key), axeViewJsonObject.get(key));
+      }
+    }
+  }
+
+  @Test
+  public void axeMetaDataJsonTest() throws IOException {
+    JsonParser jsonParser = new JsonParser();
+
+    Object obj = jsonParser.parse(
+            new FileReader("src/test/resources/api_test_spec/api_test.json"));
+
+    JsonObject jsonObject = (JsonObject) obj;
+
+    JsonObject axeMetaDataJsonObject = jsonObject
+            .getAsJsonObject("axeContext")
+            .getAsJsonObject("axeMetaData");
+
+    Set<String> keySet = axeMetaDataJsonObject.keySet();
+
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    String actualAxeMetaDataJson = testSpec.axeContext.axeMetaData.toJson();
+
+    JsonObject actualAxeMetaDataJsonObject = jsonParser
+            .parse(actualAxeMetaDataJson)
+            .getAsJsonObject();
+
+    Set<String> actualAxeViewKeySet = actualAxeMetaDataJsonObject.keySet();
+
+    assertEquals(actualAxeViewKeySet, keySet);
+
+    for (String key: keySet) {
+      if (actualAxeViewKeySet.contains(key)) {
+        assertEquals(key, actualAxeMetaDataJsonObject.get(key), axeMetaDataJsonObject.get(key));
+      }
+    }
+  }
+
+  @Test
   public void backwardCompatibilityTest() throws IOException {
 
     ClassLoader classLoader = getClass().getClassLoader();
@@ -490,6 +630,28 @@ public class AxeTest {
                 "DPI:\n" + message(key, expected, actual),
                 expected.toString(),
                 actual.toString());
+      }
+    });
+
+    comparators.put("Screen Width", new AxeComparatorInterface() {
+      @Override
+      public void compare(String key, Object expected, Object actual) {
+        Double expectedWidth = (Double) expected;
+        assertEquals(
+                "screen width:\n" + message(key, expected, actual),
+                expectedWidth.intValue(),
+                (int) actual);
+      }
+    });
+
+    comparators.put("Screen Height", new AxeComparatorInterface() {
+      @Override
+      public void compare(String key, Object expected, Object actual) {
+        Double expectedWidth = (Double) expected;
+        assertEquals(
+                "screen height:\n" + message(key, expected, actual),
+                expectedWidth.intValue(),
+                (int) actual);
       }
     });
   }

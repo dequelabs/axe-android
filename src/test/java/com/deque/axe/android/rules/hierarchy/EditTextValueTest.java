@@ -1,5 +1,10 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.wrappers.AxeProps;
 
@@ -8,9 +13,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-
 public class EditTextValueTest {
 
   @Mock
@@ -18,6 +20,9 @@ public class EditTextValueTest {
 
   private EditTextValue subject;
 
+  /**
+   * setup to initialize test subject.
+   */
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -27,14 +32,16 @@ public class EditTextValueTest {
 
   @Test
   public void switchClass_isApplicable() {
-    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.CheckBox");
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.CheckBox");
 
     assertFalse(subject.isApplicable(axeProps));
   }
 
   @Test
   public void editTextClass_isApplicable() {
-    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.EditText");
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.EditText");
 
     assertTrue(subject.isApplicable(axeProps));
   }
@@ -48,7 +55,8 @@ public class EditTextValueTest {
 
   @Test
   public void nonEmptyContentDescription_runRule() {
-    when(axeProps.get(AxeProps.Name.CONTENT_DESCRIPTION, String.class)).thenReturn("Content Description");
+    when(axeProps.get(AxeProps.Name.CONTENT_DESCRIPTION, String.class))
+            .thenReturn("Content Description");
 
     assertEquals(subject.runRule(axeProps), AxeStatus.FAIL);
   }
