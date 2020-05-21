@@ -259,33 +259,6 @@
                               },
                               "children": [
                                 {
-                                  "axeViewId": "-36684827",
-                                  "boundsInScreen": {
-                                    "bottom": 259.0,
-                                    "left": 0.0,
-                                    "right": 147.0,
-                                    "top": 112.0
-                                  },
-                                  "calculatedProps": {
-                                    "role": "android.widget.FrameLayout",
-                                    "name": " ",
-                                    "state": null,
-                                    "value": null
-                                  },
-                                  "children": [],
-                                  "className": "android.widget.ImageButton",
-                                  "contentDescription": "Navigate up",
-                                  "hintText": null,
-                                  "isAccessibilityFocusable": true,
-                                  "isClickable": true,
-                                  "isEnabled": true,
-                                  "isImportantForAccessibility": true,
-                                  "labeledBy": null,
-                                  "text": null,
-                                  "value": null,
-                                  "viewIdResourceName": null
-                                },
-                                {
                                   "axeViewId": "265944149",
                                   "boundsInScreen": {
                                     "bottom": 221.0,
@@ -1230,39 +1203,6 @@
       },
       "ruleId": "ImageViewName",
       "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
-      "impact": 3,
-      "status": "PASS"
-    },
-    {
-      "axeViewId": "-36684827",
-      "props": {
-        "isOffScreen": false,
-        "isRendered": false,
-        "Screen Dots Per Inch": 2.625,
-        "isPartiallyVisible": false,
-        "Screen Width": 1080.0,
-        "isActive": true,
-        "Screen Height": 2280.0,
-        "boundsInScreen": {
-          "bottom": 259.0,
-          "left": 0.0,
-          "right": 147.0,
-          "top": 112.0
-        }
-      },
-      "ruleId": "TouchSizeWcag",
-      "ruleSummary": "Active views adhere to WCAG Touch Target Size requirements.",
-      "impact": 1,
-      "status": "PASS"
-    },
-    {
-      "axeViewId": "-36684827",
-      "props": {
-        "Speakable Text": "Navigate up",
-        "isActive": true
-      },
-      "ruleId": "ActiveViewName",
-      "ruleSummary": "Views that users can interact with must have a Name.",
       "impact": 3,
       "status": "PASS"
     },
