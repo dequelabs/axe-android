@@ -285,6 +285,13 @@ public class AxeTest {
     assertEquals(axe.axeConf.ruleInstances().size(), 10);
   }
 
+  /**
+   * This test is to catch new objects being added to the preexisting apis.
+   * If this test fails then it means some new parameter has been added into a preexisting api.
+   * But it is not updated in the api_test json file.
+   *
+   * @throws IOException when json is not found.
+   */
   @Test
   public void jsonAxeRuleResultTestSpecs() throws IOException {
     JsonParser jsonParser = new JsonParser();
