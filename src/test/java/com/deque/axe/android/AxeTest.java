@@ -287,6 +287,7 @@ public class AxeTest {
 
   @Test
   public void jsonAxeRuleResultTestSpecs() throws IOException {
+    JsonParser jsonParser = new JsonParser();
     File file = new AxeFile("api_test_spec/api_test.json").file;
     Path path = file.toPath();
 
@@ -311,8 +312,20 @@ public class AxeTest {
     expectedResults.forEach(expectedAxeRuleResult -> {
       AxeRuleResult actualRuleResult = actualResults.get(0);
       assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);
+      assertEquals(expectedAxeRuleResult.ruleId, actualRuleResult.ruleId);
+      assertEquals(expectedAxeRuleResult.ruleSummary, actualRuleResult.ruleSummary);
 
-      AxeComparatorInterface comparatorInterface;
+      String expectedRuleResultString = expectedAxeRuleResult.toJson();
+      Object expectedRuleResultObj = jsonParser.parse(expectedRuleResultString);
+      JsonObject expectedRuleResultJsonObject = (JsonObject) expectedRuleResultObj;
+      Set<String> expectedRuleResultKeySet = expectedRuleResultJsonObject.keySet();
+
+      String actualRuleResultString = actualRuleResult.toJson();
+      Object actualRuleResultObj = jsonParser.parse(actualRuleResultString);
+      JsonObject actualRuleResultJsonObject = (JsonObject) actualRuleResultObj;
+      Set<String> actualRuleResultKeySet = actualRuleResultJsonObject.keySet();
+      
+      assertEquals(expectedRuleResultKeySet, actualRuleResultKeySet);
 
       for (Map.Entry<String, Object> stringObjectEntry : expectedAxeRuleResult.props.entrySet()) {
         Object key = ((Map.Entry) stringObjectEntry).getKey();
