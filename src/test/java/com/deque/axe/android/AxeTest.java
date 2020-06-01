@@ -1,5 +1,6 @@
 package com.deque.axe.android;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -18,6 +19,8 @@ import com.deque.axe.android.wrappers.AxeProps.Name;
 import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.TypeAdapter;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.stream.JsonReader;
@@ -25,6 +28,7 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -280,6 +285,146 @@ public class AxeTest {
     assertEquals(axe.axeConf.ruleInstances().size(), 10);
   }
 
+  /**
+   * This test is to catch new objects being added to the preexisting apis.
+   * If this test fails then it means some new parameter has been added into a preexisting api.
+   * But it is not updated in the api_test json file.
+   *
+   * @throws IOException when json is not found.
+   */
+  @Test
+  public void jsonAxeRuleResultTestSpecs() throws IOException {
+    JsonParser jsonParser = new JsonParser();
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    final Axe axe = new Axe(testSpec.axeConf);
+
+    final AxeResult axeResult = axe.run(testSpec.axeContext);
+
+    final List<AxeRuleResult> actualResults = axeResult.axeRuleResults;
+
+    final List<AxeRuleResult> expectedResults = testSpec.axeRuleResults;
+
+    actualResults.sort((o1, o2) -> o1.compareTo(o2));
+
+    expectedResults.sort((o1, o2) -> o1.compareTo(o2));
+
+    expectedResults.forEach(expectedAxeRuleResult -> {
+      AxeRuleResult actualRuleResult = actualResults.get(0);
+      assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);
+      assertEquals(expectedAxeRuleResult.ruleId, actualRuleResult.ruleId);
+      assertEquals(expectedAxeRuleResult.ruleSummary, actualRuleResult.ruleSummary);
+
+      String expectedRuleResultString = expectedAxeRuleResult.toJson();
+      Object expectedRuleResultObj = jsonParser.parse(expectedRuleResultString);
+      JsonObject expectedRuleResultJsonObject = (JsonObject) expectedRuleResultObj;
+      Set<String> expectedRuleResultKeySet = expectedRuleResultJsonObject.keySet();
+
+      String actualRuleResultString = actualRuleResult.toJson();
+      Object actualRuleResultObj = jsonParser.parse(actualRuleResultString);
+      JsonObject actualRuleResultJsonObject = (JsonObject) actualRuleResultObj;
+      Set<String> actualRuleResultKeySet = actualRuleResultJsonObject.keySet();
+      
+      assertEquals(expectedRuleResultKeySet, actualRuleResultKeySet);
+
+      for (Map.Entry<String, Object> stringObjectEntry : expectedAxeRuleResult.props.entrySet()) {
+        Object key = ((Map.Entry) stringObjectEntry).getKey();
+        assertTrue(actualRuleResult.props.containsKey(key));
+      }
+
+      actualResults.remove(0);
+    });
+  }
+
+  @Test
+  public void axeViewJsonTest() throws IOException {
+    JsonParser jsonParser = new JsonParser();
+
+    Object obj = jsonParser.parse(
+            new FileReader("src/test/resources/api_test_spec/api_test.json"));
+
+    JsonObject jsonObject = (JsonObject) obj;
+
+    JsonObject axeViewJsonObject = jsonObject
+            .getAsJsonObject("axeContext")
+            .getAsJsonObject("axeView");
+
+    Set<String> keySet = axeViewJsonObject.keySet();
+
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    String actualAxeViewJson = testSpec.axeContext.axeView.toJson();
+
+    Object actualAxeObj = jsonParser.parse(actualAxeViewJson);
+
+    JsonObject actualAxeViewJsonObject = (JsonObject) actualAxeObj;
+
+    Set<String> actualAxeViewKeySet = actualAxeViewJsonObject.keySet();
+
+    assertEquals(actualAxeViewKeySet, keySet);
+
+    for (String key: keySet) {
+      if (actualAxeViewKeySet.contains(key) && !key.equals("children")) {
+        assertEquals(key, actualAxeViewJsonObject.get(key), axeViewJsonObject.get(key));
+      }
+    }
+  }
+
+  @Test
+  public void axeMetaDataJsonTest() throws IOException {
+    JsonParser jsonParser = new JsonParser();
+
+    Object obj = jsonParser.parse(
+            new FileReader("src/test/resources/api_test_spec/api_test.json"));
+
+    JsonObject jsonObject = (JsonObject) obj;
+
+    JsonObject axeMetaDataJsonObject = jsonObject
+            .getAsJsonObject("axeContext")
+            .getAsJsonObject("axeMetaData");
+
+    Set<String> keySet = axeMetaDataJsonObject.keySet();
+
+    File file = new AxeFile("api_test_spec/api_test.json").file;
+    Path path = file.toPath();
+
+    final byte[] encoded = Files.readAllBytes(path);
+
+    final String json = new String(encoded).trim();
+
+    final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
+
+    String actualAxeMetaDataJson = testSpec.axeContext.axeMetaData.toJson();
+
+    JsonObject actualAxeMetaDataJsonObject = jsonParser
+            .parse(actualAxeMetaDataJson)
+            .getAsJsonObject();
+
+    Set<String> actualAxeViewKeySet = actualAxeMetaDataJsonObject.keySet();
+
+    assertEquals(actualAxeViewKeySet, keySet);
+
+    for (String key: keySet) {
+      if (actualAxeViewKeySet.contains(key)) {
+        assertEquals(key, actualAxeMetaDataJsonObject.get(key), axeMetaDataJsonObject.get(key));
+      }
+    }
+  }
+
   @Test
   public void backwardCompatibilityTest() throws IOException {
 
@@ -490,6 +635,28 @@ public class AxeTest {
                 "DPI:\n" + message(key, expected, actual),
                 expected.toString(),
                 actual.toString());
+      }
+    });
+
+    comparators.put("Screen Width", new AxeComparatorInterface() {
+      @Override
+      public void compare(String key, Object expected, Object actual) {
+        Double expectedWidth = (Double) expected;
+        assertEquals(
+                "screen width:\n" + message(key, expected, actual),
+                expectedWidth.intValue(),
+                (int) actual);
+      }
+    });
+
+    comparators.put("Screen Height", new AxeComparatorInterface() {
+      @Override
+      public void compare(String key, Object expected, Object actual) {
+        Double expectedWidth = (Double) expected;
+        assertEquals(
+                "screen height:\n" + message(key, expected, actual),
+                expectedWidth.intValue(),
+                (int) actual);
       }
     });
   }

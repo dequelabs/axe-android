@@ -14,6 +14,7 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -76,7 +77,8 @@ public class AxeJankyPng extends AxeImage {
   }
 
   public AxeJankyPng(final String base64png) {
-    this(new PngReader(new ByteArrayInputStream(Base64.getDecoder().decode(base64png))));
+    this(new PngReader(new ByteArrayInputStream(Base64.getMimeDecoder()
+            .decode(base64png.getBytes(StandardCharsets.UTF_8)))));
   }
 
   @Override

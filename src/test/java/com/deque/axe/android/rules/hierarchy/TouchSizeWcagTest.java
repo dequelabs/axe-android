@@ -1,5 +1,8 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.wrappers.AxeProps;
 import com.deque.axe.android.wrappers.AxeRect;
@@ -8,9 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 public class TouchSizeWcagTest {
 
@@ -22,6 +22,9 @@ public class TouchSizeWcagTest {
 
   private TouchSizeWcag subject;
 
+  /**
+   * setup to initialize test subject.
+   */
   @Before
   public void setUp() {
     MockitoAnnotations.initMocks(this);

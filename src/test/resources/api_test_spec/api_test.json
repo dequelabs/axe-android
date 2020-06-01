@@ -1,0 +1,1759 @@
+{
+  "axeConf": {
+    "standards": [
+      "Best Practice",
+      "WCAG 2.0",
+      "WCAG 2.1",
+      "Platform"
+    ],
+    "ruleIds": [
+      "ColorContrast",
+      "CheckBoxName",
+      "TouchSizeWcag",
+      "ImageViewName",
+      "SwitchName",
+      "EditTextValue",
+      "ActiveViewName",
+      "DontMoveAccessibilityFocus",
+      "EditTextName"
+    ]
+  },
+  "axeContext": {
+    "axeView": {
+      "axeViewId": "-1039028970",
+      "boundsInScreen": {
+        "bottom": 854.0,
+        "left": 0.0,
+        "right": 480.0,
+        "top": 0.0
+      },
+      "calculatedProps": {
+        "name": " ",
+        "state": null,
+        "value": null,
+        "role": "com.android.internal.policy.DecorView"
+      },
+      "children": [
+        {
+          "axeViewId": "-963434465",
+          "boundsInScreen": {
+            "bottom": 854.0,
+            "left": 0.0,
+            "right": 480.0,
+            "top": 0.0
+          },
+          "calculatedProps": {
+            "name": " ",
+            "state": null,
+            "value": null,
+            "role": "android.widget.LinearLayout"
+          },
+          "children": [
+            {
+              "axeViewId": "524541318",
+              "boundsInScreen": {
+                "bottom": 0.0,
+                "left": 0.0,
+                "right": 0.0,
+                "top": 0.0
+              },
+              "calculatedProps": {
+                "name": " ",
+                "state": null,
+                "value": null,
+                "role": "android.view.ViewStub"
+              },
+              "children": [],
+              "className": "android.view.ViewStub",
+              "contentDescription": null,
+              "hintText": null,
+              "isAccessibilityFocusable": false,
+              "isClickable": false,
+              "isEnabled": true,
+              "isImportantForAccessibility": false,
+              "labeledBy": null,
+              "text": null,
+              "value": null,
+              "viewIdResourceName": "android:id/action_mode_bar_stub"
+            },
+            {
+              "axeViewId": "1830556551",
+              "boundsInScreen": {
+                "bottom": 854.0,
+                "left": 0.0,
+                "right": 480.0,
+                "top": 24.0
+              },
+              "calculatedProps": {
+                "name": " ",
+                "state": null,
+                "value": null,
+                "role": "android.widget.FrameLayout"
+              },
+              "children": [
+                {
+                  "axeViewId": "1147403678",
+                  "boundsInScreen": {
+                    "bottom": 854.0,
+                    "left": 0.0,
+                    "right": 480.0,
+                    "top": 24.0
+                  },
+                  "calculatedProps": {
+                    "name": " ",
+                    "state": null,
+                    "value": null,
+                    "role": "androidx.appcompat.widget.FitWindowsLinearLayout"
+                  },
+                  "children": [
+                    {
+                      "axeViewId": "2002734787",
+                      "boundsInScreen": {
+                        "bottom": 0.0,
+                        "left": 0.0,
+                        "right": 0.0,
+                        "top": 0.0
+                      },
+                      "calculatedProps": {
+                        "name": " ",
+                        "state": null,
+                        "value": null,
+                        "role": "androidx.appcompat.widget.ViewStubCompat"
+                      },
+                      "children": [],
+                      "className": "androidx.appcompat.widget.ViewStubCompat",
+                      "contentDescription": null,
+                      "hintText": null,
+                      "isAccessibilityFocusable": false,
+                      "isClickable": false,
+                      "isEnabled": true,
+                      "isImportantForAccessibility": false,
+                      "labeledBy": null,
+                      "text": null,
+                      "value": null,
+                      "viewIdResourceName": "com.deque.axe.android:id/action_mode_bar_stub"
+                    },
+                    {
+                      "axeViewId": "179128215",
+                      "boundsInScreen": {
+                        "bottom": 854.0,
+                        "left": 0.0,
+                        "right": 480.0,
+                        "top": 24.0
+                      },
+                      "calculatedProps": {
+                        "name": " ",
+                        "state": null,
+                        "value": null,
+                        "role": "androidx.appcompat.widget.ContentFrameLayout"
+                      },
+                      "children": [
+                        {
+                          "axeViewId": "682965276",
+                          "boundsInScreen": {
+                            "bottom": 0.0,
+                            "left": 0.0,
+                            "right": 0.0,
+                            "top": 0.0
+                          },
+                          "calculatedProps": {
+                            "name": " ",
+                            "state": null,
+                            "value": null,
+                            "role": "android.view.View"
+                          },
+                          "children": [],
+                          "className": "android.view.View",
+                          "contentDescription": null,
+                          "hintText": null,
+                          "isAccessibilityFocusable": true,
+                          "isClickable": false,
+                          "isEnabled": true,
+                          "isImportantForAccessibility": true,
+                          "labeledBy": null,
+                          "text": null,
+                          "value": null,
+                          "viewIdResourceName": ""
+                        },
+                        {
+                          "axeViewId": "1800705185",
+                          "boundsInScreen": {
+                            "bottom": 854.0,
+                            "left": 0.0,
+                            "right": 480.0,
+                            "top": 24.0
+                          },
+                          "calculatedProps": {
+                            "name": " ",
+                            "state": null,
+                            "value": null,
+                            "role": "androidx.constraintlayout.widget.ConstraintLayout"
+                          },
+                          "children": [
+                            {
+                              "axeViewId": "1535606803",
+                              "boundsInScreen": {
+                                "bottom": 80.0,
+                                "left": 0.0,
+                                "right": 480.0,
+                                "top": 24.0
+                              },
+                              "calculatedProps": {
+                                "name": " ",
+                                "state": null,
+                                "value": null,
+                                "role": "androidx.appcompat.widget.Toolbar"
+                              },
+                              "children": [
+                                {
+                                  "axeViewId": "-1446265437",
+                                  "boundsInScreen": {
+                                    "bottom": 66.0,
+                                    "left": 72.0,
+                                    "right": 187.0,
+                                    "top": 38.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": "Active Views ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.appcompat.widget.AppCompatTextView"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.appcompat.widget.AppCompatTextView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": true,
+                                  "labeledBy": null,
+                                  "text": "Active Views",
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                },
+                                {
+                                  "axeViewId": "861283017",
+                                  "boundsInScreen": {
+                                    "bottom": 80.0,
+                                    "left": 0.0,
+                                    "right": 56.0,
+                                    "top": 24.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " Navigate up ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "android.widget.ImageView"
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.ImageView",
+                                  "contentDescription": "Navigate up",
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isClickable": true,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": true,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                },
+                                {
+                                  "axeViewId": "-80671540",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.appcompat.widget.ActionMenuView"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.appcompat.widget.ActionMenuView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                }
+                              ],
+                              "className": "androidx.appcompat.widget.Toolbar",
+                              "contentDescription": null,
+                              "hintText": null,
+                              "isAccessibilityFocusable": false,
+                              "isClickable": false,
+                              "isEnabled": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null,
+                              "value": null,
+                              "viewIdResourceName": "com.deque.axe.android:id/toolbar"
+                            },
+                            {
+                              "axeViewId": "1920160453",
+                              "boundsInScreen": {
+                                "bottom": 854.0,
+                                "left": 0.0,
+                                "right": 480.0,
+                                "top": 24.0
+                              },
+                              "calculatedProps": {
+                                "name": " ",
+                                "state": null,
+                                "value": null,
+                                "role": "androidx.constraintlayout.widget.ConstraintLayout"
+                              },
+                              "children": [
+                                {
+                                  "axeViewId": "-1858547260",
+                                  "boundsInScreen": {
+                                    "bottom": 206.0,
+                                    "left": 0.0,
+                                    "right": 146.0,
+                                    "top": 56.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": "  ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "android.widget.ImageView"
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.ImageView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                },
+                                {
+                                  "axeViewId": "82282813",
+                                  "boundsInScreen": {
+                                    "bottom": 854.0,
+                                    "left": 264.0,
+                                    "right": 480.0,
+                                    "top": 563.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": "  ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "android.widget.ImageView"
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.ImageView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                },
+                                {
+                                  "axeViewId": "102816803",
+                                  "boundsInScreen": {
+                                    "bottom": 854.0,
+                                    "left": 0.0,
+                                    "right": 100.0,
+                                    "top": 795.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": "  ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "android.widget.ImageView"
+                                  },
+                                  "children": [],
+                                  "className": "android.widget.ImageView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                },
+                                {
+                                  "axeViewId": "1458984106",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.constraintlayout.widget.Guideline"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.constraintlayout.widget.Guideline",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": "com.deque.axe.android:id/guideline"
+                                },
+                                {
+                                  "axeViewId": "1549243896",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.constraintlayout.widget.Guideline"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.constraintlayout.widget.Guideline",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": "com.deque.axe.android:id/top_bubbles_vertical"
+                                },
+                                {
+                                  "axeViewId": "731022520",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.constraintlayout.widget.Guideline"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.constraintlayout.widget.Guideline",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": "com.deque.axe.android:id/bottom_bubbles_vertical"
+                                },
+                                {
+                                  "axeViewId": "-877218038",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.constraintlayout.widget.Guideline"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.constraintlayout.widget.Guideline",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": "com.deque.axe.android:id/bottom_bubbles_horizontal"
+                                },
+                                {
+                                  "axeViewId": "1177351440",
+                                  "boundsInScreen": {
+                                    "bottom": 0.0,
+                                    "left": 0.0,
+                                    "right": 0.0,
+                                    "top": 0.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "androidx.constraintlayout.widget.Guideline"
+                                  },
+                                  "children": [],
+                                  "className": "androidx.constraintlayout.widget.Guideline",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": false,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": false,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": "com.deque.axe.android:id/bottom_left_bubbles_horizontal"
+                                }
+                              ],
+                              "className": "androidx.constraintlayout.widget.ConstraintLayout",
+                              "contentDescription": null,
+                              "hintText": null,
+                              "isAccessibilityFocusable": false,
+                              "isClickable": false,
+                              "isEnabled": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null,
+                              "value": null,
+                              "viewIdResourceName": ""
+                            },
+                            {
+                              "axeViewId": "-315072883",
+                              "boundsInScreen": {
+                                "bottom": 854.0,
+                                "left": 0.0,
+                                "right": 480.0,
+                                "top": 80.0
+                              },
+                              "calculatedProps": {
+                                "name": " ",
+                                "state": null,
+                                "value": null,
+                                "role": "android.widget.FrameLayout"
+                              },
+                              "children": [
+                                {
+                                  "axeViewId": "529647433",
+                                  "boundsInScreen": {
+                                    "bottom": 553.0,
+                                    "left": 0.0,
+                                    "right": 480.0,
+                                    "top": 80.0
+                                  },
+                                  "calculatedProps": {
+                                    "name": " ",
+                                    "state": null,
+                                    "value": null,
+                                    "role": "android.widget.ScrollView"
+                                  },
+                                  "children": [
+                                    {
+                                      "axeViewId": "498965770",
+                                      "boundsInScreen": {
+                                        "bottom": 553.0,
+                                        "left": 0.0,
+                                        "right": 480.0,
+                                        "top": 80.0
+                                      },
+                                      "calculatedProps": {
+                                        "name": " ",
+                                        "state": null,
+                                        "value": null,
+                                        "role": "android.widget.LinearLayout"
+                                      },
+                                      "children": [
+                                        {
+                                          "axeViewId": "731854578",
+                                          "boundsInScreen": {
+                                            "bottom": 158.0,
+                                            "left": 16.0,
+                                            "right": 464.0,
+                                            "top": 104.0
+                                          },
+                                          "calculatedProps": {
+                                            "name": "Actionable views must have a speakable name that can be spoken by a screen reader. ",
+                                            "state": null,
+                                            "value": null,
+                                            "role": "androidx.appcompat.widget.AppCompatTextView"
+                                          },
+                                          "children": [],
+                                          "className": "androidx.appcompat.widget.AppCompatTextView",
+                                          "contentDescription": null,
+                                          "hintText": null,
+                                          "isAccessibilityFocusable": true,
+                                          "isClickable": false,
+                                          "isEnabled": true,
+                                          "isImportantForAccessibility": true,
+                                          "labeledBy": null,
+                                          "text": "Actionable views must have a speakable name that can be spoken by a screen reader.",
+                                          "value": null,
+                                          "viewIdResourceName": "com.deque.axe.android:id/rule_description"
+                                        },
+                                        {
+                                          "axeViewId": "-581785857",
+                                          "boundsInScreen": {
+                                            "bottom": 214.0,
+                                            "left": 0.0,
+                                            "right": 480.0,
+                                            "top": 174.0
+                                          },
+                                          "calculatedProps": {
+                                            "name": " ",
+                                            "state": null,
+                                            "value": null,
+                                            "role": "android.widget.LinearLayout"
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": "1506775728",
+                                              "boundsInScreen": {
+                                                "bottom": 206.0,
+                                                "left": 16.0,
+                                                "right": 40.0,
+                                                "top": 182.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "  ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "android.widget.ImageView"
+                                              },
+                                              "children": [],
+                                              "className": "android.widget.ImageView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": false,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": false,
+                                              "labeledBy": null,
+                                              "text": null,
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "747277446",
+                                              "boundsInScreen": {
+                                                "bottom": 202.0,
+                                                "left": 48.0,
+                                                "right": 296.0,
+                                                "top": 185.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Violation example ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Violation example",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "-709869100",
+                                              "boundsInScreen": {
+                                                "bottom": 202.0,
+                                                "left": 296.0,
+                                                "right": 361.0,
+                                                "top": 185.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "WCAG 4.1.2 ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "WCAG 4.1.2",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "1620208343",
+                                              "boundsInScreen": {
+                                                "bottom": 202.0,
+                                                "left": 377.0,
+                                                "right": 418.0,
+                                                "top": 185.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Impact: ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Impact:",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "1410295559",
+                                              "boundsInScreen": {
+                                                "bottom": 202.0,
+                                                "left": 426.0,
+                                                "right": 464.0,
+                                                "top": 185.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Critical ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Critical",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "hintText": null,
+                                          "isAccessibilityFocusable": false,
+                                          "isClickable": false,
+                                          "isEnabled": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null,
+                                          "value": null,
+                                          "viewIdResourceName": ""
+                                        },
+                                        {
+                                          "axeViewId": "292407130",
+                                          "boundsInScreen": {
+                                            "bottom": 334.0,
+                                            "left": 0.0,
+                                            "right": 480.0,
+                                            "top": 222.0
+                                          },
+                                          "calculatedProps": {
+                                            "name": " ",
+                                            "state": null,
+                                            "value": null,
+                                            "role": "android.widget.LinearLayout"
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": "-1721019299",
+                                              "boundsInScreen": {
+                                                "bottom": 270.0,
+                                                "left": 40.0,
+                                                "right": 440.0,
+                                                "top": 222.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": " ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatButton"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatButton",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": true,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "-1139751318",
+                                              "boundsInScreen": {
+                                                "bottom": 308.0,
+                                                "left": 16.0,
+                                                "right": 157.0,
+                                                "top": 286.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Reason it\u0027s an issue ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Reason it\u0027s an issue",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "-1516251544",
+                                              "boundsInScreen": {
+                                                "bottom": 334.0,
+                                                "left": 16.0,
+                                                "right": 464.0,
+                                                "top": 312.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "TalkBack only announces the role of this view. ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "TalkBack only announces the role of this view.",
+                                              "value": null,
+                                              "viewIdResourceName": "com.deque.axe.android:id/active_views_help_view1"
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "hintText": null,
+                                          "isAccessibilityFocusable": false,
+                                          "isClickable": false,
+                                          "isEnabled": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null,
+                                          "value": null,
+                                          "viewIdResourceName": ""
+                                        },
+                                        {
+                                          "axeViewId": "-1445261196",
+                                          "boundsInScreen": {
+                                            "bottom": 390.0,
+                                            "left": 0.0,
+                                            "right": 480.0,
+                                            "top": 350.0
+                                          },
+                                          "calculatedProps": {
+                                            "name": " ",
+                                            "state": null,
+                                            "value": null,
+                                            "role": "android.widget.LinearLayout"
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": "2045193798",
+                                              "boundsInScreen": {
+                                                "bottom": 382.0,
+                                                "left": 16.0,
+                                                "right": 40.0,
+                                                "top": 358.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "  ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "android.widget.ImageView"
+                                              },
+                                              "children": [],
+                                              "className": "android.widget.ImageView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": false,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": false,
+                                              "labeledBy": null,
+                                              "text": null,
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "840913979",
+                                              "boundsInScreen": {
+                                                "bottom": 378.0,
+                                                "left": 48.0,
+                                                "right": 464.0,
+                                                "top": 361.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Passing example ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Passing example",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "hintText": null,
+                                          "isAccessibilityFocusable": false,
+                                          "isClickable": false,
+                                          "isEnabled": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null,
+                                          "value": null,
+                                          "viewIdResourceName": ""
+                                        },
+                                        {
+                                          "axeViewId": "-564783582",
+                                          "boundsInScreen": {
+                                            "bottom": 529.0,
+                                            "left": 0.0,
+                                            "right": 480.0,
+                                            "top": 398.0
+                                          },
+                                          "calculatedProps": {
+                                            "name": " ",
+                                            "state": null,
+                                            "value": null,
+                                            "role": "android.widget.LinearLayout"
+                                          },
+                                          "children": [
+                                            {
+                                              "axeViewId": "1003521034",
+                                              "boundsInScreen": {
+                                                "bottom": 446.0,
+                                                "left": 40.0,
+                                                "right": 440.0,
+                                                "top": 398.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Actionable view example ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatButton"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatButton",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": true,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Actionable view example",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "-1604964042",
+                                              "boundsInScreen": {
+                                                "bottom": 484.0,
+                                                "left": 16.0,
+                                                "right": 138.0,
+                                                "top": 462.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "Reason it passes ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "Reason it passes",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            },
+                                            {
+                                              "axeViewId": "553393418",
+                                              "boundsInScreen": {
+                                                "bottom": 529.0,
+                                                "left": 16.0,
+                                                "right": 464.0,
+                                                "top": 488.0
+                                              },
+                                              "calculatedProps": {
+                                                "name": "This button has its own text and the TalkBack announcement make its purpose clear. ",
+                                                "state": null,
+                                                "value": null,
+                                                "role": "androidx.appcompat.widget.AppCompatTextView"
+                                              },
+                                              "children": [],
+                                              "className": "androidx.appcompat.widget.AppCompatTextView",
+                                              "contentDescription": null,
+                                              "hintText": null,
+                                              "isAccessibilityFocusable": true,
+                                              "isClickable": false,
+                                              "isEnabled": true,
+                                              "isImportantForAccessibility": true,
+                                              "labeledBy": null,
+                                              "text": "This button has its own text and the TalkBack announcement make its purpose clear.",
+                                              "value": null,
+                                              "viewIdResourceName": ""
+                                            }
+                                          ],
+                                          "className": "android.widget.LinearLayout",
+                                          "contentDescription": null,
+                                          "hintText": null,
+                                          "isAccessibilityFocusable": false,
+                                          "isClickable": false,
+                                          "isEnabled": true,
+                                          "isImportantForAccessibility": false,
+                                          "labeledBy": null,
+                                          "text": null,
+                                          "value": null,
+                                          "viewIdResourceName": ""
+                                        }
+                                      ],
+                                      "className": "android.widget.LinearLayout",
+                                      "contentDescription": null,
+                                      "hintText": null,
+                                      "isAccessibilityFocusable": false,
+                                      "isClickable": false,
+                                      "isEnabled": true,
+                                      "isImportantForAccessibility": false,
+                                      "labeledBy": null,
+                                      "text": null,
+                                      "value": null,
+                                      "viewIdResourceName": "com.deque.axe.android:id/active_views"
+                                    }
+                                  ],
+                                  "className": "android.widget.ScrollView",
+                                  "contentDescription": null,
+                                  "hintText": null,
+                                  "isAccessibilityFocusable": true,
+                                  "isClickable": false,
+                                  "isEnabled": true,
+                                  "isImportantForAccessibility": true,
+                                  "labeledBy": null,
+                                  "text": null,
+                                  "value": null,
+                                  "viewIdResourceName": ""
+                                }
+                              ],
+                              "className": "android.widget.FrameLayout",
+                              "contentDescription": null,
+                              "hintText": null,
+                              "isAccessibilityFocusable": false,
+                              "isClickable": false,
+                              "isEnabled": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null,
+                              "value": null,
+                              "viewIdResourceName": "com.deque.axe.android:id/rule_container"
+                            }
+                          ],
+                          "className": "androidx.constraintlayout.widget.ConstraintLayout",
+                          "contentDescription": null,
+                          "hintText": null,
+                          "isAccessibilityFocusable": false,
+                          "isClickable": false,
+                          "isEnabled": true,
+                          "isImportantForAccessibility": false,
+                          "labeledBy": null,
+                          "text": null,
+                          "value": null,
+                          "viewIdResourceName": "com.deque.axe.android:id/rule_activity"
+                        },
+                        {
+                          "axeViewId": "-127222142",
+                          "boundsInScreen": {
+                            "bottom": 521.0,
+                            "left": 195.0,
+                            "right": 265.0,
+                            "top": 451.0
+                          },
+                          "calculatedProps": {
+                            "name": " ",
+                            "state": null,
+                            "value": null,
+                            "role": "androidx.constraintlayout.widget.ConstraintLayout"
+                          },
+                          "children": [
+                            {
+                              "axeViewId": "128347486",
+                              "boundsInScreen": {
+                                "bottom": 514.0,
+                                "left": 202.0,
+                                "right": 258.0,
+                                "top": 458.0
+                              },
+                              "calculatedProps": {
+                                "name": " Axe ",
+                                "state": null,
+                                "value": null,
+                                "role": "android.widget.ImageView"
+                              },
+                              "children": [],
+                              "className": "android.widget.ImageView",
+                              "contentDescription": "Axe",
+                              "hintText": null,
+                              "isAccessibilityFocusable": true,
+                              "isClickable": false,
+                              "isEnabled": true,
+                              "isImportantForAccessibility": true,
+                              "labeledBy": null,
+                              "text": null,
+                              "value": null,
+                              "viewIdResourceName": "com.deque.axe.android:id/deque_results_fab"
+                            },
+                            {
+                              "axeViewId": "-870144867",
+                              "boundsInScreen": {
+                                "bottom": 521.0,
+                                "left": 195.0,
+                                "right": 265.0,
+                                "top": 451.0
+                              },
+                              "calculatedProps": {
+                                "name": "  ",
+                                "state": null,
+                                "value": null,
+                                "role": "android.widget.ImageView"
+                              },
+                              "children": [],
+                              "className": "android.widget.ImageView",
+                              "contentDescription": null,
+                              "hintText": null,
+                              "isAccessibilityFocusable": false,
+                              "isClickable": false,
+                              "isEnabled": true,
+                              "isImportantForAccessibility": false,
+                              "labeledBy": null,
+                              "text": null,
+                              "value": null,
+                              "viewIdResourceName": "com.deque.axe.android:id/result_key_container"
+                            }
+                          ],
+                          "className": "androidx.constraintlayout.widget.ConstraintLayout",
+                          "contentDescription": null,
+                          "hintText": null,
+                          "isAccessibilityFocusable": true,
+                          "isClickable": true,
+                          "isEnabled": false,
+                          "isImportantForAccessibility": true,
+                          "labeledBy": null,
+                          "text": null,
+                          "value": null,
+                          "viewIdResourceName": "com.deque.axe.android:id/overlay_view"
+                        }
+                      ],
+                      "className": "androidx.appcompat.widget.ContentFrameLayout",
+                      "contentDescription": null,
+                      "hintText": null,
+                      "isAccessibilityFocusable": false,
+                      "isClickable": false,
+                      "isEnabled": true,
+                      "isImportantForAccessibility": false,
+                      "labeledBy": null,
+                      "text": null,
+                      "value": null,
+                      "viewIdResourceName": "android:id/content"
+                    }
+                  ],
+                  "className": "androidx.appcompat.widget.FitWindowsLinearLayout",
+                  "contentDescription": null,
+                  "hintText": null,
+                  "isAccessibilityFocusable": false,
+                  "isClickable": false,
+                  "isEnabled": true,
+                  "isImportantForAccessibility": false,
+                  "labeledBy": null,
+                  "text": null,
+                  "value": null,
+                  "viewIdResourceName": "com.deque.axe.android:id/action_bar_root"
+                }
+              ],
+              "className": "android.widget.FrameLayout",
+              "contentDescription": null,
+              "hintText": null,
+              "isAccessibilityFocusable": false,
+              "isClickable": false,
+              "isEnabled": true,
+              "isImportantForAccessibility": false,
+              "labeledBy": null,
+              "text": null,
+              "value": null,
+              "viewIdResourceName": ""
+            }
+          ],
+          "className": "android.widget.LinearLayout",
+          "contentDescription": null,
+          "hintText": null,
+          "isAccessibilityFocusable": false,
+          "isClickable": false,
+          "isEnabled": true,
+          "isImportantForAccessibility": false,
+          "labeledBy": null,
+          "text": null,
+          "value": null,
+          "viewIdResourceName": ""
+        },
+        {
+          "axeViewId": "1530888154",
+          "boundsInScreen": {
+            "bottom": 24.0,
+            "left": 0.0,
+            "right": 480.0,
+            "top": 0.0
+          },
+          "calculatedProps": {
+            "name": " ",
+            "state": null,
+            "value": null,
+            "role": "android.view.View"
+          },
+          "children": [],
+          "className": "android.view.View",
+          "contentDescription": null,
+          "hintText": null,
+          "isAccessibilityFocusable": false,
+          "isClickable": false,
+          "isEnabled": true,
+          "isImportantForAccessibility": false,
+          "labeledBy": null,
+          "text": null,
+          "value": null,
+          "viewIdResourceName": "android:id/statusBarBackground"
+        }
+      ],
+      "className": "com.android.internal.policy.DecorView",
+      "contentDescription": null,
+      "hintText": null,
+      "isAccessibilityFocusable": false,
+      "isClickable": false,
+      "isEnabled": true,
+      "isImportantForAccessibility": true,
+      "labeledBy": null,
+      "text": null,
+      "value": null,
+      "viewIdResourceName": ""
+    },
+    "axeDevice": {
+      "dpi": 1.0,
+      "name": "Google Android SDK built for x86",
+      "os": "Android",
+      "osVersion": "Android Android 7.1.1 API Level 25",
+      "screenHeight": 854,
+      "screenWidth": 480
+    },
+    "screenshot": "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\nMSkpu+ucUxZx5rQEsN1u5x//eJWIiAieemo2ISEhANx//31OnxsQEMDkyZN5++23WbbsGy666OIm\n1/fy8qJ///589tlnWK1WPDw8nG77+AVJFRUVbqnl+NWeJ384QXl5OYDjr+yWGDhwEO+99x5btyax\nY8cO+vcf0Ohh8NaMe3Odyj6fzNn+Oj4rnjp1KnFxneosO7GOqKgo7rnnXvLy8ti9exerVq1i1aqV\n/N//PeS2+0NdrcWZloxvS7Z9OvdjczR3X/Xq1Qt/f3+2bdvKvn376d+/f6NHrFwdp169erNkyRIO\nHDhARkYGffr0pbq6mvfff5/MzEwOHjzIVVf9wX2dll+903IIuqioiOzsbIYPH+4IgZqaGqxWq9Pn\nDhuWyPDh5/D73/+eL774oskLTo7Lzs7Bx8cHDw8Pl7YdGRmJt7c3aWl1D6+tXr2KpUuXNLuWmJgY\nPD092b17d53Hd+2qvfioU6eGr3J2hb+/P/369WPNmjUkJyczdOjQRtdtzbg3l6t99vf3d7yZH9fc\nepztr6ioKMxmMzk5uURFRTn+RUZGEhkZCdQexl60aBGZmZmEh4czYsRI7rxzBhaLxVHzyVpy24or\ntbiiJa+plmzb3a9dd9zq05J95eHhwdChw9i4cSNJSVsYOnRYo+27Ok6dOnUiMDCQjz5aTLdu3fD3\n9yckJIQuXbrw8ccfERgYSFxcXKv7K78dpyWAg4ODCQwMZOXKlWRkZHD48GHefPMNLBaLy2++559/\nAX369GH+/DcpKSlxPF5VVcW+ffvYt28fKSkpfPnll6xZ84vj/KAr2/b29mbs2HF89dVX7N69G4vF\nQlJSEh999FGDt2s0VstxPj4+jBt3PsuXf8eGDespKSlh586dfPbZZwwePIS2bdvWe05zDBuWyP79\n+/H29m7y04TcMe6ucrXPcXGd2LRpIwcOHCA/P5/vvvu23pu9M872l5+fH6NHj+Hbb5exZs0vlJaW\nkpmZybx5L/Pll18CEBgYyK5dO/noo8VkZWVhsVjYsGE9AFFR0Q1u198/AKi9JaW4uNilWl2pxRUt\neU21ZNvufu22ZMxO1pJ9BTBs2DB27tyJ3W6nT58+ja7n6jiZTCZ69+7D/v37GTBggOPxgQMHkpyc\nTO/efRx/cGzcuIG1a9e0qL/y23FaDkGbzWZuvnkab731X2bNehKz2czYseOIjY113M7gjMlk4oYb\n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\nufWJiIhzbvk6woN5mQyac0OjH7wxdfgEXrjyTu5a/LJL4RviF8jmBxe6NYBPt7IyC7+s30h+QQED\n+/WhW9cuRpfkUFxcworVaxxXV4uIyOnntu8DdtfXEYK+E1hERH793HZPSWPne5tL4SsiIr8Fbv0g\njuPBeddHLzX5OdANCfEL5MUrZyh8RUTkN8Fth6BPdDAvk5lL57v86VY3JE7gsQk3ndXnfEVERJrj\nlATwcQfzMvl82098vnUlSempjllxiF8gA2ITmNR/FJP6jVbwiojIb84pDWARERFpmD7YV0RExAAK\nYBEREQMogEVERAygABYRETGAAlhERMQApunTp+sqaBERkdNMtyGJiIgYQIegRUREDKAAFhERMYAC\nWERExAAKYBEREQMogEVERAygABYRETGAAlhERMQACmAREREDKIBFREQMoAAWERExgAJYRETEAApg\nERERAyiARUREDKAAFhERMYCn0QU0V2lZGTk5OVRVVRpdioiInAG8vLxo27YdgQEBRpfSLGfdDDg7\nO0vhKyIiDtXV1eTk5BhdRrOddQFcXV1tdAkiInKGORsnZmddAIuIiPwaKIBFREQMoAAWERExgAJY\nRETEAApgERERAyiARUREDKAAFhERMYACWERExAAKYBEREQMogOU3p7CoGJvNdkq3UVFZydJvfyB1\n/8EGl9tsNpZ+9yM7du1x2zZPR7/OVKdiPEVONQWwnBW++f4nbrj9bjZvS27W845m55CXX+j4OSsn\nlz//7X6++WGVu0usIyMzi/mLFlNQWNTg8tz8Aua/8yHpRzLdsr3T1a8zlbvHU+R0UADLGa+4tJT3\nPv6S0jILBw6lufw8a00NMx56kiXf/eB4rE1ICLdMvYahA/ueilIdjhzNBqBDTHSDyzOzaj84PjY6\nyi3bO139OlO5ezxFToez7usI5bfnq29/BKBPj27sP3i43vKcvHy27tiFzW6nT49uRLdvS1ZOLknb\nd1FVVU1ZqYXU/QdJ6NyJo9k5BAUGEhocBNQett2yfScVFRX06NaV+I6xjnb37DtASWkZHaKj2LI9\nmcAAf4YNHoCX5/9+bY4czWZnSio2m40+PbsT3b4tAGnpR/D388Nut/HtitWEBgcxZEBfzObav3kz\nMrMAiGrXtk4dVVVV9OnZnZiodnX6WFhUzM6UvXTv2pnwsFAAdu3ZR1FxMcMG9W+0Xye2V15ewZbt\n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\u003d\n",
+    "axeEventStream": [],
+    "axeMetaData": {
+      "axeVersion": "0.0",
+      "appIdentifier": "com.deque.axe.android",
+      "analysisTimestamp": "1590103501252",
+      "screenTitle": "No Screen Title Available"
+    }
+  },
+  "axeRuleResults": [
+    {
+      "axeViewId": "-1446265437",
+      "props": {
+        "Color Contrast Ratio": 18.924084013882418,
+        "isOffScreen": false,
+        "Background Color": "fffdfdfe",
+        "Visible Text": "Active Views",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "ff02101a"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "861283017",
+      "props": {
+        "isImportantForAccessibility": true,
+        "contentDescription": "Navigate up",
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "861283017",
+      "props": {
+        "isOffScreen": false,
+        "isRendered": false,
+        "Screen Dots Per Inch": 1.0,
+        "isPartiallyVisible": true,
+        "Screen Width": 480.0,
+        "className": "android.widget.ImageView",
+        "isActive": true,
+        "Screen Height": 854.0,
+        "boundsInScreen": {
+          "bottom": 80.0,
+          "left": 0.0,
+          "right": 56.0,
+          "top": 24.0
+        }
+      },
+      "ruleId": "TouchSizeWcag",
+      "ruleSummary": "Active views adhere to WCAG Touch Target Size requirements.",
+      "impact": 1,
+      "status": "INCOMPLETE"
+    },
+    {
+      "axeViewId": "861283017",
+      "props": {
+        "Speakable Text": "Navigate up",
+        "className": "android.widget.ImageView",
+        "isActive": true
+      },
+      "ruleId": "ActiveViewName",
+      "ruleSummary": "Views that users can interact with must have a Name.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-1858547260",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "82282813",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "102816803",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "731854578",
+      "props": {
+        "Color Contrast Ratio": 5.648269876566381,
+        "isOffScreen": false,
+        "Background Color": "ff666666",
+        "Visible Text": "Actionable views must have a speakable name that can be spoken by a screen reader.",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "fffdfdfe"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1506775728",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "747277446",
+      "props": {
+        "isOffScreen": false,
+        "Background Color": null,
+        "Visible Text": "Violation example",
+        "Confidence in Color Detection": "None",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": null
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-709869100",
+      "props": {
+        "isOffScreen": false,
+        "Background Color": null,
+        "Visible Text": "WCAG 4.1.2",
+        "Confidence in Color Detection": "None",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": null
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1620208343",
+      "props": {
+        "isOffScreen": false,
+        "Background Color": null,
+        "Visible Text": "Impact:",
+        "Confidence in Color Detection": "None",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": null
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1410295559",
+      "props": {
+        "isOffScreen": false,
+        "Background Color": null,
+        "Visible Text": "Critical",
+        "Confidence in Color Detection": "None",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": null
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-1721019299",
+      "props": {
+        "isOffScreen": false,
+        "isRendered": false,
+        "Screen Dots Per Inch": 1.0,
+        "isPartiallyVisible": false,
+        "Screen Width": 480.0,
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "isActive": true,
+        "Screen Height": 854.0,
+        "boundsInScreen": {
+          "bottom": 270.0,
+          "left": 40.0,
+          "right": 440.0,
+          "top": 222.0
+        }
+      },
+      "ruleId": "TouchSizeWcag",
+      "ruleSummary": "Active views adhere to WCAG Touch Target Size requirements.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-1721019299",
+      "props": {
+        "Speakable Text": "",
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "isActive": true
+      },
+      "ruleId": "ActiveViewName",
+      "ruleSummary": "Views that users can interact with must have a Name.",
+      "impact": 3,
+      "status": "FAIL"
+    },
+    {
+      "axeViewId": "-1139751318",
+      "props": {
+        "Color Contrast Ratio": 2.665476070131531,
+        "isOffScreen": false,
+        "Background Color": "fffdfdfe",
+        "Visible Text": "Reason it\u0027s an issue",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "ff9d9d9e"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "FAIL"
+    },
+    {
+      "axeViewId": "-1516251544",
+      "props": {
+        "Color Contrast Ratio": 5.648269876566381,
+        "isOffScreen": false,
+        "Background Color": "ff666666",
+        "Visible Text": "TalkBack only announces the role of this view.",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "fffdfdfe"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "2045193798",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "840913979",
+      "props": {
+        "isOffScreen": false,
+        "Background Color": null,
+        "Visible Text": "Passing example",
+        "Confidence in Color Detection": "None",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": null
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1003521034",
+      "props": {
+        "isOffScreen": false,
+        "isRendered": false,
+        "Screen Dots Per Inch": 1.0,
+        "isPartiallyVisible": false,
+        "Screen Width": 480.0,
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "isActive": true,
+        "Screen Height": 854.0,
+        "boundsInScreen": {
+          "bottom": 446.0,
+          "left": 40.0,
+          "right": 440.0,
+          "top": 398.0
+        }
+      },
+      "ruleId": "TouchSizeWcag",
+      "ruleSummary": "Active views adhere to WCAG Touch Target Size requirements.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1003521034",
+      "props": {
+        "Speakable Text": "Actionable view example ",
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "isActive": true
+      },
+      "ruleId": "ActiveViewName",
+      "ruleSummary": "Views that users can interact with must have a Name.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "1003521034",
+      "props": {
+        "Color Contrast Ratio": 8.605984355955036,
+        "isOffScreen": false,
+        "Background Color": "ffd6d7d7",
+        "Visible Text": "Actionable view example",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatButton",
+        "Foreground Color": "ff283640"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-1604964042",
+      "props": {
+        "Color Contrast Ratio": 2.665476070131531,
+        "isOffScreen": false,
+        "Background Color": "fffdfdfe",
+        "Visible Text": "Reason it passes",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "ff9d9d9e"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "FAIL"
+    },
+    {
+      "axeViewId": "553393418",
+      "props": {
+        "Color Contrast Ratio": 5.648269876566381,
+        "isOffScreen": false,
+        "Background Color": "ff666666",
+        "Visible Text": "This button has its own text and the TalkBack announcement make its purpose clear.",
+        "Confidence in Color Detection": "High",
+        "className": "androidx.appcompat.widget.AppCompatTextView",
+        "Foreground Color": "fffdfdfe"
+      },
+      "ruleId": "ColorContrast",
+      "ruleSummary": "Text adequately contrasts with its background.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-127222142",
+      "props": {
+        "isOffScreen": false,
+        "isRendered": false,
+        "Screen Dots Per Inch": 1.0,
+        "isPartiallyVisible": false,
+        "Screen Width": 480.0,
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "isActive": true,
+        "Screen Height": 854.0,
+        "boundsInScreen": {
+          "bottom": 521.0,
+          "left": 195.0,
+          "right": 265.0,
+          "top": 451.0
+        }
+      },
+      "ruleId": "TouchSizeWcag",
+      "ruleSummary": "Active views adhere to WCAG Touch Target Size requirements.",
+      "impact": 1,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-127222142",
+      "props": {
+        "Speakable Text": "Axe ",
+        "className": "androidx.constraintlayout.widget.ConstraintLayout",
+        "isActive": true
+      },
+      "ruleId": "ActiveViewName",
+      "ruleSummary": "Views that users can interact with must have a Name.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "128347486",
+      "props": {
+        "isImportantForAccessibility": true,
+        "contentDescription": "Axe",
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": "-870144867",
+      "props": {
+        "isImportantForAccessibility": false,
+        "contentDescription": null,
+        "className": "android.widget.ImageView"
+      },
+      "ruleId": "ImageViewName",
+      "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",
+      "impact": 3,
+      "status": "PASS"
+    },
+    {
+      "axeViewId": null,
+      "props": {
+        "Applicable Event Stream": []
+      },
+      "ruleId": "DontMoveAccessibilityFocus",
+      "ruleSummary": "Applications should not forcibly move focus around.",
+      "impact": 2,
+      "status": "PASS"
+    }
+  ]
+}
