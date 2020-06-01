@@ -1,8 +1,9 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static com.deque.axe.android.constants.AxeImpact.CRITICAL;
+
 import com.deque.axe.android.AxeView;
 import com.deque.axe.android.constants.AndroidClassNames;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.rules.hierarchy.base.ActiveView;
@@ -14,7 +15,7 @@ import com.deque.axe.android.wrappers.AxeProps.Name;
 public class ActiveViewName extends ActiveView {
 
   public ActiveViewName() {
-    super(AxeStandard.WCAG_20, AxeImpact.CRITICAL,
+    super(AxeStandard.WCAG_20, CRITICAL.getValue(),
         "Views that users can interact with must have a Name.");
   }
 

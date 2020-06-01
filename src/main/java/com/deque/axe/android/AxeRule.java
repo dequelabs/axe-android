@@ -1,9 +1,7 @@
 package com.deque.axe.android;
 
 import com.deque.axe.android.AxeConf.RuleConf;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
-import com.deque.axe.android.rules.hierarchy.ImageViewName;
 
 /**
  * Main AxeRule class.
@@ -12,7 +10,7 @@ public abstract class AxeRule {
 
   public final String id;
 
-  public final @AxeImpact int impact;
+  public final int impact;
 
   public final @AxeStandard String standard;
 
@@ -29,7 +27,7 @@ public abstract class AxeRule {
    * @param summary A simple description of what the rule is looking for.
    */
   @Deprecated
-  private AxeRule(@AxeStandard String standard, @AxeImpact int impact, final String summary) {
+  private AxeRule(@AxeStandard String standard, int impact, final String summary) {
     this.id = getClass().getSimpleName();
     this.impact = impact;
     this.summary = summary;

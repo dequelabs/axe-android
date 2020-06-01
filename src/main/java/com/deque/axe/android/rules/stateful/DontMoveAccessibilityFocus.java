@@ -1,9 +1,10 @@
 package com.deque.axe.android.rules.stateful;
 
+import static com.deque.axe.android.constants.AxeImpact.SERIOUS;
+
 import com.deque.axe.android.AxeEvent;
 import com.deque.axe.android.AxeRuleStateful;
 import com.deque.axe.android.constants.AxeEventType;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.wrappers.AxeEventStream;
@@ -15,7 +16,7 @@ public class DontMoveAccessibilityFocus extends AxeRuleStateful {
    * Applications should not forcibly move focus around.
    */
   public DontMoveAccessibilityFocus() {
-    super(AxeStandard.WCAG_20, AxeImpact.SERIOUS,
+    super(AxeStandard.WCAG_20, SERIOUS.getValue(),
         "Applications should not forcibly move focus around.");
 
     applicableEventStream

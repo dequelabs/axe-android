@@ -1,6 +1,9 @@
 package com.deque.axe.android;
 
-import com.deque.axe.android.constants.AxeImpact;
+import static com.deque.axe.android.constants.AxeImpact.CRITICAL;
+import static com.deque.axe.android.constants.AxeImpact.MODERATE;
+import static com.deque.axe.android.constants.AxeImpact.SERIOUS;
+
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.Constants;
 
@@ -24,13 +27,13 @@ public class AxeConf {
 
   static class RuleConf implements JsonSerializable {
 
-    final @AxeImpact int impact;
+    final int impact;
     final String standard;
     final String summary;
     boolean ignored = false;
 
     RuleConf(
-        final @AxeImpact int impact,
+        final int impact,
         final String standard,
         final String summary
     ) {
@@ -61,7 +64,7 @@ public class AxeConf {
     rules.put(
         ActiveViewName.class.getSimpleName(),
         new RuleConf(
-            AxeImpact.CRITICAL,
+            CRITICAL.getValue(),
             AxeStandard.WCAG_20,
             "Views that users can interact with must have a Name."
         )
@@ -70,7 +73,7 @@ public class AxeConf {
     rules.put(
          CheckBoxName.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.MODERATE,
+             MODERATE.getValue(),
              AxeStandard.BEST_PRACTICE,
              "Views that have modifiable Values should get their name from a nearby Label."
          )
@@ -79,7 +82,7 @@ public class AxeConf {
     rules.put(
          ColorContrast.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.MODERATE,
+             MODERATE.getValue(),
              AxeStandard.WCAG_20,
              "Text adequately contrasts with its background."
          )
@@ -88,7 +91,7 @@ public class AxeConf {
     rules.put(
          EditTextName.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.MODERATE,
+             MODERATE.getValue(),
              AxeStandard.BEST_PRACTICE,
              "Views that have modifiable Values should get their name from a nearby Label."
          )
@@ -97,7 +100,7 @@ public class AxeConf {
     rules.put(
          EditTextValue.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.CRITICAL,
+             CRITICAL.getValue(),
              AxeStandard.WCAG_20,
              "Editable Views must not override the Value spoken by TalkBack."
          )
@@ -106,7 +109,7 @@ public class AxeConf {
     rules.put(
          ImageViewName.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.CRITICAL,
+             CRITICAL.getValue(),
              AxeStandard.WCAG_20,
              "Focusable Informative Views must have Text or a ContentDescription."
          )
@@ -115,7 +118,7 @@ public class AxeConf {
     rules.put(
          SwitchName.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.MODERATE,
+             MODERATE.getValue(),
              AxeStandard.BEST_PRACTICE,
              "Views that have modifiable Values should get their name from a nearby Label."
          )
@@ -124,7 +127,7 @@ public class AxeConf {
     rules.put(
          TouchSizeWcag.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.MODERATE,
+             MODERATE.getValue(),
              AxeStandard.WCAG_21,
              "Active views adhere to WCAG Touch Target Size requirements."
          )
@@ -133,7 +136,7 @@ public class AxeConf {
     rules.put(
          DontMoveAccessibilityFocus.class.getSimpleName(),
          new RuleConf(
-             AxeImpact.SERIOUS,
+             SERIOUS.getValue(),
              AxeStandard.BEST_PRACTICE,
              "Applications should not forcibly move focus around."
          )
