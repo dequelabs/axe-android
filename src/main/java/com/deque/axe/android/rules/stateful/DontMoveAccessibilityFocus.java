@@ -15,7 +15,7 @@ public class DontMoveAccessibilityFocus extends AxeRuleStateful {
    * Applications should not forcibly move focus around.
    */
   public DontMoveAccessibilityFocus() {
-    super(AxeStandard.BEST_PRACTICE, AxeImpact.SERIOUS,
+    super(AxeStandard.WCAG_20, AxeImpact.SERIOUS,
         "Applications should not forcibly move focus around.");
 
     applicableEventStream

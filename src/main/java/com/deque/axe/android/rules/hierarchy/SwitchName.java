@@ -2,6 +2,7 @@ package com.deque.axe.android.rules.hierarchy;
 
 import com.deque.axe.android.AxeView;
 import com.deque.axe.android.constants.AndroidClassNames;
+import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.rules.hierarchy.base.ModifiableViewName;
 import com.deque.axe.android.utils.AxeTextUtils;
@@ -10,7 +11,7 @@ import com.deque.axe.android.wrappers.AxeProps;
 public class SwitchName extends ModifiableViewName {
 
   public SwitchName() {
-    super(AndroidClassNames.SWITCH);
+    super(AxeStandard.WCAG_21, AndroidClassNames.SWITCH);
   }
 
   @Override
