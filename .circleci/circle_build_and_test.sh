@@ -16,7 +16,6 @@ if (( gradlew_code_coverage_return_code != 0 )); then
   echo "code coverage task failed with exit status $gradlew_code_coverage_return_code" >&2
   exit "${gradlew_code_coverage_return_code}"
 fi
-./gradlew codeCoverage
 gradlew_check_output=$(./gradlew check); gradlew_check_return_code=$?
 if (( gradlew_check_return_code != 0 )); then
   echo "check task failed with exit status $gradlew_check_return_code" >&2

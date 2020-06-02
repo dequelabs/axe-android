@@ -35,7 +35,7 @@ public class ActiveViewNameTest {
     when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.Button");
     when(axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class)).thenReturn(true);
 
-    assertTrue(subject.isApplicable(axeProps));
+    assertFalse(subject.isApplicable(axeProps));
   }
 
   @Test
