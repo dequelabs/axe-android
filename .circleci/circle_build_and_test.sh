@@ -10,6 +10,10 @@ mkdir -p /axe-android/h2
 
 ./gradlew :dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
 ./gradlew build
-./gradlew check
+gradlew_output=$(./gradlew check); gradlew_return_code=$?
+if (( gradlew_return_code != 0 )); then
+  echo "Grade failed with exit status $gradlew_return_code" >&2
+  echo "and output: $gradlew_output" >&2
+fi
 ./gradlew codeCoverage
 ./gradlew test
