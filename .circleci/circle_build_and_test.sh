@@ -10,6 +10,6 @@ mkdir -p /axe-android/h2
 
 ./gradlew :dependencies >> ${ARTIFACTS_PATH}/dependency_report.txt
 ./gradlew build
-./gradlew test
 ./gradlew check
 ./gradlew codeCoverage
+./gradlew test
