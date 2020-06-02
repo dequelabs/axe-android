@@ -12,8 +12,8 @@ mkdir -p /axe-android/h2
 ./gradlew build
 gradlew_output=$(./gradlew check); gradlew_return_code=$?
 if (( gradlew_return_code != 0 )); then
-  echo "Grade failed with exit status $gradlew_return_code" >&2
-  echo "and output: $gradlew_output" >&2
+  echo "check task failed with exit status $gradlew_return_code" >&2
+  exit "${gradlew_return_code}"
 fi
 ./gradlew codeCoverage
 ./gradlew test
