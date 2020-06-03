@@ -75,7 +75,9 @@ jobs:
       - *load_gradle_wrapper
       - run:
           name: Test
-          command: python -B .circleci/mobile-release-process/build_and_test.py
+          command: |
+            set -e
+            python -B .circleci/mobile-release-process/build_and_test.py
       - *save_gradle_wrapper
       - *save_deps
       - store_artifacts:
