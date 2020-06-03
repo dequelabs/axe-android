@@ -1,11 +1,13 @@
 package com.deque.axe.android;
 
+import static com.deque.axe.android.constants.AxeImpact.BLOCKER;
+import static com.deque.axe.android.constants.AxeImpact.CRITICAL;
+import static com.deque.axe.android.constants.AxeImpact.MINOR;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import com.deque.axe.android.colorcontrast.AxeImage;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.constants.Constants;
@@ -82,7 +84,7 @@ public class AxeTest {
     private boolean hasCalledTearDown = false;
 
     protected AxeTestRule() {
-      super(AxeStandard.BEST_PRACTICE, AxeImpact.MINOR, "A Test Rule");
+      super(AxeStandard.BEST_PRACTICE, MINOR.getValue(), "A Test Rule");
     }
 
     @Override
@@ -150,7 +152,7 @@ public class AxeTest {
   public static class AxeRuleThrows extends AxeRuleViewHierarchy {
 
     protected AxeRuleThrows() {
-      super(AxeStandard.BEST_PRACTICE, AxeImpact.BLOCKER, "Blah");
+      super(AxeStandard.BEST_PRACTICE, BLOCKER.getValue(), "Blah");
     }
 
     @Override
@@ -331,7 +333,7 @@ public class AxeTest {
       Object actualRuleResultObj = jsonParser.parse(actualRuleResultString);
       JsonObject actualRuleResultJsonObject = (JsonObject) actualRuleResultObj;
       Set<String> actualRuleResultKeySet = actualRuleResultJsonObject.keySet();
-      
+
       assertEquals(expectedRuleResultKeySet, actualRuleResultKeySet);
 
       for (Map.Entry<String, Object> stringObjectEntry : expectedAxeRuleResult.props.entrySet()) {
@@ -664,7 +666,7 @@ public class AxeTest {
   static class SampleRuleClass extends AxeRuleViewHierarchy {
 
     protected SampleRuleClass() {
-      super(AxeStandard.WCAG_20, AxeImpact.CRITICAL,
+      super(AxeStandard.WCAG_20, CRITICAL.getValue(),
               "Sample Rule Violation Description");
     }
 

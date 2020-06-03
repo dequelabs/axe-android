@@ -1,5 +1,7 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static com.deque.axe.android.constants.AxeImpact.MODERATE;
+
 import com.deque.axe.android.AxeContext;
 import com.deque.axe.android.AxeDevice;
 import com.deque.axe.android.AxeView;
@@ -7,7 +9,6 @@ import com.deque.axe.android.colorcontrast.AxeColor;
 import com.deque.axe.android.colorcontrast.AxeImage;
 import com.deque.axe.android.colorcontrast.ColorContrastResult;
 import com.deque.axe.android.colorcontrast.ColorContrastRunner.Confidence;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.rules.hierarchy.base.InformativeView;
@@ -21,7 +22,7 @@ public class ColorContrast extends InformativeView {
   private AxeDevice axeDevice;
 
   public ColorContrast() {
-    super(AxeStandard.WCAG_20, AxeImpact.MODERATE,
+    super(AxeStandard.WCAG_20, MODERATE.getValue(),
         "Text adequately contrasts with its background.");
   }
 

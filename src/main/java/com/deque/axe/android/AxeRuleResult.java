@@ -2,7 +2,6 @@ package com.deque.axe.android;
 
 import android.support.annotation.NonNull;
 
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.utils.AxeTree;
 import com.deque.axe.android.utils.JsonSerializable;
@@ -45,7 +44,7 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
   /**
    * The impact of the rule [0=MINOR, 1=MODERATE, 2=SERIOUS, 3=CRITICAL, 4=BLOCKER].
    */
-  public @AxeImpact int impact;
+  public int impact;
 
   /**
    * One of [PASS, FAIL, INCOMPLETE, INAPPLICABLE].

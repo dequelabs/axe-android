@@ -1,8 +1,9 @@
 package com.deque.axe.android.rules.hierarchy;
 
+import static com.deque.axe.android.constants.AxeImpact.CRITICAL;
+
 import com.deque.axe.android.AxeRuleViewHierarchy;
 import com.deque.axe.android.AxeView;
-import com.deque.axe.android.constants.AxeImpact;
 import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.utils.AxeTextUtils;
@@ -20,7 +21,7 @@ public class EditTextValue extends AxeRuleViewHierarchy {
   }
 
   public EditTextValue() {
-    super(AxeStandard.WCAG_20, AxeImpact.CRITICAL,
+    super(AxeStandard.WCAG_20, CRITICAL.getValue(),
         "Editable Views must not override the Value spoken by TalkBack.");
   }
 
