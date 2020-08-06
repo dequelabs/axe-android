@@ -31,6 +31,8 @@ public abstract class ModifiableViewName extends AxeRuleViewHierarchy {
   @Override
   @CallSuper
   public void collectProps(AxeView axeView, AxeProps axeProps) {
+    super.collectProps(axeView, axeProps);
+
     axeProps.put(Name.LABELED_BY, axeView.speakableTextOfLabeledBy());
     axeProps.put(Name.CLASS_NAME, axeView.className);
   }
@@ -41,6 +43,7 @@ public abstract class ModifiableViewName extends AxeRuleViewHierarchy {
 
     final String className = axeProps.get(Name.CLASS_NAME, String.class);
 
-    return applicableClass.contentEquals(className);
+    return applicableClass.contentEquals(className)
+      && super.isApplicable(axeProps);
   }
 }

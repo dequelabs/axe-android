@@ -34,8 +34,20 @@ public class ImageViewNameTest {
   public void imageViewClass_isApplicable() {
     when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
             .thenReturn("android.widget.ImageView");
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
+            .thenReturn(false);
 
     assertTrue(subject.isApplicable(axeProps));
+  }
+
+  @Test
+  public void imageViewClass_overridesAccessibilityDelegate_notApplicable() {
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.ImageView");
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
+            .thenReturn(true);
+
+    assertFalse(subject.isApplicable(axeProps));
   }
 
   @Test

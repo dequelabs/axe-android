@@ -204,6 +204,11 @@ public class AxeViewBuilder implements Builder {
     return results;
   }
 
+  @Override
+  public boolean overridesAccessibilityDelegate() {
+    return false;
+  }
+
   public AxeView build() {
     return new AxeView(this);
   }

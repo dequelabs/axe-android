@@ -42,7 +42,8 @@ public class AxeProps extends HashMap<String, Object>
       Name.IS_OFF_SCREEN,
       Name.IS_RENDERED,
       Name.IS_PARTIALLY_VISIBLE,
-      Name.HINT_TEXT
+      Name.HINT_TEXT,
+      Name.OVERRIDES_ACCESSIBILITY_DELEGATE
   })
   public @interface Name {
     String CLASS_NAME = "className";
@@ -74,6 +75,7 @@ public class AxeProps extends HashMap<String, Object>
     String IS_OFF_SCREEN = "isOffScreen";
     String IS_PARTIALLY_VISIBLE = "isPartiallyVisible";
     String HINT_TEXT = "Hint Text";
+    String OVERRIDES_ACCESSIBILITY_DELEGATE = "overridesAccessibilityDelegate";
   }
 
   @Override

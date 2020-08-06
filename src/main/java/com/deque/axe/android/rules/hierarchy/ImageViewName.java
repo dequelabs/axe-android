@@ -20,6 +20,8 @@ public class ImageViewName extends AxeRuleViewHierarchy {
 
   @Override
   public void collectProps(AxeView axeView, AxeProps axeProps) {
+    super.collectProps(axeView, axeProps);
+
     axeProps.put(Name.CONTENT_DESCRIPTION, axeView.contentDescription);
     axeProps.put(Name.CLASS_NAME, axeView.className);
     axeProps.put(Name.IMPORTANT, axeView.isImportantForAccessibility);
@@ -30,7 +32,8 @@ public class ImageViewName extends AxeRuleViewHierarchy {
 
     final String className = axeProps.get(Name.CLASS_NAME, String.class);
 
-    return AxeView.classNameIsOfType(className, AndroidClassNames.IMAGE_VIEW);
+    return AxeView.classNameIsOfType(className, AndroidClassNames.IMAGE_VIEW)
+      && super.isApplicable(axeProps);
   }
 
   @Override
