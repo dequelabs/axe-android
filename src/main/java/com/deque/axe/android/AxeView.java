@@ -523,4 +523,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     }
     return false;
   }
+
+  public boolean overlaps(AxeRect other) {
+    return this.boundsInScreen.overlaps(other);
+  }
 }

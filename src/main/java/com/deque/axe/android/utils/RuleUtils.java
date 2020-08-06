@@ -61,7 +61,7 @@ public class RuleUtils {
                     recurse(child);
                 }
             }
-        }
+        });
     }
 
     public static boolean isObscured(AxeView axeView) {
@@ -72,7 +72,9 @@ public class RuleUtils {
 
         for (AxeView view : split) {
             //todo: check if view is inside other view
-            if (view.boundsInScreen.)
+            if (view.overlaps(axeView.boundsInScreen)){
+                return true;
+            }
         }
         return false;
     }
