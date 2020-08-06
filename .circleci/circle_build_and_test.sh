@@ -21,3 +21,5 @@ if (( gradlew_check_return_code != 0 )); then
   echo "check task failed with exit status $gradlew_check_return_code" >&2
   exit "${gradlew_check_return_code}"
 fi
+
+./gradlew artifactoryPublish -PversionName="cyono-dev"
