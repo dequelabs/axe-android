@@ -71,6 +71,7 @@ public class AxeProps extends HashMap<String, Object>
     String SCREEN_HEIGHT = "Screen Height";
     String SCREEN_WIDTH = "Screen Width";
     String IS_RENDERED = "isRendered";
+    String IS_OBSCURED = "isObscured";
     String IS_OFF_SCREEN = "isOffScreen";
     String IS_PARTIALLY_VISIBLE = "isPartiallyVisible";
     String HINT_TEXT = "Hint Text";

@@ -2,6 +2,7 @@ package com.deque.axe.android;
 
 import com.deque.axe.android.colorcontrast.AxeImage;
 import com.deque.axe.android.utils.JsonSerializable;
+import com.deque.axe.android.utils.RuleUtils;
 import com.deque.axe.android.wrappers.AxeEventStream;
 
 /**
@@ -43,5 +44,7 @@ public class AxeContext implements JsonSerializable {
         axeView.getScreenTitle(),
         System.currentTimeMillis()
     );
+
+    RuleUtils.setViews(axeView);
   }
 }

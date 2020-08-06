@@ -15,3 +15,4 @@ axe-android-services-key.json
 release_notes.txt
 AxeAndroid/release
 AxeAndroid/src/main/play/release-notes
+/out/*
