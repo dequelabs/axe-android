@@ -37,6 +37,41 @@ public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
         && container.left <= left && container.right >= right;
   }
 
+  boolean overlaps(@NonNull AxeRect other) {
+    //overlapping from the top, but not completely
+    this.bottom >= other.top && this.top <= other.bottom;
+
+    //overlapping from the bottom, but not entirely
+    this.top <= other.bottom && this.bottom >= other.top;
+
+    //overlapping entire vertical
+    this.bottom >= other.bottom && this.top <= other.top;
+
+    //overlapping from the left, but not completely
+    this.left <= other.left && this.right >= other.right;
+
+    //overlapping from the right, but not completely
+    this.left >= other.left && this.right <= other.right;
+
+    //overlapping entire horizontal
+    this.left <= other.left && this.right >= other.right;
+
+    //overlapping entire view
+    this.bottom >= other.bottom && this.top <= other.top && this.left <= other.left && this.right >= other.right;
+
+    boolean overlapsAbove = overlapsFromAbove(other);
+    boolean overlapsBelow = overlapsFromBelow(other);
+    return overlapsAbove || overlapsBelow;
+  }
+
+  private boolean overlapsFromAbove(AxeRect other) {
+    return this.top <= other.top || this.right <= other.right;
+  }
+
+  private boolean overlapsFromBelow(AxeRect other) {
+    return this.bottom >= other.bottom || this.left >= other.left;
+  }
+
   boolean isLeadingEdge(final AxePoint point) {
     return point.valueX == left;
   }
