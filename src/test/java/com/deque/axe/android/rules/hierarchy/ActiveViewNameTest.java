@@ -28,6 +28,7 @@ public class ActiveViewNameTest {
     MockitoAnnotations.initMocks(this);
 
     subject = new ActiveViewName();
+    when(axeProps.get(AxeProps.Name.IS_OBSCURED, Boolean.class)).thenReturn(false);
   }
 
   @Test

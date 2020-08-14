@@ -14,6 +14,7 @@ import com.deque.axe.android.rules.hierarchy.SwitchName;
 import com.deque.axe.android.utils.AxeFile;
 import com.deque.axe.android.utils.AxeJankyPng;
 import com.deque.axe.android.utils.JsonSerializable;
+import com.deque.axe.android.utils.RuleUtils;
 import com.deque.axe.android.wrappers.AxeProps;
 import com.deque.axe.android.wrappers.AxeProps.Name;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
@@ -302,7 +303,7 @@ public class AxeTest {
     Assert.assertFalse("Calculated Result should not be empty!", actualResults.isEmpty());
 
     JsonParser jsonParser = new JsonParser();
-    
+
     expectedResults.forEach(expectedAxeRuleResult -> {
       AxeRuleResult actualRuleResult = actualResults.get(0);
       assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);

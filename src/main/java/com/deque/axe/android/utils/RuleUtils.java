@@ -25,7 +25,7 @@ public class RuleUtils {
             return null;
         }
 
-        public int getIndex(AxeView axeView) {
+        int getIndex(AxeView axeView) {
             AxeView current;
             for(int i = 0; i < this.size(); i++ ) {
                 current = this.get(i);
@@ -55,8 +55,8 @@ public class RuleUtils {
 
     private static void recurse(AxeView axeView) {
         axeView.children.forEach(child -> {
-            if (!axeView.isOffScreen(child.boundsInScreen, screenHeight, screenWidth)) {
-                views.add(axeView);
+            if (!child.isOffScreen(child.boundsInScreen, screenHeight, screenWidth)) {
+                views.add(child);
                 if (child.children.size() > 0) {
                     recurse(child);
                 }
@@ -66,12 +66,9 @@ public class RuleUtils {
 
     public static boolean isObscured(AxeView axeView) {
         int index = views.getIndex(axeView);
-        List<AxeView> split = new LinkedListEx<AxeView>();
-        //todo: validate that this splits as expected
-        split.addAll(index, views);
+        List<AxeView> split = views.subList(index, views.size());
 
         for (AxeView view : split) {
-            //todo: check if view is inside other view
             if (view.overlaps(axeView.boundsInScreen)){
                 return true;
             }
