@@ -3,8 +3,10 @@ package com.deque.axe.android.wrappers;
 import android.support.annotation.NonNull;
 
 import com.deque.axe.android.utils.JsonSerializable;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
 import org.jetbrains.annotations.NotNull;
 
 public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
@@ -16,9 +18,10 @@ public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
 
   /**
    * Similar to the Android.Rect object, but does way cooler things.
-   * @param left The left most pixel. (left {@literal <} right)
-   * @param right The right most pixel. (right {@literal >} left)
-   * @param top The top most pixel. (top {@literal <} bottom)
+   *
+   * @param left   The left most pixel. (left {@literal <} right)
+   * @param right  The right most pixel. (right {@literal >} left)
+   * @param top  The top most pixel. (top {@literal <} bottom)
    * @param bottom The bottom most pixel. (bottom {@literal >} top)
    */
   public AxeRect(final int left, final int right, final int top, final int bottom) {
@@ -37,31 +40,18 @@ public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
         && container.left <= left && container.right >= right;
   }
 
-  boolean overlaps(@NonNull AxeRect other) {
-    //overlapping from the top, but not completely
-    this.bottom >= other.top && this.top <= other.bottom;
+  public boolean overlaps(@NonNull AxeRect other) {
+    if (this.bottom > other.top && this.top < other.bottom
+        || this.bottom > other.bottom && this.top < other.top) {
+      if ((this.left <= other.left && (this.right >= other.right || this.right >= other.left))
+          || (this.right >= other.right && this.left <= other.right)) {
+        return true;
+      }
 
-    //overlapping from the bottom, but not entirely
-    this.top <= other.bottom && this.bottom >= other.top;
+    }
 
-    //overlapping entire vertical
-    this.bottom >= other.bottom && this.top <= other.top;
 
-    //overlapping from the left, but not completely
-    this.left <= other.left && this.right >= other.right;
-
-    //overlapping from the right, but not completely
-    this.left >= other.left && this.right <= other.right;
-
-    //overlapping entire horizontal
-    this.left <= other.left && this.right >= other.right;
-
-    //overlapping entire view
-    this.bottom >= other.bottom && this.top <= other.top && this.left <= other.left && this.right >= other.right;
-
-    boolean overlapsAbove = overlapsFromAbove(other);
-    boolean overlapsBelow = overlapsFromBelow(other);
-    return overlapsAbove || overlapsBelow;
+    return this.bottom >= other.bottom && this.top <= other.top && this.left <= other.left && this.right >= other.right;
   }
 
   private boolean overlapsFromAbove(AxeRect other) {
