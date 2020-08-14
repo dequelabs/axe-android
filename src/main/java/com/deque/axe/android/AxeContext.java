@@ -45,6 +45,6 @@ public class AxeContext implements JsonSerializable {
         System.currentTimeMillis()
     );
 
-    RuleUtils.setViews(axeView);
+    RuleUtils.setViews(axeView, axeDevice);
   }
 }

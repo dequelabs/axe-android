@@ -40,7 +40,7 @@ public class RuleUtils {
 
     public static void setViews(AxeView rootView, AxeDevice axeDevice) {
         screenHeight = axeDevice.screenHeight;
-        screenWidth = axeDevice.screenWidth
+        screenWidth = axeDevice.screenWidth;
         views = new LinkedListEx<>();
 
         rootView.children.forEach(axeView -> {
