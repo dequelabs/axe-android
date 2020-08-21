@@ -43,8 +43,6 @@ public class AxeConf {
     }
   }
 
-  private final Set<Class<? extends AxeRule>> addedRulesList = new HashSet<>();
-
   /**
    * The default standards to apply to every new Axe Instance.
    */
@@ -200,8 +198,6 @@ public class AxeConf {
         axeRule.summary
     ));
 
-    addedRulesList.add(rule);
-
     return this;
   }
 
@@ -250,10 +246,6 @@ public class AxeConf {
           ruleIds.add(axeRule.getClass().getSimpleName());
         }
 
-      }
-
-      for (Class<? extends AxeRule> axeRuleClass : addedRulesList) {
-        ruleInstances.add(axeRuleClass.newInstance());
       }
 
       for (Class<? extends AxeRuleViewHierarchy> axeRuleClass : customRules) {
