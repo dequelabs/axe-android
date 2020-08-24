@@ -273,20 +273,6 @@ public class AxeTest {
     assertEquals(axe.axeConf.ruleInstances().size(), 9);
   }
 
-  @Test
-  public void testAddRule() {
-
-    AxeConf axeConf = new AxeConf();
-    axeConf.addRule(SampleRuleClass.class);
-
-    Axe axe = new Axe(axeConf);
-    axe.axeConf.ruleInstances();
-
-    assertEquals(axe.axeConf.rules.size(), 10);
-    assertEquals(axe.axeConf.ruleIds.size(), 10);
-    assertEquals(axe.axeConf.ruleInstances().size(), 10);
-  }
-
   /**
    * This test is to catch new objects being added to the preexisting apis.
    * If this test fails then it means some new parameter has been added into a preexisting api.
