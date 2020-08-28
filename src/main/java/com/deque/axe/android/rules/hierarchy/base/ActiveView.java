@@ -15,6 +15,8 @@ public abstract class ActiveView extends AxeRuleViewHierarchy {
   @Override
   @CallSuper
   public void collectProps(AxeView axeView, AxeProps axeProps) {
+    super.collectProps(axeView, axeProps);
+
     axeProps.put(AxeProps.Name.IS_CLICKABLE, axeView.isClickable);
     axeProps.put(AxeProps.Name.CLASS_NAME, axeView.className);
   }
@@ -22,6 +24,7 @@ public abstract class ActiveView extends AxeRuleViewHierarchy {
   @Override
   public boolean isApplicable(AxeProps axeProps) {
     //TODO: Respect isEnabled.
-    return axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class);
+    return axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class)
+      && super.isApplicable(axeProps);
   }
 }

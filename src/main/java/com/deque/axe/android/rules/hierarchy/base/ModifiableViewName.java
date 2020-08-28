@@ -31,8 +31,16 @@ public abstract class ModifiableViewName extends AxeRuleViewHierarchy {
   @Override
   @CallSuper
   public void collectProps(AxeView axeView, AxeProps axeProps) {
+    super.collectProps(axeView, axeProps);
+
     axeProps.put(Name.LABELED_BY, axeView.speakableTextOfLabeledBy());
     axeProps.put(Name.CLASS_NAME, axeView.className);
+    if (axeView.labeledBy != null) {
+      axeProps.put(
+              AxeProps.Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE,
+              axeView.labeledBy.overridesAccessibilityDelegate
+      );
+    }
   }
 
   @Override
@@ -40,7 +48,16 @@ public abstract class ModifiableViewName extends AxeRuleViewHierarchy {
   public boolean isApplicable(AxeProps axeProps) {
 
     final String className = axeProps.get(Name.CLASS_NAME, String.class);
+    final boolean labeledByViewOverridesAccessibilityDelegate = axeProps.get(
+            AxeProps.Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE,
+            Boolean.class
+    ) != null ? axeProps.get(
+            AxeProps.Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE,
+            Boolean.class
+    ) : false;
 
-    return applicableClass.contentEquals(className);
+    return applicableClass.contentEquals(className)
+      && !labeledByViewOverridesAccessibilityDelegate
+      && super.isApplicable(axeProps);
   }
 }
