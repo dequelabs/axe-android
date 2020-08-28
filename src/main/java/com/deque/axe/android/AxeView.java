@@ -106,6 +106,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final String value;
 
   /**
+   * True if the view overrides AccessibilityDelegate.
+   */
+  public final boolean overridesAccessibilityDelegate;
+
+  /**
    * Maintains a copy of Content View Axe Rect.
    */
   static AxeRect contentViewAxeRect;
@@ -152,6 +157,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     List<AxeView> children();
 
+    boolean overridesAccessibilityDelegate();
+
     default AxeView build() {
       return new AxeView(this);
     }
@@ -172,7 +179,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final String viewIdResourceName,
       final String hintText,
       final String value,
-      final List<AxeView> children
+      final List<AxeView> children,
+      final boolean overridesAccessibilityDelegate
   ) {
     this.boundsInScreen = boundsInScreen;
     this.className = className;
@@ -189,6 +197,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.hintText = hintText;
     this.value = value;
     this.children = children;
+    this.overridesAccessibilityDelegate = overridesAccessibilityDelegate;
 
     setContentView(viewIdResourceName, boundsInScreen);
     this.calculatedProps = calculateProps();
@@ -220,7 +229,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.viewIdResourceName(),
         builder.hintText(),
         builder.value(),
-        builder.children()
+        builder.children(),
+        builder.overridesAccessibilityDelegate()
     );
   }
 

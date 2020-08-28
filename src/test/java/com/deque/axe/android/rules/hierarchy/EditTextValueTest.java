@@ -42,8 +42,20 @@ public class EditTextValueTest {
   public void editTextClass_isApplicable() {
     when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
             .thenReturn("android.widget.EditText");
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
+            .thenReturn(false);
 
     assertTrue(subject.isApplicable(axeProps));
+  }
+
+  @Test
+  public void editTextClass_overridesAccessibilityDelegate_notApplicable() {
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.EditText");
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
+            .thenReturn(true);
+
+    assertFalse(subject.isApplicable(axeProps));
   }
 
   @Test
