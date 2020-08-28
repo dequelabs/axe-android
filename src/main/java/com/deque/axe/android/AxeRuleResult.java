@@ -51,6 +51,30 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
    */
   public final @AxeStatus String status;
 
+  /**
+   * Construct a RuleResult from its components.
+   * @param ruleId The id of the rule.
+   * @param ruleSummary A summary of the rule.
+   * @param axeViewId The id of the view it's associated with.
+   * @param status The status of the rule (PASS, FAIL, etc)
+   * @param impact How sever the issue is.
+   * @param axeProps Properties analyzed to come to these conclusions.
+   */
+  public AxeRuleResult(
+      final String ruleId,
+      final String ruleSummary,
+      final String axeViewId,
+      final String status,
+      final int impact,
+      final AxeProps axeProps
+  ) {
+    this.ruleId = ruleId;
+    this.ruleSummary = ruleSummary;
+    this.axeViewId = axeViewId;
+    this.status = status;
+    this.impact = impact;
+    this.props = axeProps;
+  }
 
   AxeRuleResult(
       @AxeStatus String status,
@@ -58,12 +82,14 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       AxeProps axeProps,
       AxeTree axeView
   ) {
-    this.ruleId = axeRule != null ? axeRule.id : null;
-    this.ruleSummary = axeRule != null ? axeRule.summary : null;
-    this.props = axeProps;
-    this.status = status;
-    this.axeViewId = axeView == null ? null : axeView.getNodeId();
-    this.impact = axeRule != null ? axeRule.impact : 0;
+    this(
+        axeRule != null ? axeRule.id : null,
+        axeRule != null ? axeRule.summary : null,
+        axeView == null ? null : axeView.getNodeId(),
+        status,
+        axeRule != null ? axeRule.impact : 0,
+        axeProps
+    );
   }
 
   @Override
