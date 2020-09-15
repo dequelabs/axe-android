@@ -21804,8 +21804,9 @@
         "isVisibleToUser": true,
         "isImportantForAccessibility": false,
         "overridesAccessibilityDelegate": false,
-        "contentDescription": null,
-        "className": "android.widget.ImageView"
+        "className": "android.widget.ImageView",
+        "isActive": true,
+        "isObscured": false
       },
       "ruleId": "ImageViewName",
       "ruleSummary": "Focusable Informative Views must have Text or a ContentDescription.",

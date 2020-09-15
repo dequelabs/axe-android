@@ -42,6 +42,7 @@ public class AxeProps extends HashMap<String, Object>
       Name.IS_OFF_SCREEN,
       Name.IS_RENDERED,
       Name.IS_PARTIALLY_VISIBLE,
+      Name.IS_OBSCURED,
       Name.HINT_TEXT,
       Name.OVERRIDES_ACCESSIBILITY_DELEGATE,
       Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE,

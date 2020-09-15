@@ -41,17 +41,18 @@ public class AxeRect implements Comparable<AxeRect>, JsonSerializable {
   }
 
   public boolean overlaps(@NonNull AxeRect other) {
-    if (this.bottom > other.top && this.top < other.bottom
-        || this.bottom > other.bottom && this.top < other.top) {
-      if ((this.left <= other.left && (this.right >= other.right || this.right >= other.left))
-          || (this.right >= other.right && this.left <= other.right)) {
-        return true;
-      }
+    int minX = Math.max(this.left, other.left);
+    int minY = Math.max(this.top, other.top);
+    int maxX = Math.min(this.right, other.right);
+    int maxY = Math.min(this.bottom, other.bottom);
 
-    }
+    double interArea = Math.max(0, maxX - minX) * Math.max(0, maxY - minY);
 
+    double predictionBoundsArea = (this.right - this.left) * (this.bottom - this.top);
 
-    return this.bottom >= other.bottom && this.top <= other.top && this.left <= other.left && this.right >= other.right;
+    double otherArea = (other.right - other.left) * (other.bottom - other.top);
+
+    return interArea / (predictionBoundsArea + otherArea - interArea) > 0;
   }
 
   private boolean overlapsFromAbove(AxeRect other) {

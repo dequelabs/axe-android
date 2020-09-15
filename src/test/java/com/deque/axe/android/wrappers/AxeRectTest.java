@@ -144,6 +144,9 @@ public class AxeRectTest {
     AxeRect overlapsHorizontalButNotVertical1 = new AxeRect(0, 10, 0, 10);
     AxeRect overlapsHorizontalButNotVertical2 = new AxeRect(0, 10, 11, 20);
 
+    AxeRect overLapOnEnd = new AxeRect(1132, 1300, 112, 280);
+    AxeRect overLapOnStart = new AxeRect(1300, 1440, 112, 280);
+
     Assert.assertFalse(noOverlap1.overlaps(noOverlap2));
     Assert.assertFalse(noOverlap2.overlaps(noOverlap1));
 
@@ -155,5 +158,8 @@ public class AxeRectTest {
 
     Assert.assertFalse(overlapsHorizontalButNotVertical1.overlaps(overlapsHorizontalButNotVertical2));
     Assert.assertFalse(overlapsHorizontalButNotVertical2.overlaps(overlapsHorizontalButNotVertical1));
+
+    Assert.assertFalse(overLapOnEnd.overlaps(overLapOnStart));
+    Assert.assertFalse(overLapOnStart.overlaps(overLapOnEnd));
   }
 }

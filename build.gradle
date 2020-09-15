@@ -127,7 +127,7 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-version = "cyono-dev"
+version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
 if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
     print ("No artifactory Info. Maven Central Publishing impossible.")

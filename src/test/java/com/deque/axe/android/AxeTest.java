@@ -287,6 +287,8 @@ public class AxeTest {
 
     final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
 
+    RuleUtils.setViews(testSpec.axeContext.axeView, testSpec.axeContext.axeDevice);
+
     final Axe axe = new Axe(testSpec.axeConf);
 
     final AxeResult axeResult = axe.run(testSpec.axeContext);
