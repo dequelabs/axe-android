@@ -20,6 +20,8 @@ public class AxeViewBuilder implements Builder {
 
   private boolean isClickable = false;
 
+  private boolean isLongClickable = false;
+
   private boolean isEnabled = true;
 
   private boolean isImportantForAccessibility = false;
@@ -113,6 +115,11 @@ public class AxeViewBuilder implements Builder {
   @Override
   public boolean isClickable() {
     return isClickable;
+  }
+
+  @Override
+  public boolean isLongClickable() {
+    return isLongClickable;
   }
 
   @Override

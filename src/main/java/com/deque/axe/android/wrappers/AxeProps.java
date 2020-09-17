@@ -21,6 +21,7 @@ public class AxeProps extends HashMap<String, Object>
       Name.HEIGHT,
       Name.IMPORTANT,
       Name.IS_CLICKABLE,
+      Name.IS_LONG_CLICKABLE,
       Name.IS_ENABLED,
       Name.LABELED_BY,
       Name.SPEAKABLE_TEXT,
@@ -54,6 +55,7 @@ public class AxeProps extends HashMap<String, Object>
     String HEIGHT = "height";
     String IMPORTANT = "isImportantForAccessibility";
     String IS_CLICKABLE = "isActive";
+    String IS_LONG_CLICKABLE = "isLongClickable";
     String IS_ENABLED = "isEnabled";
     String LABELED_BY = "labeledBy";
     String SPEAKABLE_TEXT = "Speakable Text";

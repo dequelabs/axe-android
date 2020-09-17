@@ -55,6 +55,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final boolean isClickable;
 
   /**
+   * Whether or not the view responds to Long Click action.
+   */
+  public final boolean isLongClickable;
+
+  /**
    * True if view interaction is enabled.
    */
   public final boolean isEnabled;
@@ -137,6 +142,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     boolean isClickable();
 
+    boolean isLongClickable();
+
     boolean isEnabled();
 
     boolean isImportantForAccessibility();
@@ -170,6 +177,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final String contentDescription,
       final boolean isAccessibilityFocusable,
       final boolean isClickable,
+      final boolean isLongClickable,
       final boolean isEnabled,
       final boolean isImportantForAccessibility,
       final AxeView labeledBy,
@@ -187,6 +195,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.contentDescription = contentDescription;
     this.isAccessibilityFocusable = isAccessibilityFocusable;
     this.isClickable = isClickable;
+    this.isLongClickable = isLongClickable;
     this.isEnabled = isEnabled;
     this.isImportantForAccessibility = isImportantForAccessibility;
     this.labeledBy = labeledBy;
@@ -220,6 +229,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.contentDescription(),
         builder.isAccessibilityFocusable(),
         builder.isClickable(),
+        builder.isLongClickable(),
         builder.isEnabled(),
         builder.isImportantForAccessibility(),
         builder.labeledBy(),
