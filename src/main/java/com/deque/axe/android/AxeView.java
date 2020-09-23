@@ -110,6 +110,9 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    */
   public final boolean overridesAccessibilityDelegate;
 
+  /**
+   * True if the view is visible to the user.
+   */
   public final boolean isVisibleToUser;
 
   /**

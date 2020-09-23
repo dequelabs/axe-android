@@ -44,6 +44,7 @@ public class EditTextValueTest {
             .thenReturn("android.widget.EditText");
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(false);
+    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(true);
 
     assertTrue(subject.isApplicable(axeProps));
   }
