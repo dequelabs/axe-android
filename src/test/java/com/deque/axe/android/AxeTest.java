@@ -14,7 +14,6 @@ import com.deque.axe.android.rules.hierarchy.SwitchName;
 import com.deque.axe.android.utils.AxeFile;
 import com.deque.axe.android.utils.AxeJankyPng;
 import com.deque.axe.android.utils.JsonSerializable;
-import com.deque.axe.android.utils.RuleUtils;
 import com.deque.axe.android.wrappers.AxeProps;
 import com.deque.axe.android.wrappers.AxeProps.Name;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
@@ -286,8 +285,6 @@ public class AxeTest {
     final String json = new String(encoded).trim();
 
     final AxeTestSpec testSpec = JsonSerializable.fromJson(json, AxeTestSpec.class);
-
-    RuleUtils.setViews(testSpec.axeContext.axeView, testSpec.axeContext.axeDevice);
 
     final Axe axe = new Axe(testSpec.axeConf);
 

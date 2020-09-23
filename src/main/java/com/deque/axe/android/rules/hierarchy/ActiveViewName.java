@@ -8,7 +8,6 @@ import com.deque.axe.android.constants.AxeStandard;
 import com.deque.axe.android.constants.AxeStatus;
 import com.deque.axe.android.rules.hierarchy.base.ActiveView;
 import com.deque.axe.android.utils.AxeTextUtils;
-import com.deque.axe.android.utils.RuleUtils;
 import com.deque.axe.android.wrappers.AxeProps;
 import com.deque.axe.android.wrappers.AxeProps.Name;
 
@@ -35,7 +34,7 @@ public class ActiveViewName extends ActiveView {
 
     super.collectProps(axeView, axeProps);
 
-    axeProps.put(Name.IS_OBSCURED, RuleUtils.isObscured(axeView));
+    axeProps.put(Name.IS_OBSCURED, axeView.axe_is_obscured);
     axeProps.put(Name.SPEAKABLE_TEXT, axeView.speakableTextRecursive());
   }
 

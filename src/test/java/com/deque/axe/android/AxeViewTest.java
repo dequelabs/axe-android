@@ -5,8 +5,14 @@ import static org.junit.Assert.assertNull;
 
 import com.deque.axe.android.constants.AndroidClassNames;
 import com.deque.axe.android.constants.Constants;
+import com.deque.axe.android.utils.AxeTree.CallBackResponse;
+import com.deque.axe.android.utils.AxeTree.Callback;
 import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -172,6 +178,7 @@ public class AxeViewTest {
 
   @Test
   public void calculateProps_switch() {
+
     AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
     labelAxeViewBuilder.text("Control");
 
@@ -214,6 +221,50 @@ public class AxeViewTest {
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
     assertNull(axeView.calculatedProps.get("value"));
     assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
+  public void testIfIsObscuredIsWorkingProperly() {
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    AxeViewBuilder obscuredChild_2 = new AxeViewBuilder();
+    AxeViewBuilder obscuredChild_1 = new AxeViewBuilder();
+    AxeViewBuilder notObscuredChild = new AxeViewBuilder();
+
+    parent.boundsInScreen(new AxeRect(0, 100, 0, 100));
+    parent.contentDescription("parent");
+
+    notObscuredChild.boundsInScreen(new AxeRect(0, 10, 0, 10));
+    obscuredChild_1.boundsInScreen(new AxeRect(10, 20, 10, 20));
+    obscuredChild_2.boundsInScreen(new AxeRect(12, 18, 12, 18));
+
+    notObscuredChild.contentDescription("notObscuredChild");
+    obscuredChild_1.contentDescription("obscuredChild_1");
+    obscuredChild_2.contentDescription("obscuredChild_2");
+
+    parent.addChild(notObscuredChild);
+    parent.addChild(obscuredChild_1);
+    parent.addChild(obscuredChild_2);
+
+    final AxeView axeView = parent.build();
+
+    Map<String, Boolean> results = new HashMap<>();
+
+    axeView.forEachRecursive(instance -> {
+      results.put(instance.contentDescription, instance.axe_is_obscured);
+      return CallBackResponse.CONTINUE;
+    });
+
+    Assert.assertEquals(
+        "We should have 3 views that were inspected",
+        4,
+        results.size()
+    );
+
+    Assert.assertEquals(results.get("parent"), false);
+    Assert.assertEquals(results.get("notObscuredChild"), false);
+    Assert.assertEquals(results.get("obscuredChild_1"), true);
+    Assert.assertEquals(results.get("obscuredChild_2"), true);
   }
 
   @Test

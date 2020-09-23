@@ -29,6 +29,10 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    */
   private static final List<String> GSON_IGNORED_FIELDS = Arrays.asList("children", "axeViewId");
 
+  private transient AxeView parent = null;
+
+  private final Map<String, AxeView> visibleViewsCheckForObscurity = new HashMap<>();
+
   /**
    * A direct copy of the associated Android property encapsulated in an Axe wrapper.
    */
@@ -126,9 +130,35 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final Map<String, String> calculatedProps;
 
   /**
+   * Whether or not this view overlaps a non-parent view.
+   */
+  public transient boolean axe_is_obscured = false;
+
+  /**
    * The Children of this view as AxeView objects.
    */
   public List<AxeView> children;
+
+  public boolean isObscuredBy(AxeView axeView) {
+    return axeView.overlaps(this.boundsInScreen) && !axeView.isChildOf(this);
+  }
+
+  private boolean isChildOf(AxeView axeView) {
+
+    AxeView current = this;
+
+    do  {
+
+      if (current == axeView) {
+        return true;
+      }
+
+      current = current.parent;
+
+    } while (current != null);
+
+    return false;
+  }
 
   public interface Builder {
 
@@ -214,6 +244,10 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     // This should be the last thing we do in case we decide parent/children relationships
     // contribute to ID calculation.
     this.axeViewId = Integer.toString(this.hashCode());
+
+    children.forEach(axeView -> axeView.parent = AxeView.this);
+
+    updateIsObscured();
   }
 
   /**
@@ -373,6 +407,27 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   @Override
   public int hashCode() {
     return JsonSerializable.hashCode(this);
+  }
+
+  private void updateIsObscured() {
+
+    if (visibleViewsCheckForObscurity.containsKey(axeViewId)) {
+      return;
+    }
+
+    // Check if the View is Obscured by another View
+    visibleViewsCheckForObscurity.forEach((s, axeView) -> {
+
+      if (
+          AxeView.this.overlaps(axeView.boundsInScreen) &&
+              !AxeView.this.isChildOf(axeView)
+      ) {
+        AxeView.this.axe_is_obscured = true;
+        axeView.axe_is_obscured = true;
+      }
+    });
+
+    visibleViewsCheckForObscurity.put(axeViewId, this);
   }
 
   @Override
