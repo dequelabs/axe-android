@@ -209,6 +209,11 @@ public class AxeViewBuilder implements Builder {
     return false;
   }
 
+  @Override
+  public boolean isVisibleToUser() {
+    return true;
+  }
+
   public AxeView build() {
     return new AxeView(this);
   }

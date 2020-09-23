@@ -44,7 +44,8 @@ public class AxeProps extends HashMap<String, Object>
       Name.IS_PARTIALLY_VISIBLE,
       Name.HINT_TEXT,
       Name.OVERRIDES_ACCESSIBILITY_DELEGATE,
-      Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE
+      Name.LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE,
+      Name.IS_VISIBLE_TO_USER
   })
   public @interface Name {
     String CLASS_NAME = "className";
@@ -79,6 +80,7 @@ public class AxeProps extends HashMap<String, Object>
     String OVERRIDES_ACCESSIBILITY_DELEGATE = "overridesAccessibilityDelegate";
     String LABELED_BY_VIEW_OVERRIDES_ACCESSIBILITY_DELEGATE =
             "labeledByViewOverridesAccessibilityDelegate";
+    String IS_VISIBLE_TO_USER = "isVisibleToUser";
   }
 
   @Override
