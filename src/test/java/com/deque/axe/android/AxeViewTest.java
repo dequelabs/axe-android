@@ -139,7 +139,11 @@ public class AxeViewTest {
 
     AxeDevice axeDevice = new AxeDevice(dpi, name, osVersion, height, width);
 
-    Assert.assertFalse(axeView.isRendered(axeDevice.dpi, axeDevice.screenHeight, axeDevice.screenWidth));
+    Assert.assertFalse(axeView.isRendered(
+            axeDevice.dpi,
+            axeDevice.screenHeight,
+            axeDevice.screenWidth
+    ));
   }
 
   @Test
@@ -159,7 +163,11 @@ public class AxeViewTest {
 
     AxeDevice axeDevice = new AxeDevice(dpi, name, osVersion, height, width);
 
-    Assert.assertTrue(axeView.isRendered(axeDevice.dpi, axeDevice.screenHeight, axeDevice.screenWidth));
+    Assert.assertTrue(axeView.isRendered(
+            axeDevice.dpi,
+            axeDevice.screenHeight,
+            axeDevice.screenWidth
+    ));
   }
 
   @Test

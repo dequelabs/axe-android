@@ -276,7 +276,7 @@ public class AxeTest {
    */
   @Test
   public void jsonAxeRuleResultTestSpecs() throws IOException {
-    JsonParser jsonParser = new JsonParser();
+
     File file = new AxeFile("api_test_spec/api_test.json").file;
     Path path = file.toPath();
 
@@ -301,6 +301,8 @@ public class AxeTest {
     assertEquals(expectedResults.size(), actualResults.size());
     Assert.assertFalse("Calculated Result should not be empty!", actualResults.isEmpty());
 
+    JsonParser jsonParser = new JsonParser();
+    
     expectedResults.forEach(expectedAxeRuleResult -> {
       AxeRuleResult actualRuleResult = actualResults.get(0);
       assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);
