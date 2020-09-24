@@ -24,11 +24,13 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
         AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE,
         axeView.overridesAccessibilityDelegate
     );
+    axeProps.put(AxeProps.Name.IS_VISIBLE_TO_USER, axeView.isVisibleToUser);
   }
 
   @CallSuper
   public boolean isApplicable(final AxeProps axeProps) {
-    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class);
+    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class)
+            && axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class);
   }
 
   public abstract @AxeStatus String runRule(final AxeProps axeProps);

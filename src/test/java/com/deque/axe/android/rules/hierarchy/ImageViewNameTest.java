@@ -36,6 +36,7 @@ public class ImageViewNameTest {
             .thenReturn("android.widget.ImageView");
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(false);
+    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(true);
 
     assertTrue(subject.isApplicable(axeProps));
   }
@@ -46,6 +47,17 @@ public class ImageViewNameTest {
             .thenReturn("android.widget.ImageView");
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(true);
+
+    assertFalse(subject.isApplicable(axeProps));
+  }
+
+  @Test
+  public void imageViewClass_isNotVisibleToUser_notApplicable() {
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class))
+            .thenReturn("android.widget.ImageView");
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
+            .thenReturn(false);
+    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(false);
 
     assertFalse(subject.isApplicable(axeProps));
   }

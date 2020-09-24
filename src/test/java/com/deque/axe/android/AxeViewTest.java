@@ -99,6 +99,18 @@ public class AxeViewTest {
   }
 
   @Test
+  public void isOffScreen_viewInScreen_returnsFalse() {
+    AxeRect parentRect = new AxeRect(0, 100, 0, 200);
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.viewIdResourceName("android:id/content");
+    parent.boundsInScreen(parentRect);
+
+    AxeView axeView = parent.build();
+
+    Assert.assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+  }
+
+  @Test
   public void isOffScreen_viewInsideScreen_returnsFalse() {
     AxeRect parentRect = new AxeRect(0, 100, 0, 200);
     AxeViewBuilder parent = new AxeViewBuilder();
@@ -108,6 +120,54 @@ public class AxeViewTest {
     AxeView axeView = parent.build();
 
     Assert.assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+  }
+
+  @Test
+  public void isNotRendered() {
+    AxeRect parentRect = new AxeRect(0, 100, 0, 200);
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.viewIdResourceName("android:id/content");
+    parent.boundsInScreen(parentRect);
+
+    AxeView axeView = parent.build();
+
+    final String name = "blah";
+    final float dpi = 2.1f;
+    final String osVersion = "L";
+    final int width = 10;
+    final int height = 10;
+
+    AxeDevice axeDevice = new AxeDevice(dpi, name, osVersion, height, width);
+
+    Assert.assertFalse(axeView.isRendered(
+            axeDevice.dpi,
+            axeDevice.screenHeight,
+            axeDevice.screenWidth
+    ));
+  }
+
+  @Test
+  public void isRendered() {
+    AxeRect parentRect = new AxeRect(0, 100, 0, 200);
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.viewIdResourceName("android:id/content");
+    parent.boundsInScreen(parentRect);
+
+    AxeView axeView = parent.build();
+
+    final String name = "blah";
+    final float dpi = 0.0f;
+    final String osVersion = "L";
+    final int width = 10;
+    final int height = 10;
+
+    AxeDevice axeDevice = new AxeDevice(dpi, name, osVersion, height, width);
+
+    Assert.assertTrue(axeView.isRendered(
+            axeDevice.dpi,
+            axeDevice.screenHeight,
+            axeDevice.screenWidth
+    ));
   }
 
   @Test
@@ -152,6 +212,22 @@ public class AxeViewTest {
     assertEquals(axeView.calculatedProps.size(), 4);
     assertEquals(axeView.calculatedProps.get("name"), "John Enter Name");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
+    assertNull(axeView.calculatedProps.get("value"));
+    assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
+  public void calculateProps_Button() {
+
+    AxeViewBuilder button = new AxeViewBuilder();
+    button.text("Login");
+    button.className("android.widget.Button");
+
+    AxeView axeView = button.build();
+
+    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.get("name").trim(), "Login");
+    assertEquals(axeView.calculatedProps.get("role"), "android.widget.Button");
     assertNull(axeView.calculatedProps.get("value"));
     assertNull(axeView.calculatedProps.get("state"));
   }
