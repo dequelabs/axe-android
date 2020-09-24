@@ -1,6 +1,5 @@
 package com.deque.axe.android;
 
-import com.deque.axe.android.AxeRuleResult.Matcher;
 import com.deque.axe.android.constants.AxeStatus;
 import java.util.List;
 import org.junit.Assert;

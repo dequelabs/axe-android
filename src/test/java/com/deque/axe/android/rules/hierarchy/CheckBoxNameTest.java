@@ -1,6 +1,7 @@
 package com.deque.axe.android.rules.hierarchy;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 import com.deque.axe.android.constants.AxeStatus;
@@ -58,5 +59,23 @@ public class CheckBoxNameTest {
     when(axeProps.get(AxeProps.Name.LABELED_BY, String.class)).thenReturn("Label");
 
     assertEquals(subject.runRule(axeProps), AxeStatus.FAIL);
+  }
+
+  @Test
+  public void notVisibleToUser_returnsFalse() {
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.Switch");
+    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(false);
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class)).thenReturn(false);
+
+    assertFalse(subject.isApplicable(axeProps));
+  }
+
+  @Test
+  public void overRidesAccessibilityDelegate_returnsFalse() {
+    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.Switch");
+    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(true);
+    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class)).thenReturn(true);
+
+    assertFalse(subject.isApplicable(axeProps));
   }
 }

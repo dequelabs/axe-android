@@ -180,7 +180,7 @@ public class AxeTest {
         )
     );
 
-    Assert.assertTrue(!axeResult.axeRuleResults.isEmpty());
+    Assert.assertFalse(axeResult.axeRuleResults.isEmpty());
     Assert.assertEquals("blah", axeResult.axeRuleResults.get(0).props.get(Name.EXCEPTION));
   }
 
@@ -298,16 +298,14 @@ public class AxeTest {
 
     expectedResults.sort((o1, o2) -> o1.compareTo(o2));
 
+    assertEquals(expectedResults.size(), actualResults.size());
+    Assert.assertFalse("Calculated Result should not be empty!", actualResults.isEmpty());
+
     expectedResults.forEach(expectedAxeRuleResult -> {
       AxeRuleResult actualRuleResult = actualResults.get(0);
       assertEquals(expectedAxeRuleResult.axeViewId, actualRuleResult.axeViewId);
       assertEquals(expectedAxeRuleResult.ruleId, actualRuleResult.ruleId);
       assertEquals(expectedAxeRuleResult.ruleSummary, actualRuleResult.ruleSummary);
-      assertEquals(
-        "failing axe view id:" + expectedAxeRuleResult.axeViewId,
-         expectedAxeRuleResult.status,
-         actualRuleResult.status
-      );
 
       String expectedRuleResultString = expectedAxeRuleResult.toJson();
       Object expectedRuleResultObj = jsonParser.parse(expectedRuleResultString);
@@ -328,6 +326,8 @@ public class AxeTest {
 
       actualResults.remove(0);
     });
+
+    assertEquals(actualResults.size(), 0);
   }
 
   @Test
