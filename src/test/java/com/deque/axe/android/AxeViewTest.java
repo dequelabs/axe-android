@@ -217,6 +217,29 @@ public class AxeViewTest {
   }
 
   @Test
+  public void calculateProps_noContentDescription_editText() {
+    AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
+    labelAxeViewBuilder.text("Enter Name");
+
+    AxeView labelAxeView = labelAxeViewBuilder.build();
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.text(null);
+    parent.contentDescription("");
+    parent.labeledBy(labelAxeView);
+    parent.hintText("John");
+    parent.className(AndroidClassNames.EDIT_TEXT);
+
+    AxeView axeView = parent.build();
+
+    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.get("name"), " John Enter Name");
+    assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
+    assertNull(axeView.calculatedProps.get("value"));
+    assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
   public void calculateProps_Button() {
 
     AxeViewBuilder button = new AxeViewBuilder();
@@ -230,5 +253,17 @@ public class AxeViewTest {
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Button");
     assertNull(axeView.calculatedProps.get("value"));
     assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
+  public void calculatedProps_ImageView() {
+
+    AxeViewBuilder button = new AxeViewBuilder();
+    button.text("Login");
+    button.className("android.widget.Button");
+
+    AxeView axeView = button.build();
+
+    assertEquals(axeView.calculatedProps.size(), 4);
   }
 }

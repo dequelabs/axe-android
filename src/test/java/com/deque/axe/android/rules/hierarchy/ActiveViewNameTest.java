@@ -36,20 +36,8 @@ public class ActiveViewNameTest {
     when(axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class)).thenReturn(true);
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(false);
-    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(true);
 
     assertTrue(subject.isApplicable(axeProps));
-  }
-
-  @Test
-  public void isApplicable_notVisibleToUser_returnsFalse() {
-    when(axeProps.get(AxeProps.Name.CLASS_NAME, String.class)).thenReturn("android.widget.Button");
-    when(axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class)).thenReturn(true);
-    when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
-            .thenReturn(false);
-    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(false);
-
-    assertFalse(subject.isApplicable(axeProps));
   }
 
   @Test
@@ -58,7 +46,6 @@ public class ActiveViewNameTest {
     when(axeProps.get(AxeProps.Name.IS_CLICKABLE, Boolean.class)).thenReturn(true);
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(true);
-    when(axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class)).thenReturn(true);
 
     assertFalse(subject.isApplicable(axeProps));
   }

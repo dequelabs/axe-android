@@ -29,8 +29,7 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
 
   @CallSuper
   public boolean isApplicable(final AxeProps axeProps) {
-    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class)
-            && axeProps.get(AxeProps.Name.IS_VISIBLE_TO_USER, Boolean.class);
+    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class);
   }
 
   public abstract @AxeStatus String runRule(final AxeProps axeProps);
