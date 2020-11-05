@@ -124,7 +124,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
+                - qa
                 - master
 
   Publish Release Candidate:
@@ -133,7 +133,7 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - qa
 
   Publish Release:
     jobs:
