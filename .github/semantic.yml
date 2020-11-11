@@ -1,2 +1,12 @@
-# Always validate the PR title, and ignore the commits
 titleOnly: true
+type:
+  - breaking
+  - feat
+  - feature
+  - fix
+  - docs
+  - style
+  - refactor
+  - perf
+  - test
+  - chore
