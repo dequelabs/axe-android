@@ -1,5 +1,5 @@
 titleOnly: true
-type:
+types:
   - breaking
   - feat
   - feature
