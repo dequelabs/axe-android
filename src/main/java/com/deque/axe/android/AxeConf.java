@@ -156,6 +156,12 @@ public class AxeConf {
 
   public final transient Set<Class<? extends AxeRuleViewHierarchy>> customRules = new HashSet<>();
 
+  /**
+   * A set of AxeRules that will be excluded from result.
+   * @param ruleIds List of ruleIds to ignore.
+   * @param ignore boolean to ignore or not.
+   * @return the AxeConf instance.
+   */
   public AxeConf ignore(final List<String> ruleIds, boolean ignore) {
     for (String s : ruleIds) {
       ignore(s, ignore);
@@ -164,7 +170,10 @@ public class AxeConf {
   }
 
   /**
-   * A set of AxeRules that will be excluded from result.
+   * An AxeRule that will be excluded from result.
+   * @param ruleId ruleId to ignore.
+   * @param ignore boolean to ignore or not.
+   * @return the AxeConf instance.
    */
   public AxeConf ignore(final String ruleId, final boolean ignore) {
     rules.get(ruleId).ignored = ignore;
