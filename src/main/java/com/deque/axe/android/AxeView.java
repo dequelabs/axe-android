@@ -488,13 +488,13 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
       final StringBuilder result = new StringBuilder();
 
-      contentView.children.forEach(axeView -> {
+      for (AxeView axeView : contentView.children) {
         if (result.length() == 0
                 && axeView.viewIdResourceName != null
                 && !"null".equals(axeView.viewIdResourceName)) {
           result.append(axeView.viewIdResourceName);
         }
-      });
+      }
 
       return result.toString();
     }
