@@ -156,13 +156,24 @@ public class AxeConf {
 
   public final transient Set<Class<? extends AxeRuleViewHierarchy>> customRules = new HashSet<>();
 
+  /**
+   * A set of AxeRules that will be excluded from result.
+   * @param ruleIds List of ruleIds to ignore.
+   * @param ignore boolean to ignore or not.
+   * @return the AxeConf instance.
+   */
   public AxeConf ignore(final List<String> ruleIds, boolean ignore) {
-    ruleIds.forEach(s -> ignore(s, ignore));
+    for (String s : ruleIds) {
+      ignore(s, ignore);
+    }
     return this;
   }
 
   /**
-   * A set of AxeRules that will be excluded from result.
+   * An AxeRule that will be excluded from result.
+   * @param ruleId ruleId to ignore.
+   * @param ignore boolean to ignore or not.
+   * @return the AxeConf instance.
    */
   public AxeConf ignore(final String ruleId, final boolean ignore) {
     rules.get(ruleId).ignored = ignore;
@@ -209,19 +220,21 @@ public class AxeConf {
 
   private void normalize() {
     // Make sure that all RulesIDs were trying to run are classes we have access to.
-    ruleIds.forEach(s -> {
-      if (!rules.containsKey(s)) {
+    for (String ruleId : ruleIds) {
+      if (!rules.containsKey(ruleId)) {
         throw new RuntimeException("Tried to run a RuleID that doesn't exist.");
       }
-    });
+    }
 
     // Make sure that the RuleIDs list matches the rules data structure.
     ruleIds.clear();
-    rules.forEach((s, ruleConf) -> {
+    for (Map.Entry<String, RuleConf> entry : rules.entrySet()) {
+      String s = entry.getKey();
+      RuleConf ruleConf = entry.getValue();
       if (!ruleConf.ignored) {
         ruleIds.add(s);
       }
-    });
+    }
   }
 
   Set<AxeRule> ruleInstances() {
