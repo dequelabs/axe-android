@@ -171,6 +171,29 @@ public class AxeViewTest {
   }
 
   @Test
+  public void calculateProps_nullClassName() {
+    AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
+    labelAxeViewBuilder.text("Control");
+
+    AxeView labelAxeView = labelAxeViewBuilder.build();
+
+    AxeViewBuilder parent = new AxeViewBuilder();
+    parent.text("Control Switch");
+    parent.contentDescription("Switch Control");
+    parent.labeledBy(labelAxeView);
+    parent.isEnabled(true);
+    parent.className(null);
+
+    AxeView axeView = parent.build();
+
+    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.get("name"), "Control Switch Switch Control");
+    assertNull(axeView.calculatedProps.get("role"));
+    assertNull(axeView.calculatedProps.get("value"));
+    assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
   public void calculateProps_switch() {
     AxeViewBuilder labelAxeViewBuilder = new AxeViewBuilder();
     labelAxeViewBuilder.text("Control");

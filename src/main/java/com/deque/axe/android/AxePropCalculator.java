@@ -53,96 +53,98 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
   }
 
   Map<String, String> getCalculatedProps() {
-    switch (className) {
-      case AndroidClassNames.SWITCH:
-      case AndroidClassNames.CHECKBOX:
+    if (className != null) {
+      switch (className) {
+        case AndroidClassNames.SWITCH:
+        case AndroidClassNames.CHECKBOX:
 
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getNameProp(String text,
-                                    String contentDescription,
-                                    String labelText,
-                                    String hint) {
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getNameProp(String text,
+                                      String contentDescription,
+                                      String labelText,
+                                      String hint) {
 
-            return getPropAfterNullCheck(text) + SPACE
-                    + getPropAfterNullCheck(contentDescription) + SPACE
-                    + getPropAfterNullCheck(labelText);
-          }
-        }.getNameProp(text, contentDescription, labelText, hintText);
+              return getPropAfterNullCheck(text) + SPACE
+                      + getPropAfterNullCheck(contentDescription) + SPACE
+                      + getPropAfterNullCheck(labelText);
+            }
+          }.getNameProp(text, contentDescription, labelText, hintText);
 
-        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
+          setCalculatedProp(Props.NAME.getProp(), calculatedProp);
 
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getStateProp(String state) {
-            return isEnabled ? "enabled" : "disabled";
-          }
-        }.getStateProp("");
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getStateProp(String state) {
+              return isEnabled ? "enabled" : "disabled";
+            }
+          }.getStateProp("");
 
-        setCalculatedProp(Props.STATE.getProp(), calculatedProp);
+          setCalculatedProp(Props.STATE.getProp(), calculatedProp);
 
-        break;
-      case AndroidClassNames.EDIT_TEXT:
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getNameProp(String text,
-                                    String contentDescription,
-                                    String labelText,
-                                    String hint) {
-            if (!AxeTextUtils.isNullOrEmpty(contentDescription)
-                    && !AxeTextUtils.isNullOrEmpty(hint)) {
+          break;
+        case AndroidClassNames.EDIT_TEXT:
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getNameProp(String text,
+                                      String contentDescription,
+                                      String labelText,
+                                      String hint) {
+              if (!AxeTextUtils.isNullOrEmpty(contentDescription)
+                      && !AxeTextUtils.isNullOrEmpty(hint)) {
                 return getPropAfterNullCheck(hint) + SPACE
                         + getPropAfterNullCheck(labelText);
-            } else {
+              } else {
                 return getPropAfterNullCheck(contentDescription) + SPACE
                         + getPropAfterNullCheck(hint) + SPACE
                         + getPropAfterNullCheck(labelText);
-                }
+              }
             }
           }.getNameProp(text, contentDescription, labelText, hintText);
 
-        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
+          setCalculatedProp(Props.NAME.getProp(), calculatedProp);
 
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getValueProp(String value) {
-            return text;
-          }
-        }.getValueProp(text);
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getValueProp(String value) {
+              return text;
+            }
+          }.getValueProp(text);
 
-        setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
+          setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
 
-        break;
-      case AndroidClassNames.TEXT_VIEW:
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getValueProp(String value) {
-            return text;
-          }
-        }.getValueProp(text);
+          break;
+        case AndroidClassNames.TEXT_VIEW:
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getValueProp(String value) {
+              return text;
+            }
+          }.getValueProp(text);
 
-        setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
+          setCalculatedProp(Props.VALUE.getProp(), calculatedProp);
 
-        break;
-      case AndroidClassNames.IMAGE_VIEW:
-        calculatedProp = new AxePropInterface() {
-          @Override
-          public String getNameProp(String text,
-                                    String contentDescription,
-                                    String labelText,
-                                    String hint) {
-            return getPropAfterNullCheck(text) + SPACE
-                    + getPropAfterNullCheck(contentDescription) + SPACE
-                    + getPropAfterNullCheck(labelText);
+          break;
+        case AndroidClassNames.IMAGE_VIEW:
+          calculatedProp = new AxePropInterface() {
+            @Override
+            public String getNameProp(String text,
+                                      String contentDescription,
+                                      String labelText,
+                                      String hint) {
+              return getPropAfterNullCheck(text) + SPACE
+                      + getPropAfterNullCheck(contentDescription) + SPACE
+                      + getPropAfterNullCheck(labelText);
             }
           }.getNameProp(text, contentDescription, labelText, hintText);
 
-        setCalculatedProp(Props.NAME.getProp(), calculatedProp);
+          setCalculatedProp(Props.NAME.getProp(), calculatedProp);
 
-        break;
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
     }
     return propMap;
   }
