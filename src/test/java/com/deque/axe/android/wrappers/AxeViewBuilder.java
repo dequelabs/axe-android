@@ -223,6 +223,11 @@ public class AxeViewBuilder implements Builder {
     return isVisibleToUser;
   }
 
+  /**
+   * Returns AxeViewBuilder with isVisibleToUser.
+   * @param isVisibleToUser isVisibleToUser.
+   * @return the axeViewBuilder.
+   */
   public AxeViewBuilder isVisibleToUser(boolean isVisibleToUser) {
     this.isVisibleToUser = isVisibleToUser;
 
@@ -234,6 +239,11 @@ public class AxeViewBuilder implements Builder {
     return measuredHeight;
   }
 
+  /**
+   * Returns AxeViewBuilder with measuredHeight.
+   * @param measuredHeight the measuredHeight.
+   * @return the AxeViewBuilder.
+   */
   public AxeViewBuilder measuredHeight(int measuredHeight) {
     this.measuredHeight = measuredHeight;
 
@@ -245,6 +255,11 @@ public class AxeViewBuilder implements Builder {
     return measuredWidth;
   }
 
+  /**
+   * Returns AxeViewBuilder with measuredWidth.
+   * @param measuredWidth the measuredWidth.
+   * @return the AxeViewBuilder.
+   */
   public AxeViewBuilder measuredWidth(int measuredWidth) {
     this.measuredWidth = measuredWidth;
 

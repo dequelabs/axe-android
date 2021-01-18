@@ -492,7 +492,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   private AxeView getContentView() {
 
     List<AxeView> axeViewList = query(view ->
-            view.viewIdResourceName != null && view.viewIdResourceName.endsWith("android:id/content")
+            view.viewIdResourceName != null
+              && view.viewIdResourceName.endsWith("android:id/content")
     );
 
     if (axeViewList.size() == 0) {
