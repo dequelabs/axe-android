@@ -36,6 +36,12 @@ public class AxeViewBuilder implements Builder {
 
   private String viewIdResourceName = "";
 
+  private boolean isVisibleToUser = true;
+
+  private int measuredHeight = 0;
+
+  private int measuredWidth = 0;
+
   public AxeViewBuilder() { }
 
   private AxeViewBuilder(AxeViewBuilder deepCopyThis) {
@@ -53,6 +59,9 @@ public class AxeViewBuilder implements Builder {
     hintText = deepCopyThis.hintText;
     value = deepCopyThis.value;
     paneTitle = deepCopyThis.paneTitle;
+    isVisibleToUser = deepCopyThis.isVisibleToUser;
+    measuredHeight = deepCopyThis.measuredHeight;
+    measuredWidth = deepCopyThis.measuredWidth;
   }
 
   /**
@@ -211,7 +220,35 @@ public class AxeViewBuilder implements Builder {
 
   @Override
   public boolean isVisibleToUser() {
-    return true;
+    return isVisibleToUser;
+  }
+
+  public AxeViewBuilder isVisibleToUser(boolean isVisibleToUser) {
+    this.isVisibleToUser = isVisibleToUser;
+
+    return this;
+  }
+
+  @Override
+  public int measuredHeight() {
+    return measuredHeight;
+  }
+
+  public AxeViewBuilder measuredHeight(int measuredHeight) {
+    this.measuredHeight = measuredHeight;
+
+    return this;
+  }
+
+  @Override
+  public int measuredWidth() {
+    return measuredWidth;
+  }
+
+  public AxeViewBuilder measuredWidth(int measuredWidth) {
+    this.measuredWidth = measuredWidth;
+
+    return this;
   }
 
   public AxeView build() {

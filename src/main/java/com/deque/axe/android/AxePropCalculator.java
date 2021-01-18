@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializable {
 
   private static final String SPACE = " ";
-  private Map<String, String> propMap = new HashMap<>();
+  private Map<String, Object> propMap = new HashMap<>();
   private final String text;
   private final String contentDescription;
   private final String labelText;
@@ -20,6 +20,11 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
   private final boolean isEnabled;
   private final String className;
   private final String hintText;
+  private final boolean isVisibleToUser;
+  private final int measuredHeight;
+  private final int measuredWidth;
+  private final int visibleHeight;
+  private final int visibleWidth;
 
   private String calculatedProp;
 
@@ -29,7 +34,12 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
                     String value,
                     boolean isEnabled,
                     String className,
-                    String hintText) {
+                    String hintText,
+                    boolean isVisibleToUser,
+                    int measuredHeight,
+                    int measuredWidth,
+                    int visibleHeight,
+                    int visibleWidth) {
 
     this.text = text;
     this.contentDescription = contentDescription;
@@ -38,6 +48,11 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     this.isEnabled = isEnabled;
     this.className = className;
     this.hintText = hintText;
+    this.isVisibleToUser = isVisibleToUser;
+    this.measuredHeight = measuredHeight;
+    this.measuredWidth = measuredWidth;
+    this.visibleHeight = visibleHeight;
+    this.visibleWidth = visibleWidth;
 
     AxePropInterface axePropInterface = new AxePropInterface() {};
     propMap.put(Props.NAME.getProp(), axePropInterface.getNameProp(
@@ -50,9 +65,20 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     propMap.put(Props.VALUE.getProp(),
             axePropInterface.getValueProp(value));
     propMap.put(Props.STATE.getProp(), null);
+    propMap.put(Props.IS_OFF_SCREEN.getProp(),
+            axePropInterface.getIsOffScreenProp(isVisibleToUser)
+    );
+    propMap.put(Props.IS_OBSCURED.getProp(),
+            axePropInterface.getIsObscuredProp(
+              measuredHeight,
+              measuredWidth,
+              visibleHeight,
+              visibleWidth
+            )
+    );
   }
 
-  Map<String, String> getCalculatedProps() {
+  Map<String, Object> getCalculatedProps() {
     switch (className) {
       case AndroidClassNames.SWITCH:
       case AndroidClassNames.CHECKBOX:
@@ -174,20 +200,28 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
             && Objects.equals(value, that.value)
             && Objects.equals(className, that.className)
             && Objects.equals(hintText, that.hintText)
+            && Objects.equals(isVisibleToUser, that.isVisibleToUser)
+            && Objects.equals(measuredHeight, that.measuredHeight)
+            && Objects.equals(measuredWidth, that.measuredWidth)
+            && Objects.equals(visibleHeight, that.visibleHeight)
+            && Objects.equals(visibleWidth, that.visibleWidth)
             && Objects.equals(calculatedProp, that.calculatedProp);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(text, contentDescription, labelText, value,
-            isEnabled, className, hintText, calculatedProp);
+            isEnabled, className, hintText, isVisibleToUser,measuredHeight,
+            measuredWidth, visibleHeight, visibleWidth, calculatedProp);
   }
 
   enum Props {
     NAME("name"),
     ROLE("role"),
     VALUE("value"),
-    STATE("state");
+    STATE("state"),
+    IS_OFF_SCREEN("isOffScreen"),
+    IS_OBSCURED("isObscured");
 
     private String prop;
 
@@ -218,6 +252,20 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
 
     default String getStateProp(String state) {
       return state;
+    }
+
+    default boolean getIsOffScreenProp(boolean isVisibleToUser) {
+      return !isVisibleToUser;
+    }
+
+    default boolean getIsObscuredProp(int measuredHeight,
+                                      int measuredWidth,
+                                      int visibleHeight,
+                                      int visibleWidth) {
+      if (measuredHeight == 0 || measuredWidth == 0) {
+        return false;
+      }
+      return measuredHeight != visibleHeight || measuredWidth != visibleWidth;
     }
   }
 

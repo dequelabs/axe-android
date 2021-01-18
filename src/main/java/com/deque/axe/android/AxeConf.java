@@ -25,6 +25,12 @@ import java.util.Set;
 
 public class AxeConf {
 
+  static class IssueFilterConf implements JsonSerializable {
+
+    boolean showOffScreenAndObscuredResults = true;
+
+  }
+
   static class RuleConf implements JsonSerializable {
 
     final int impact;
@@ -153,6 +159,8 @@ public class AxeConf {
   final Set<String> ruleIds = new HashSet<>();
 
   final Map<String, RuleConf> rules = new HashMap<>();
+
+  final IssueFilterConf issueFilterConf = new IssueFilterConf();
 
   public final transient Set<Class<? extends AxeRuleViewHierarchy>> customRules = new HashSet<>();
 

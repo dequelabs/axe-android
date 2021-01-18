@@ -1,14 +1,13 @@
 package com.deque.axe.android;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import com.deque.axe.android.constants.AndroidClassNames;
 import com.deque.axe.android.constants.Constants;
 import com.deque.axe.android.wrappers.AxeRect;
 import com.deque.axe.android.wrappers.AxeViewBuilder;
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class AxeViewTest {
 
@@ -83,7 +82,7 @@ public class AxeViewTest {
 
     AxeView axeView = child.build();
 
-    Assert.assertFalse(axeView.isPartiallyVisible(axeView.boundsInScreen, 220, 101));
+    assertFalse(axeView.isPartiallyVisible(axeView.boundsInScreen, 220, 101));
   }
 
   @Test
@@ -107,7 +106,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    Assert.assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+    assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
   }
 
   @Test
@@ -119,7 +118,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    Assert.assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+    assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
   }
 
   @Test
@@ -139,7 +138,7 @@ public class AxeViewTest {
 
     AxeDevice axeDevice = new AxeDevice(dpi, name, osVersion, height, width);
 
-    Assert.assertFalse(axeView.isRendered(
+    assertFalse(axeView.isRendered(
             axeDevice.dpi,
             axeDevice.screenHeight,
             axeDevice.screenWidth
@@ -183,14 +182,20 @@ public class AxeViewTest {
     parent.labeledBy(labelAxeView);
     parent.isEnabled(true);
     parent.className(AndroidClassNames.SWITCH);
+    parent.boundsInScreen(new AxeRect(10, 60, 10, 60));
+    parent.measuredHeight(50);
+    parent.measuredWidth(50);
+    parent.isVisibleToUser(true);
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.size(), 6);
     assertEquals(axeView.calculatedProps.get("name"), "Control Switch Switch Control Control");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Switch");
     assertNull(axeView.calculatedProps.get("value"));
     assertEquals(axeView.calculatedProps.get("state"), "enabled");
+    assertFalse((Boolean) axeView.calculatedProps.get("isOffScreen"));
+    assertFalse((Boolean) axeView.calculatedProps.get("isObscured"));
   }
 
   @Test
@@ -209,7 +214,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.size(), 6);
     assertEquals(axeView.calculatedProps.get("name"), "John Enter Name");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
     assertNull(axeView.calculatedProps.get("value"));
@@ -232,7 +237,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.size(), 6);
     assertEquals(axeView.calculatedProps.get("name"), " John Enter Name");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
     assertNull(axeView.calculatedProps.get("value"));
@@ -248,11 +253,65 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 4);
-    assertEquals(axeView.calculatedProps.get("name").trim(), "Login");
+    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.get("name").toString().trim(), "Login");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Button");
     assertNull(axeView.calculatedProps.get("value"));
     assertNull(axeView.calculatedProps.get("state"));
+  }
+
+  @Test
+  public void calculateProps_obscuredAxeView() {
+
+    AxeViewBuilder button = new AxeViewBuilder();
+    button.text("Login");
+    button.className("android.widget.Button");
+    button.boundsInScreen(new AxeRect(10, 60, 10, 60));
+    button.measuredHeight(60);
+    button.measuredWidth(60);
+    button.isVisibleToUser(true);
+
+    AxeView axeView = button.build();
+
+    assertEquals(axeView.calculatedProps.size(), 6);
+    assertFalse((Boolean) axeView.calculatedProps.get("isOffScreen"));
+    assertTrue((Boolean) axeView.calculatedProps.get("isObscured"));
+  }
+
+  @Test
+  public void calculateProps_offScreenAxeView() {
+
+    AxeViewBuilder button = new AxeViewBuilder();
+    button.text("Login");
+    button.className("android.widget.Button");
+    button.boundsInScreen(new AxeRect(10, 60, 10, 60));
+    button.measuredHeight(50);
+    button.measuredWidth(50);
+    button.isVisibleToUser(false);
+
+    AxeView axeView = button.build();
+
+    assertEquals(axeView.calculatedProps.size(), 6);
+    assertTrue((Boolean) axeView.calculatedProps.get("isOffScreen"));
+    assertFalse((Boolean) axeView.calculatedProps.get("isObscured"));
+  }
+
+  @Test
+  public void calculateProps_offScreenAndObscuredAxeView() {
+
+    AxeViewBuilder button = new AxeViewBuilder();
+    button.text("Login");
+    button.className("android.widget.Button");
+    button.boundsInScreen(new AxeRect(10, 60, 10, 60));
+    button.measuredHeight(60);
+    button.measuredWidth(60);
+    button.isVisibleToUser(false);
+
+    AxeView axeView = button.build();
+
+    assertEquals(axeView.calculatedProps.size(), 6);
+    assertTrue((Boolean) axeView.calculatedProps.get("isOffScreen"));
+    assertTrue((Boolean) axeView.calculatedProps.get("isObscured"));
   }
 
   @Test
@@ -264,6 +323,6 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 4);
+    assertEquals(axeView.calculatedProps.size(), 6);
   }
 }
