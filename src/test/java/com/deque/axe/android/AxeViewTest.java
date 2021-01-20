@@ -192,13 +192,12 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.size(), 5);
     assertEquals(axeView.calculatedProps.get("name"), "Control Switch Switch Control Control");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Switch");
     assertNull(axeView.calculatedProps.get("value"));
     assertEquals(axeView.calculatedProps.get("state"), "enabled");
-    assertFalse((Boolean) axeView.calculatedProps.get("isOffScreen"));
-    assertFalse((Boolean) axeView.calculatedProps.get("isObscured"));
+    assertTrue((Boolean) axeView.calculatedProps.get("isIntractable"));
   }
 
   @Test
@@ -217,7 +216,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.size(), 5);
     assertEquals(axeView.calculatedProps.get("name"), "John Enter Name");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
     assertNull(axeView.calculatedProps.get("value"));
@@ -240,7 +239,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.size(), 5);
     assertEquals(axeView.calculatedProps.get("name"), " John Enter Name");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.EditText");
     assertNull(axeView.calculatedProps.get("value"));
@@ -256,7 +255,7 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.size(), 5);
     assertEquals(axeView.calculatedProps.get("name").toString().trim(), "Login");
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Button");
     assertNull(axeView.calculatedProps.get("value"));
@@ -276,9 +275,8 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
-    assertFalse((Boolean) axeView.calculatedProps.get("isOffScreen"));
-    assertTrue((Boolean) axeView.calculatedProps.get("isObscured"));
+    assertEquals(axeView.calculatedProps.size(), 5);
+    assertTrue((Boolean) axeView.calculatedProps.get("isIntractable"));
   }
 
   @Test
@@ -294,9 +292,8 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
-    assertTrue((Boolean) axeView.calculatedProps.get("isOffScreen"));
-    assertFalse((Boolean) axeView.calculatedProps.get("isObscured"));
+    assertEquals(axeView.calculatedProps.size(), 5);
+    assertFalse((Boolean) axeView.calculatedProps.get("isIntractable"));
   }
 
   @Test
@@ -312,9 +309,8 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
-    assertTrue((Boolean) axeView.calculatedProps.get("isOffScreen"));
-    assertTrue((Boolean) axeView.calculatedProps.get("isObscured"));
+    assertEquals(axeView.calculatedProps.size(), 5);
+    assertFalse((Boolean) axeView.calculatedProps.get("isIntractable"));
   }
 
   @Test
@@ -326,6 +322,6 @@ public class AxeViewTest {
 
     AxeView axeView = button.build();
 
-    assertEquals(axeView.calculatedProps.size(), 6);
+    assertEquals(axeView.calculatedProps.size(), 5);
   }
 }

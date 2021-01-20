@@ -457,8 +457,6 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   private Map<String, Object> calculateProps() {
 
     String labelText = labeledBy == null ? "" : labeledBy.text;
-    int visibleAxeViewHeight = boundsInScreen.bottom - boundsInScreen.top;
-    int visibleAxeViewWidth = boundsInScreen.right - boundsInScreen.left;
 
     AxePropCalculator axePropCalculator = new AxePropCalculator(
             text,
@@ -468,11 +466,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
             isEnabled,
             className,
             hintText,
-            isVisibleToUser,
-            measuredHeight,
-            measuredWidth,
-            visibleAxeViewHeight,
-            visibleAxeViewWidth
+            isVisibleToUser
     );
 
     return axePropCalculator.getCalculatedProps();

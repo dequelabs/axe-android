@@ -27,7 +27,7 @@ public class AxeConf {
 
   static class IssueFilterConf implements JsonSerializable {
 
-    boolean showOffScreenAndObscuredResults = true;
+    boolean onlyShowIntractableResults = true;
 
   }
 
