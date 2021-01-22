@@ -4,6 +4,7 @@ import static com.deque.axe.android.constants.AxeImpact.BLOCKER;
 import static com.deque.axe.android.constants.AxeImpact.MINOR;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import com.deque.axe.android.colorcontrast.AxeImage;
 import com.deque.axe.android.constants.AxeStandard;
@@ -84,7 +85,7 @@ public class AxeTest {
     @Override
     public void setup(final AxeContext axeContext, final AxeProps axeProps) {
 
-      Assert.assertFalse(hasCalledSetup);
+      assertFalse(hasCalledSetup);
 
       hasCalledSetup = true;
     }
@@ -110,7 +111,7 @@ public class AxeTest {
     @Override
     public void tearDown() {
 
-      Assert.assertFalse(hasCalledTearDown);
+      assertFalse(hasCalledTearDown);
 
       hasCalledTearDown = true;
 
@@ -180,7 +181,7 @@ public class AxeTest {
         )
     );
 
-    Assert.assertFalse(axeResult.axeRuleResults.isEmpty());
+    assertFalse(axeResult.axeRuleResults.isEmpty());
     Assert.assertEquals("blah", axeResult.axeRuleResults.get(0).props.get(Name.EXCEPTION));
   }
 
@@ -234,6 +235,7 @@ public class AxeTest {
     AxeConf axeConf = new AxeConf();
 
     assertEquals(axeConf.rules.size(), 9);
+    assertFalse(axeConf.issueFilterConf.onlyShowResultsVisibleToUser);
   }
 
   @Test
@@ -247,6 +249,7 @@ public class AxeTest {
 
     Assert.assertEquals(axe.axeConf.ruleIds.size(), 8);
     assertEquals(axe.axeConf.ruleInstances().size(), 9);
+    assertFalse(axe.axeConf.issueFilterConf.onlyShowResultsVisibleToUser);
   }
 
   @Test
@@ -299,7 +302,7 @@ public class AxeTest {
     expectedResults.sort((o1, o2) -> o1.compareTo(o2));
 
     assertEquals(expectedResults.size(), actualResults.size());
-    Assert.assertFalse("Calculated Result should not be empty!", actualResults.isEmpty());
+    assertFalse("Calculated Result should not be empty!", actualResults.isEmpty());
 
     JsonParser jsonParser = new JsonParser();
     
