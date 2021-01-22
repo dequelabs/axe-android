@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializable {
 
   private static final String SPACE = " ";
-  private Map<String, Object> propMap = new HashMap<>();
+  private Map<String, String> propMap = new HashMap<>();
   private final String text;
   private final String contentDescription;
   private final String labelText;
@@ -52,12 +52,12 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     propMap.put(Props.VALUE.getProp(),
             axePropInterface.getValueProp(value));
     propMap.put(Props.STATE.getProp(), null);
-    propMap.put(Props.IS_INTRACTABLE.getProp(),
-            axePropInterface.getIsIntractableProp(isVisibleToUser)
+    propMap.put(Props.IS_VISIBLE_TO_USER.getProp(),
+            Boolean.toString(axePropInterface.getIsVisibleToUserProp(isVisibleToUser))
     );
   }
 
-  Map<String, Object> getCalculatedProps() {
+  Map<String, String> getCalculatedProps() {
     switch (className) {
       case AndroidClassNames.SWITCH:
       case AndroidClassNames.CHECKBOX:
@@ -194,7 +194,7 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     ROLE("role"),
     VALUE("value"),
     STATE("state"),
-    IS_INTRACTABLE("isIntractable");
+    IS_VISIBLE_TO_USER("isVisibleToUser");
 
     private String prop;
 
@@ -227,7 +227,7 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
       return state;
     }
 
-    default boolean getIsIntractableProp(boolean isVisibleToUser) {
+    default boolean getIsVisibleToUserProp(boolean isVisibleToUser) {
       return isVisibleToUser;
     }
 

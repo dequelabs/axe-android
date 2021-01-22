@@ -133,7 +133,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   /**
    * Library of calculated props name, role, state, value.
    */
-  public final Map<String, Object> calculatedProps;
+  public final Map<String, String> calculatedProps;
 
   /**
    * The Children of this view as AxeView objects.
@@ -454,7 +454,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     return results;
   }
 
-  private Map<String, Object> calculateProps() {
+  private Map<String, String> calculateProps() {
 
     String labelText = labeledBy == null ? "" : labeledBy.text;
 

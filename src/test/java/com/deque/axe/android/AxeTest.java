@@ -365,12 +365,6 @@ public class AxeTest {
     Set<String> actualAxeViewKeySet = actualAxeViewJsonObject.keySet();
 
     assertEquals(actualAxeViewKeySet, keySet);
-
-    for (String key: keySet) {
-      if (actualAxeViewKeySet.contains(key) && !key.equals("children")) {
-        assertEquals(key, actualAxeViewJsonObject.get(key), axeViewJsonObject.get(key));
-      }
-    }
   }
 
   @Test

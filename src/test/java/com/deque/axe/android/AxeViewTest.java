@@ -197,7 +197,7 @@ public class AxeViewTest {
     assertEquals(axeView.calculatedProps.get("role"), "android.widget.Switch");
     assertNull(axeView.calculatedProps.get("value"));
     assertEquals(axeView.calculatedProps.get("state"), "enabled");
-    assertTrue((Boolean) axeView.calculatedProps.get("isIntractable"));
+    assertTrue(Boolean.parseBoolean(axeView.calculatedProps.get("isVisibleToUser")));
   }
 
   @Test
@@ -276,7 +276,7 @@ public class AxeViewTest {
     AxeView axeView = button.build();
 
     assertEquals(axeView.calculatedProps.size(), 5);
-    assertTrue((Boolean) axeView.calculatedProps.get("isIntractable"));
+    assertTrue(Boolean.parseBoolean(axeView.calculatedProps.get("isVisibleToUser")));
   }
 
   @Test
@@ -293,7 +293,7 @@ public class AxeViewTest {
     AxeView axeView = button.build();
 
     assertEquals(axeView.calculatedProps.size(), 5);
-    assertFalse((Boolean) axeView.calculatedProps.get("isIntractable"));
+    assertFalse(Boolean.parseBoolean(axeView.calculatedProps.get("isVisibleToUser")));
   }
 
   @Test
@@ -310,7 +310,7 @@ public class AxeViewTest {
     AxeView axeView = button.build();
 
     assertEquals(axeView.calculatedProps.size(), 5);
-    assertFalse((Boolean) axeView.calculatedProps.get("isIntractable"));
+    assertFalse(Boolean.parseBoolean(axeView.calculatedProps.get("isVisibleToUser")));
   }
 
   @Test
