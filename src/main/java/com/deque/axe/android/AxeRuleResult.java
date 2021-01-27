@@ -72,7 +72,7 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       final String status,
       final int impact,
       final AxeProps axeProps,
-      final boolean isVisibleToUser
+      final Boolean isVisibleToUser
   ) {
     this.ruleId = ruleId;
     this.ruleSummary = ruleSummary;
@@ -97,8 +97,12 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
         axeRule != null ? axeRule.impact : 0,
         axeProps,
         axeView != null
-          && axeView.calculatedProps.containsKey(AxeProps.Name.IS_VISIBLE_TO_USER)
-          && Boolean.parseBoolean(axeView.calculatedProps.get(AxeProps.Name.IS_VISIBLE_TO_USER))
+          && (axeView.calculatedProps == null
+              || axeView.calculatedProps.get(AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) == null
+              || Boolean.parseBoolean(axeView.calculatedProps.get(
+                      AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp())
+                  )
+              )
     );
   }
 

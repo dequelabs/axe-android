@@ -53,7 +53,7 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
             axePropInterface.getValueProp(value));
     propMap.put(Props.STATE.getProp(), null);
     propMap.put(Props.IS_VISIBLE_TO_USER.getProp(),
-            Boolean.toString(axePropInterface.getIsVisibleToUserProp(isVisibleToUser))
+            axePropInterface.getIsVisibleToUserProp(isVisibleToUser)
     );
   }
 
@@ -227,8 +227,8 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
       return state;
     }
 
-    default boolean getIsVisibleToUserProp(boolean isVisibleToUser) {
-      return isVisibleToUser;
+    default String getIsVisibleToUserProp(boolean isVisibleToUser) {
+      return Boolean.toString(isVisibleToUser);
     }
 
   }
