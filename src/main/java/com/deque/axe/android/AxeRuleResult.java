@@ -98,7 +98,8 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
         axeProps,
         axeView != null
           && (axeView.calculatedProps == null
-              || axeView.calculatedProps.get(AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) == null
+              || axeView.calculatedProps.get(
+                      AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) == null
               || Boolean.parseBoolean(axeView.calculatedProps.get(
                       AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp())
                   )

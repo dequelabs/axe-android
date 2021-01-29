@@ -25,6 +25,10 @@ import java.util.Set;
 
 public class AxeConf {
 
+  @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+          value = "URF_UNREAD_FIELD",
+          justification = "This is an object that isn't used for anything but serialization."
+  )
   static class IssueFilterConf implements JsonSerializable {
 
     boolean onlyShowResultsVisibleToUser = false;
