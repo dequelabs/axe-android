@@ -27,7 +27,7 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
   public final String axeViewId;
 
   /**
-   * True when result belongs to a view not visible to user.
+   * True if the view is visible to the user.
    */
   public final Boolean isVisibleToUser;
 
