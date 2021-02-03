@@ -20,7 +20,7 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
   private final boolean isEnabled;
   private final String className;
   private final String hintText;
-
+  private final boolean isVisibleToUser;
   private String calculatedProp;
 
   AxePropCalculator(String text,
@@ -29,7 +29,8 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
                     String value,
                     boolean isEnabled,
                     String className,
-                    String hintText) {
+                    String hintText,
+                    boolean isVisibleToUser) {
 
     this.text = text;
     this.contentDescription = contentDescription;
@@ -38,6 +39,7 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     this.isEnabled = isEnabled;
     this.className = className;
     this.hintText = hintText;
+    this.isVisibleToUser = isVisibleToUser;
 
     AxePropInterface axePropInterface = new AxePropInterface() {};
     propMap.put(Props.NAME.getProp(), axePropInterface.getNameProp(
@@ -50,6 +52,9 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     propMap.put(Props.VALUE.getProp(),
             axePropInterface.getValueProp(value));
     propMap.put(Props.STATE.getProp(), null);
+    propMap.put(Props.IS_VISIBLE_TO_USER.getProp(),
+            axePropInterface.getIsVisibleToUserProp(isVisibleToUser)
+    );
   }
 
   Map<String, String> getCalculatedProps() {
@@ -174,20 +179,22 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
             && Objects.equals(value, that.value)
             && Objects.equals(className, that.className)
             && Objects.equals(hintText, that.hintText)
+            && Objects.equals(isVisibleToUser, that.isVisibleToUser)
             && Objects.equals(calculatedProp, that.calculatedProp);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(text, contentDescription, labelText, value,
-            isEnabled, className, hintText, calculatedProp);
+            isEnabled, className, hintText, isVisibleToUser, calculatedProp);
   }
 
   enum Props {
     NAME("name"),
     ROLE("role"),
     VALUE("value"),
-    STATE("state");
+    STATE("state"),
+    IS_VISIBLE_TO_USER("isVisibleToUser");
 
     private String prop;
 
@@ -219,6 +226,11 @@ class AxePropCalculator implements Comparable<AxePropCalculator>, JsonSerializab
     default String getStateProp(String state) {
       return state;
     }
+
+    default String getIsVisibleToUserProp(boolean isVisibleToUser) {
+      return Boolean.toString(isVisibleToUser);
+    }
+
   }
 
   private static String getPropAfterNullCheck(String propText) {

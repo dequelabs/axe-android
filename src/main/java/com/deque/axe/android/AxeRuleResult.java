@@ -27,6 +27,11 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
   public final String axeViewId;
 
   /**
+   * True if the view is visible to the user.
+   */
+  public final Boolean isVisibleToUser;
+
+  /**
    * The properties used in determining that the AxeView was in violation.
    */
   public final AxeProps props;
@@ -66,7 +71,8 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
       final String axeViewId,
       final String status,
       final int impact,
-      final AxeProps axeProps
+      final AxeProps axeProps,
+      final Boolean isVisibleToUser
   ) {
     this.ruleId = ruleId;
     this.ruleSummary = ruleSummary;
@@ -74,13 +80,14 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
     this.status = status;
     this.impact = impact;
     this.props = axeProps;
+    this.isVisibleToUser = isVisibleToUser;
   }
 
   AxeRuleResult(
       @AxeStatus String status,
       AxeRule axeRule,
       AxeProps axeProps,
-      AxeTree axeView
+      AxeView axeView
   ) {
     this(
         axeRule != null ? axeRule.id : null,
@@ -88,7 +95,15 @@ public class AxeRuleResult implements Comparable<AxeRuleResult>, JsonSerializabl
         axeView == null ? null : axeView.getNodeId(),
         status,
         axeRule != null ? axeRule.impact : 0,
-        axeProps
+        axeProps,
+        axeView != null
+          && (axeView.calculatedProps == null
+              || axeView.calculatedProps.get(
+                      AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) == null
+              || Boolean.parseBoolean(axeView.calculatedProps.get(
+                      AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp())
+                  )
+              )
     );
   }
 
