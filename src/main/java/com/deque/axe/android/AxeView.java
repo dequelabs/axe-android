@@ -539,32 +539,38 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
   /**
    * Returns true if the view is created in hierarchy but not visible on the screen.
-   * @param frame rectangle containing the view.
    * @param screenHeight device height.
    * @param screenWidth device width.
    */
-  public boolean isOffScreen(AxeRect frame, int screenHeight, int screenWidth) {
+  public boolean isOffScreen(int screenHeight, int screenWidth) {
     if (screenHeight > 0 && screenWidth > 0) {
-      return frame.top < 0
-              || frame.left < 0
-              || frame.bottom > screenHeight
-              || frame.right > screenWidth;
+      return this.boundsInScreen.top < 0
+              || this.boundsInScreen.left < 0
+              || this.boundsInScreen.bottom > screenHeight
+              || this.boundsInScreen.right > screenWidth;
     }
     return false;
   }
 
   /**
    * Returns true if only part of the view is visible on screen.
-   * @param frame rectangle containing the view.
    * @param screenHeight device height.
    * @param screenWidth device width.
    */
-  public boolean isPartiallyVisible(AxeRect frame, int screenHeight, int screenWidth) {
+  public boolean isPartiallyVisible(int screenHeight, int screenWidth) {
     if (screenHeight > 0 && screenWidth > 0 && contentViewAxeRect != null) {
-      return frame.top <= contentViewAxeRect.top
-              || frame.left <= 0
-              || frame.bottom >= contentViewAxeRect.bottom
-              || frame.right >= screenWidth;
+
+      if (this.measuredHeight > this.boundsInScreen.height()
+              || this.measuredWidth > this.boundsInScreen.width()) {
+        return true;
+      }
+
+      if (this.measuredWidth == 0 && this.measuredHeight == 0) {
+        return this.boundsInScreen.top <= contentViewAxeRect.top
+                || this.boundsInScreen.left <= 0
+                || this.boundsInScreen.bottom >= contentViewAxeRect.bottom
+                || this.boundsInScreen.right >= screenWidth;
+      }
     }
     return false;
   }
