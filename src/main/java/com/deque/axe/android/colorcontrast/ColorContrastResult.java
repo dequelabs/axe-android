@@ -16,6 +16,10 @@ public class ColorContrastResult {
 
   private transient int numVisiblyDifferentTextColors = 1;
 
+  private transient int numVisiblySimilarBackgroundColors = 1;
+
+  private transient int numVisiblySimilarTextColors = 1;
+
   public ColorContrastResult() {
     this.confidence = ColorContrastRunner.Confidence.NONE;
   }
@@ -38,12 +42,26 @@ public class ColorContrastResult {
       if (!alternativePair.isVisiblySimilar(newColorPair)) {
         numDifferentBackgroundColors++;
         numVisiblyDifferentTextColors++;
+      } else if (alternativePair.isVisiblySimilar(newColorPair)) {
+        if (alternativePair.backgroundColor.isVisiblySameColor(alternativePair.textColor)
+              && newColorPair.backgroundColor.isVisiblySameColor(newColorPair.textColor)) {
+          numVisiblySimilarBackgroundColors++;
+          numVisiblySimilarTextColors++;
+        }
       }
     }
 
-    if (numDifferentBackgroundColors > 3 || numVisiblyDifferentTextColors > 3) {
+    if (numDifferentBackgroundColors > 3
+            || numVisiblyDifferentTextColors > 3
+            || numVisiblySimilarBackgroundColors > 3
+            || numVisiblySimilarTextColors > 3
+    ) {
       confidence = ColorContrastRunner.Confidence.LOW;
-    } else if (numDifferentBackgroundColors > 1 || numVisiblyDifferentTextColors > 1) {
+    } else if (numDifferentBackgroundColors > 1
+            || numVisiblyDifferentTextColors > 1
+            || numVisiblySimilarBackgroundColors > 1
+            || numVisiblySimilarTextColors > 1
+    ) {
       confidence = ColorContrastRunner.Confidence.MID;
     }
 

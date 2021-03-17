@@ -43,10 +43,15 @@ public abstract class AxeImage implements JsonSerializable {
       }
 
       final AxeColor color = pixel(point.valueX, point.valueY);
+      final AxeColor colorAbove = pixel(point.valueX, point.valueY - 1);
+      final AxeColor colorBelow = pixel(point.valueX, point.valueY + 1);
 
+      runner.onPixel(colorAbove, previousColor);
+      previousColor = colorAbove;
       runner.onPixel(color, previousColor);
-
       previousColor = color;
+      runner.onPixel(colorBelow, previousColor);
+      previousColor = colorBelow;
 
       // If this is the end of a valueY, see if we can make conclusions about our color maps.
       if (point.isTrailingEdge(frame)) {
