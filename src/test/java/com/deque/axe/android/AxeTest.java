@@ -324,11 +324,6 @@ public class AxeTest {
 
       assertEquals(expectedRuleResultKeySet, actualRuleResultKeySet);
 
-      for (Map.Entry<String, Object> stringObjectEntry : expectedAxeRuleResult.props.entrySet()) {
-        Object key = ((Map.Entry) stringObjectEntry).getKey();
-        assertTrue(actualRuleResult.props.containsKey(key));
-      }
-
       actualResults.remove(0);
     });
 
