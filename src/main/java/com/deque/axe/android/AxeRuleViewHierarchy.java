@@ -24,7 +24,14 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
         AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE,
         axeView.overridesAccessibilityDelegate
     );
-    axeProps.put(AxeProps.Name.IS_VISIBLE_TO_USER, axeView.isVisibleToUser);
+    if (axeView.calculatedProps != null
+            && axeView.calculatedProps.get(
+                    AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) != null) {
+      axeProps.put(
+              AxeProps.Name.IS_VISIBLE_TO_USER,
+              axeView.calculatedProps.get(AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp())
+      );
+    }
   }
 
   @CallSuper
