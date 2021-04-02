@@ -29,7 +29,11 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
                     AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) != null) {
       axeProps.put(
               AxeProps.Name.IS_VISIBLE_TO_USER,
-              axeView.calculatedProps.get(AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp())
+              Boolean.parseBoolean(
+                      axeView.calculatedProps.get(
+                              AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()
+                      )
+              )
       );
     }
   }
