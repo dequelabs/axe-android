@@ -4,6 +4,8 @@ import com.deque.axe.android.utils.JsonSerializable;
 import com.deque.axe.android.wrappers.AxePoint;
 import com.deque.axe.android.wrappers.AxeRect;
 
+import java.util.ArrayList;
+
 public abstract class AxeImage implements JsonSerializable {
 
   public abstract AxeRect frame();
@@ -35,32 +37,41 @@ public abstract class AxeImage implements JsonSerializable {
 
     AxeColor previousColor = null;
 
+    ArrayList<AxeColor> middleRowColors = new ArrayList<>();
+
+    ArrayList<AxeColor> belowMiddleRowColors = new ArrayList<>();
+
     for (final AxePoint point : frame.binaryRowSearch(5)) {
 
       //If this is a new valueY, clear stuff out and start over.
       if (point.isLeadingEdge(frame)) {
         runner.onRowBegin();
+        middleRowColors.clear();
+        belowMiddleRowColors.clear();
       }
 
-      final AxeColor color = pixel(point.valueX, point.valueY);
       final AxeColor colorAbove = pixel(point.valueX, point.valueY - 1);
-      final AxeColor colorOneMoreAbove = pixel(point.valueX, point.valueY - 2);
+      final AxeColor color = pixel(point.valueX, point.valueY);
       final AxeColor colorBelow = pixel(point.valueX, point.valueY + 1);
-      final AxeColor colorOneMoreBelow = pixel(point.valueX, point.valueY + 2);
 
-      runner.onPixel(colorOneMoreAbove, previousColor);
-      previousColor = colorOneMoreAbove;
+      middleRowColors.add(color);
+      belowMiddleRowColors.add(colorBelow);
+
       runner.onPixel(colorAbove, previousColor);
       previousColor = colorAbove;
-      runner.onPixel(color, previousColor);
-      previousColor = color;
-      runner.onPixel(colorBelow, previousColor);
-      previousColor = colorBelow;
-      runner.onPixel(colorOneMoreBelow, previousColor);
-      previousColor = colorOneMoreBelow;
 
       // If this is the end of a valueY, see if we can make conclusions about our color maps.
       if (point.isTrailingEdge(frame)) {
+
+        for (AxeColor middleRowColor : middleRowColors) {
+          runner.onPixel(middleRowColor, previousColor);
+          previousColor = middleRowColor;
+        }
+
+        for (AxeColor belowMiddleRowColor : belowMiddleRowColors) {
+          runner.onPixel(belowMiddleRowColor, previousColor);
+          previousColor = belowMiddleRowColor;
+        }
 
         final ColorContrastResult newEntry = runner.onRowEnd();
 
