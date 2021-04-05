@@ -59,8 +59,8 @@ public class ColorContrastTests {
   public void imageTest_textWithIcon() {
     new ImageResourceResult(
             "text_with_icon.png",
-            new AxeColor(255,0,92,208),
             new AxeColor(255,255,255,255),
+            new AxeColor(255,0,92,208),
             ColorContrastRunner.Confidence.HIGH
     ).runTest();
   }
@@ -70,8 +70,8 @@ public class ColorContrastTests {
     new ImageResourceResult(
             "intellij_capture_hard.png",
             new AxeColor("ff113247"),
-            new AxeColor("fff5f5f5"),
-            Confidence.MID
+            new AxeColor("ffa0da74"),
+            Confidence.HIGH
     ).runTest();
   }
 
@@ -79,8 +79,8 @@ public class ColorContrastTests {
   public void imageTest_intellijCapture() {
     new ImageResourceResult(
             "intellij_capture.png",
-            new AxeColor(255,17,50,71),
             new AxeColor(255,245,245,245),
+            new AxeColor(255,17,50,71),
             Confidence.HIGH
     ).runTest();
   }
@@ -99,8 +99,8 @@ public class ColorContrastTests {
   public void imageTest_largeWhiteTextBlueBackground() {
     new ImageResourceResult(
             "white_text_blue_background_large.png",
-            new AxeColor(255,0,90,208),
             new AxeColor(255,255,255,255),
+            new AxeColor(255,0,90,208),
             ColorContrastRunner.Confidence.HIGH
     ).runTest();
   }
@@ -109,9 +109,9 @@ public class ColorContrastTests {
   public void imageTest_textOnlyAtTop() {
     new ImageResourceResult(
             "text_only_at_top.png",
-            new AxeColor(255,169,169,169),
-            new AxeColor(255,254,254,254),
-            ColorContrastRunner.Confidence.HIGH
+            new AxeColor(255,239,241,240),
+            new AxeColor(255,247,249,248),
+            ColorContrastRunner.Confidence.LOW
     ).runTest();
   }
 
@@ -119,8 +119,8 @@ public class ColorContrastTests {
   public void example_Inaccessible() {
     new ImageResourceResult(
             "color_contrast_example.png",
-            new AxeColor(255,202,202,203),
             new AxeColor(255,242,242,244),
+            new AxeColor(255,153,153,153),
             ColorContrastRunner.Confidence.HIGH
     ).runTest(new AxeRect(126, 764, 682, 756));
   }
@@ -129,7 +129,7 @@ public class ColorContrastTests {
   public void example_ManualTestingRequired() {
     new ImageResourceResult(
             "color_contrast_example.png",
-            new AxeColor(255,172,170,150),
+            new AxeColor(255,136, 134,102),
             new AxeColor(255,242,242,244),
             ColorContrastRunner.Confidence.HIGH
     ).runTest(new AxeRect(126, 1017, 966, 1017));
@@ -139,7 +139,7 @@ public class ColorContrastTests {
   public void example_Accessible() {
     new ImageResourceResult(
             "color_contrast_example.png",
-            new AxeColor(255,133,133,134),
+            new AxeColor(255,0,0,0),
             new AxeColor(255,242,242,244),
             ColorContrastRunner.Confidence.HIGH
     ).runTest(new AxeRect(126, 764, 1553, 1627));
