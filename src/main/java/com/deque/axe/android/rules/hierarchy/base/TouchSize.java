@@ -34,11 +34,13 @@ public abstract class TouchSize extends ActiveView {
     axeProps.put(AxeProps.Name.IS_RENDERED,
             axeView.isRendered(axeDevice.dpi, axeDevice.screenHeight, axeDevice.screenWidth));
     axeProps.put(AxeProps.Name.IS_OFF_SCREEN,
-            axeView.isOffScreen(axeView.boundsInScreen,
-                    axeDevice.screenHeight, axeDevice.screenWidth));
+            axeView.isOffScreen(axeDevice.screenHeight, axeDevice.screenWidth));
     axeProps.put(AxeProps.Name.IS_PARTIALLY_VISIBLE,
-            axeView.isPartiallyVisible(axeView.boundsInScreen,
-                    axeDevice.screenHeight, axeDevice.screenWidth));
+            axeView.isPartiallyVisible(axeDevice.screenHeight, axeDevice.screenWidth));
+    axeProps.put(AxeProps.Name.HEIGHT, axeView.boundsInScreen.height());
+    axeProps.put(AxeProps.Name.MEASURED_HEIGHT, axeView.measuredHeight);
+    axeProps.put(AxeProps.Name.WIDTH, axeView.boundsInScreen.width());
+    axeProps.put(AxeProps.Name.MEASURED_WIDTH, axeView.measuredWidth);
     axeProps.put(AxeProps.Name.FRAME, axeView.boundsInScreen);
   }
 
