@@ -4,6 +4,8 @@ import com.deque.axe.android.utils.JsonSerializable;
 import com.deque.axe.android.wrappers.AxePoint;
 import com.deque.axe.android.wrappers.AxeRect;
 
+import java.util.ArrayList;
+
 public abstract class AxeImage implements JsonSerializable {
 
   public abstract AxeRect frame();
@@ -35,21 +37,41 @@ public abstract class AxeImage implements JsonSerializable {
 
     AxeColor previousColor = null;
 
+    ArrayList<AxeColor> middleRowColors = new ArrayList<>();
+
+    ArrayList<AxeColor> belowMiddleRowColors = new ArrayList<>();
+
     for (final AxePoint point : frame.binaryRowSearch(5)) {
 
       //If this is a new valueY, clear stuff out and start over.
       if (point.isLeadingEdge(frame)) {
         runner.onRowBegin();
+        middleRowColors.clear();
+        belowMiddleRowColors.clear();
       }
 
+      final AxeColor colorAbove = pixel(point.valueX, point.valueY - 1);
       final AxeColor color = pixel(point.valueX, point.valueY);
+      final AxeColor colorBelow = pixel(point.valueX, point.valueY + 1);
 
-      runner.onPixel(color, previousColor);
+      middleRowColors.add(color);
+      belowMiddleRowColors.add(colorBelow);
 
-      previousColor = color;
+      runner.onPixel(colorAbove, previousColor);
+      previousColor = colorAbove;
 
       // If this is the end of a valueY, see if we can make conclusions about our color maps.
       if (point.isTrailingEdge(frame)) {
+
+        for (AxeColor middleRowColor : middleRowColors) {
+          runner.onPixel(middleRowColor, previousColor);
+          previousColor = middleRowColor;
+        }
+
+        for (AxeColor belowMiddleRowColor : belowMiddleRowColors) {
+          runner.onPixel(belowMiddleRowColor, previousColor);
+          previousColor = belowMiddleRowColor;
+        }
 
         final ColorContrastResult newEntry = runner.onRowEnd();
 

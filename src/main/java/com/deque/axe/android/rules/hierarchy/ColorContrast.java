@@ -78,11 +78,16 @@ public class ColorContrast extends InformativeView {
       return AxeStatus.INAPPLICABLE;
     }
 
-    if (EditTextValue.EDITABLE_TYPE_NAMES.contains(axeProps.get(Name.CLASS_NAME, String.class))) {
+    if (axeProps.get(Name.IS_VISIBLE_TO_USER) != null
+            && !axeProps.get(Name.IS_VISIBLE_TO_USER, Boolean.class)) {
+      return AxeStatus.INAPPLICABLE;
+    }
+
+    if (confidence == null) {
       return AxeStatus.INCOMPLETE;
     }
 
-    if (confidence == null || !confidence.contains(Confidence.HIGH)) {
+    if (!confidence.contains(Confidence.HIGH)) {
       return AxeStatus.PASS;
     }
 
