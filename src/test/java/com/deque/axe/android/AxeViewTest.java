@@ -85,7 +85,7 @@ public class AxeViewTest {
 
     AxeView axeView = child.build();
 
-    assertFalse(axeView.isPartiallyVisible(axeView.boundsInScreen, 220, 101));
+    assertFalse(axeView.isPartiallyVisible(220, 101));
   }
 
   @Test
@@ -97,7 +97,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    Assert.assertTrue(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+    Assert.assertTrue(axeView.isOffScreen(220, 100));
   }
 
   @Test
@@ -109,7 +109,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+    assertFalse(axeView.isOffScreen(220, 100));
   }
 
   @Test
@@ -121,7 +121,7 @@ public class AxeViewTest {
 
     AxeView axeView = parent.build();
 
-    assertFalse(axeView.isOffScreen(axeView.boundsInScreen, 220, 100));
+    assertFalse(axeView.isOffScreen(220, 100));
   }
 
   @Test

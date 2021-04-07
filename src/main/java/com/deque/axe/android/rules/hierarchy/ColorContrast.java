@@ -55,9 +55,10 @@ public class ColorContrast extends InformativeView {
       axeProps.put(Name.COLOR_BACKGROUND, background);
       axeProps.put(Name.COLOR_FOREGROUND, foreground);
       axeProps.put(Name.CONFIDENCE, result.getConfidence());
-      axeProps.put(Name.IS_OFF_SCREEN,
-              axeView.isOffScreen(axeView.boundsInScreen,
-                      axeDevice.screenHeight, axeDevice.screenWidth));
+      axeProps.put(
+          Name.IS_OFF_SCREEN,
+          axeView.isOffScreen(axeDevice.screenHeight, axeDevice.screenWidth)
+      );
 
       if (background != null && foreground != null) {
         axeProps.put(Name.COLOR_CONTRAST, background.contrast(foreground));
