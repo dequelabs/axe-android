@@ -121,6 +121,7 @@ workflows:
   Change Management:
     jobs:
       - Build and Test:
+          context: mobile-team
           filters:
             branches:
               ignore:
@@ -130,6 +131,7 @@ workflows:
   Publish Release Candidate:
     jobs:
       - Publish Beta:
+          context: mobile-team
           filters:
             branches:
               only:
