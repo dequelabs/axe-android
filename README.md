@@ -2,7 +2,7 @@
 
 Automated **WCAG 2.0 and WCAG 2.1 Accessibility** library for Android Applications. Not an Android Developer? Check out the rest of the axe family.
 
-[![axe-ios](https://img.shields.io/badge/axe-ios-green.svg?logo=github&logoColor=ffffff&longCache=true&colorA=0077C8&colorB=000000&style=for-the-badge)](https://github.com/dequelabs/axe-ios)     [![axe-web](https://img.shields.io/badge/axe-web-green.svg?logo=github&logoColor=ffffff&longCache=true&colorA=0077C8&colorB=000000&style=for-the-badge)](https://github.com/dequelabs/axe-core)
+[![axe-web](https://img.shields.io/badge/axe-web-green.svg?logo=github&logoColor=ffffff&longCache=true&colorA=0077C8&colorB=000000&style=for-the-badge)](https://github.com/dequelabs/axe-core)
 
 ### Results in Minutes
 
@@ -31,16 +31,16 @@ Get results on your phone in minutes.
 
 |  | Rule ID | Issue Type | Unique to axe |
 |--|---------|------------|----|
-| 1 | Active View Name | WCAG 2.0, WCAG 2.1 | ❌ |
-| 2 | Color Contrast | WCAG 2.0, WCAG 2.1 | ❌ |
-| 3 | ImageView Name | WCAG 2.0, WCAG 2.1 | ❌ |
+| 1 | Active View Name | WCAG 1.1.1 | ❌ |
+| 2 | Color Contrast | WCAG 1.4.3 | ❌ |
+| 3 | ImageView Name | WCAG 1.1.1 | ❌ |
 | 4 | Touch Size - WCAG | WCAG 2.1 | ❌ |
 | 5 | Touch Size - Custom | Best Practice | ❌ |
-| 6 | CheckBox Name | Best Practice | ✅ |
-| 7 | Don't Move Accessibility Focus | Best Practice | ✅ |
-| 8 | EditText Name | Best Practice | ✅ |
-| 9 | EditText Value | WCAG 2.0, WCAG 2.1 | ✅ |
-| 10 | Switch Name | Best Practice | ✅ |
+| 6 | CheckBox Name | WCAG 1.3.1 | ✅ |
+| 7 | Don't Move Accessibility Focus | WCAG 3.2.2 WCAG 2.1 Change of Context | ✅ |
+| 8 | EditText Name | WCAG 1.3.1 | ✅ |
+| 9 | EditText Value | WCAG 4.1.2 | ✅ |
+| 10 | Switch Name | WCAG 2.1 | ✅ |
 
 ### Axe Manifesto
 
@@ -54,22 +54,6 @@ Accessibility is hard. Sorting through endless reports, long explanations, and f
 - Released to Production 
   - As we have substantive new features that are stable... like a New WCAG Rule.
   - Any time false positives are fixed and manual tests validated. 
-
-### Two Week Pledge
-
-When a false positive is reported to GitHub Issues AND
-
-- We have enough information to confirm it is a false positive.
-- It is not specific to a given flavor.  
-- It is not specific to an Android Version more than 2 major versions back.
-
-we will do one of the following
-
-1. Fix the false positive.
-2. Demote it to `Experimental`.
-3. Respond in some other substantive way given the nature of the report.
-
-within 2 weeks AND the view hierarchy that exposed that false positive will remain a part of our test suite until that test case is no longer valid.
 
 ## Utilizing the Analysis Library
 
