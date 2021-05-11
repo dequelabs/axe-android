@@ -29,18 +29,18 @@ Get results on your phone in minutes.
 
 ## Rule Overview
 
-|  | Rule ID | Issue Type | Unique to axe |
-|--|---------|------------|----|
-| 1 | Active View Name | WCAG 1.1.1 | ❌ |
-| 2 | Color Contrast | WCAG 1.4.3 | ❌ |
-| 3 | ImageView Name | WCAG 1.1.1 | ❌ |
-| 4 | Touch Size - WCAG | WCAG 2.1 | ❌ |
-| 5 | Touch Size - Custom | Best Practice | ❌ |
-| 6 | CheckBox Name | WCAG 1.3.1 | ✅ |
-| 7 | Don't Move Accessibility Focus | WCAG 3.2.2 WCAG 2.1 Change of Context | ✅ |
-| 8 | EditText Name | WCAG 1.3.1 | ✅ |
-| 9 | EditText Value | WCAG 4.1.2 | ✅ |
-| 10 | Switch Name | WCAG 2.1 | ✅ |
+|  | Rule ID | Issue Type |
+|--|---------|------------|
+| 1 | Active View Name | WCAG 1.1.1 |
+| 2 | Color Contrast | WCAG 1.4.3 |
+| 3 | ImageView Name | WCAG 1.1.1 |
+| 4 | Touch Size - WCAG | WCAG 2.1 |
+| 5 | Touch Size - Custom | Best Practice |
+| 6 | CheckBox Name | WCAG 1.3.1 |
+| 7 | Don't Move Accessibility Focus | WCAG 3.2.2 WCAG 2.1 Change of Context |
+| 8 | EditText Name | WCAG 1.3.1 |
+| 9 | EditText Value | WCAG 4.1.2 |
+| 10 | Switch Name | WCAG 2.1 |
 
 ### Axe Manifesto
 
