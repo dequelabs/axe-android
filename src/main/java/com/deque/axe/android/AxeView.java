@@ -334,7 +334,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
   @SuppressWarnings("WeakerAccess")
   public String speakableText() {
-    return text == null ? contentDescription : text;
+    return text == null || text.isEmpty() ? contentDescription : text;
   }
 
   public String speakableTextOfLabeledBy() {
@@ -506,7 +506,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
    * @return The screen title.
    */
   public String getScreenTitle() {
-    
+
     final AxeView contentView = getContentView();
 
     if (contentView != null && contentView.isContentView()) {
