@@ -63,9 +63,7 @@ jobs:
   Build and Test:
     <<: *configure_machine
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "4e:6c:aa:95:b0:8b:3f:9b:68:32:c9:d9:8e:fa:25:e0"
+      - add_ssh_keys
       - *load_repo
       - *python_deps
       - checkout
@@ -95,9 +93,7 @@ jobs:
   Publish Beta:
     <<: *configure_machine
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "4e:6c:aa:95:b0:8b:3f:9b:68:32:c9:d9:8e:fa:25:e0"
+      - add_ssh_keys
       - *load_repo
       - *python_deps
       - checkout
@@ -111,10 +107,7 @@ jobs:
   Release:
     <<: *configure_machine
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "bb:e9:c0:14:a4:f6:1d:2b:91:cb:0a:f0:aa:93:79:fc"
-            - "4e:6c:aa:95:b0:8b:3f:9b:68:32:c9:d9:8e:fa:25:e0"
+      - add_ssh_keys
       - checkout
       - *python_deps
       - *checkout_all
