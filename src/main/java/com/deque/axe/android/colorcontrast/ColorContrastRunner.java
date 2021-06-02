@@ -47,7 +47,17 @@ public class ColorContrastRunner {
               transition.mostContrastingColor
           );
 
-          countExactPairs.increment(colorPair);
+
+          final ColorPair alternateColorPair = new ColorPair(
+                  transition.mostContrastingColor,
+                  transition.startColor
+          );
+
+          if (countExactPairs.containsKey(alternateColorPair)) {
+            countExactPairs.increment(alternateColorPair);
+          } else {
+            countExactPairs.increment(colorPair);
+          }
         }
       }
     }
@@ -164,11 +174,30 @@ public class ColorContrastRunner {
     for (Map.Entry<ColorPair, Integer> entry : sortedByValueAndContrast) {
       ColorPair colorPair = entry.getKey();
       if (colorPair.backgroundColor.equals(actualTextColor) || colorPair.textColor.equals(actualTextColor)) {
-        filteredList.add(entry);
+        if (colorPair.backgroundColor.equals(actualTextColor)) {
+          filteredList.add(new Map.Entry<ColorPair, Integer>() {
+            @Override
+            public ColorPair getKey() {
+              return new ColorPair(entry.getKey().textColor, entry.getKey().backgroundColor);
+            }
+
+            @Override
+            public Integer getValue() {
+              return entry.getValue();
+            }
+
+            @Override
+            public Integer setValue(Integer value) {
+              return null;
+            }
+          });
+        } else {
+          filteredList.add(entry);
+        }
       }
     }
 
-    if (sortedByValueAndContrast.size() <= 0) {
+    if (filteredList.size() <= 0) {
       return result;
     }
 
