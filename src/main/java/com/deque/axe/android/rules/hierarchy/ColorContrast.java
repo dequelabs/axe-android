@@ -47,7 +47,10 @@ public class ColorContrast extends InformativeView {
     }
 
     try {
-      ColorContrastResult result = axeBitmap.runColorContrastCalculation(axeView.boundsInScreen);
+      ColorContrastResult result = axeBitmap.runColorContrastCalculation(
+              axeView.boundsInScreen,
+              new AxeColor(axeView.textColor)
+      );
       AxeColor background = result.getMostLikelyBackgroundColor();
       AxeColor foreground = result.getMostLikelyTextColor();
 

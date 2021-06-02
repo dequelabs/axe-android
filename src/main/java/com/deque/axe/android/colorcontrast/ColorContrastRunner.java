@@ -140,6 +140,76 @@ public class ColorContrastRunner {
     return result;
   }
 
+  ColorContrastResult onRowEnd(AxeColor actualTextColor) {
+
+    ColorContrastResult result = new ColorContrastResult();
+
+    CountMap<ColorPair> pairsWithSimilarTextColor = new CountMap<>();
+
+    for (Map.Entry<ColorPair, Integer> entry1 : countExactPairs.entrySet()) {
+      for (Map.Entry<ColorPair, Integer> entry2 : countExactPairs.entrySet()) {
+        if (entry1.getKey().backgroundColor.equals(entry2.getKey().backgroundColor)) {
+          if (entry1.getKey().textColor.isVisiblySameColor(entry2.getKey().textColor)) {
+            pairsWithSimilarTextColor.increment(entry1.getKey(), entry2.getValue());
+          }
+        }
+      }
+    }
+
+    List<Map.Entry<ColorPair, Integer>> sortedByValueAndContrast = pairsWithSimilarTextColor
+            .entriesSortedByValue((o1, o2) -> o1.compareTo(o2));
+
+    List<Map.Entry<ColorPair, Integer>> filteredList = new ArrayList<>();
+
+    for (Map.Entry<ColorPair, Integer> entry : sortedByValueAndContrast) {
+      ColorPair colorPair = entry.getKey();
+      if (colorPair.backgroundColor.equals(actualTextColor) || colorPair.textColor.equals(actualTextColor)) {
+        filteredList.add(entry);
+      }
+    }
+
+    if (sortedByValueAndContrast.size() <= 0) {
+      return result;
+    }
+
+    final Set<ColorPair> resultPairs = new HashSet<>();
+
+    Map.Entry<ColorPair, Integer> firstEntry = null;
+
+    for (Map.Entry<ColorPair, Integer> entry : filteredList) {
+
+      final ColorPair colorPair = entry.getKey();
+
+      final Integer occurrenceCount = entry.getValue();
+
+      if (occurrenceCount < ColorContrastConfig.MIN_CHARACTERS) {
+        break;
+      }
+
+      final Integer adjustedOccurrenceCount = occurrenceCount
+              * ColorContrastConfig.TRANSITION_COUNT_DOMINANCE_FACTOR;
+
+
+      if (firstEntry != null) {
+        if (adjustedOccurrenceCount < firstEntry.getValue()) {
+          break;
+        }
+      }
+
+      resultPairs.add(colorPair);
+
+      if (firstEntry == null) {
+        firstEntry = entry;
+      }
+    }
+
+    for (final ColorPair colorPair : resultPairs) {
+      result.add(colorPair);
+    }
+
+    return result;
+  }
+
   @Retention(RetentionPolicy.SOURCE)
   @StringDef({
       Confidence.NONE,

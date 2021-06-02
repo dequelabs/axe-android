@@ -42,6 +42,8 @@ public class AxeViewBuilder implements Builder {
 
   private int measuredWidth = 0;
 
+  private int textColor = 0;
+
   public AxeViewBuilder() { }
 
   private AxeViewBuilder(AxeViewBuilder deepCopyThis) {
@@ -62,6 +64,7 @@ public class AxeViewBuilder implements Builder {
     isVisibleToUser = deepCopyThis.isVisibleToUser;
     measuredHeight = deepCopyThis.measuredHeight;
     measuredWidth = deepCopyThis.measuredWidth;
+    textColor = deepCopyThis.textColor;
   }
 
   /**
@@ -253,6 +256,11 @@ public class AxeViewBuilder implements Builder {
   @Override
   public int measuredWidth() {
     return measuredWidth;
+  }
+
+  @Override
+  public int textColor() {
+    return textColor;
   }
 
   /**
