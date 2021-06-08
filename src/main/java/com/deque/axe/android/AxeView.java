@@ -1,5 +1,6 @@
 package com.deque.axe.android;
 
+import com.deque.axe.android.colorcontrast.AxeColor;
 import com.deque.axe.android.constants.AndroidClassNames;
 import com.deque.axe.android.constants.Constants;
 import com.deque.axe.android.utils.AxeTextUtils;
@@ -125,9 +126,9 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final int measuredWidth;
 
   /**
-   * Direct copy of the associated Android Property.
+   * Text Color property encapsulated in an Axe wrapper.
    */
-  public final int textColor;
+  public final AxeColor textColor;
 
   /**
    * Maintains a copy of Content View Axe Rect.
@@ -184,7 +185,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     int measuredWidth();
 
-    int textColor();
+    AxeColor textColor();
 
     default AxeView build() {
       return new AxeView(this);
@@ -211,7 +212,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean isVisibleToUser,
       final int measuredHeight,
       final int measuredWidth,
-      final int textColor
+      final AxeColor textColor
   ) {
     this.boundsInScreen = boundsInScreen;
     this.className = className;

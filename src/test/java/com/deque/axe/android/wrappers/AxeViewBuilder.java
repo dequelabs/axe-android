@@ -2,6 +2,7 @@ package com.deque.axe.android.wrappers;
 
 import com.deque.axe.android.AxeView;
 import com.deque.axe.android.AxeView.Builder;
+import com.deque.axe.android.colorcontrast.AxeColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class AxeViewBuilder implements Builder {
 
   private int measuredWidth = 0;
 
-  private int textColor = 0;
+  private AxeColor textColor = new AxeColor(0);
 
   public AxeViewBuilder() { }
 
@@ -259,7 +260,7 @@ public class AxeViewBuilder implements Builder {
   }
 
   @Override
-  public int textColor() {
+  public AxeColor textColor() {
     return textColor;
   }
 
