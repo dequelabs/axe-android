@@ -53,6 +53,22 @@ public class ColorContrastTests {
 
       assertEquals(fileName, expecteTextColor, entry.getMostLikelyTextColor());
     }
+
+    void runTestWithActualTextColor(AxeRect frame, AxeColor actualTextColor) {
+      final String fileName = resourcePath;
+
+      final AxeFile axeFile = new AxeFile(fileName);
+
+      final AxeJankyPng axeJankyPng = new AxeJankyPng(axeFile);
+
+      ColorContrastResult entry = axeJankyPng.runColorContrastCalculation(frame, actualTextColor);
+
+      assertEquals(fileName, confidence, entry.getConfidence());
+
+      assertEquals(fileName, expectedBackgroundColor, entry.getMostLikelyBackgroundColor());
+
+      assertEquals(fileName, expecteTextColor, entry.getMostLikelyTextColor());
+    }
   }
 
   @Test
@@ -133,6 +149,19 @@ public class ColorContrastTests {
             new AxeColor(255,242,242,244),
             ColorContrastRunner.Confidence.HIGH
     ).runTest(new AxeRect(126, 1017, 966, 1017));
+  }
+
+  @Test
+  public void example_withActualTextColor_ManualTestingRequired() {
+    new ImageResourceResult(
+            "color_contrast_example.png",
+            new AxeColor(255,242,242,244),
+            new AxeColor(255,136, 134,102),
+            ColorContrastRunner.Confidence.HIGH
+    ).runTestWithActualTextColor(
+            new AxeRect(126, 1017, 966, 1017),
+            new AxeColor(255,136, 134,102)
+    );
   }
 
   @Test
