@@ -259,11 +259,6 @@ public class AxeViewBuilder implements Builder {
     return measuredWidth;
   }
 
-  @Override
-  public AxeColor textColor() {
-    return textColor;
-  }
-
   /**
    * Returns AxeViewBuilder with measuredWidth.
    * @param measuredWidth the measuredWidth.
@@ -273,6 +268,11 @@ public class AxeViewBuilder implements Builder {
     this.measuredWidth = measuredWidth;
 
     return this;
+  }
+
+  @Override
+  public AxeColor textColor() {
+    return textColor;
   }
 
   public AxeView build() {

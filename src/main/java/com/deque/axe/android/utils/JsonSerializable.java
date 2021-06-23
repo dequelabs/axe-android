@@ -26,7 +26,7 @@ public interface JsonSerializable {
         @Override
         public void write(JsonWriter out, AxeColor value) throws IOException {
           if (value == null) {
-            value = new AxeColor(0, 0, 0 ,0);
+            value = new AxeColor(0, 0, 0,0);
           }
           out.jsonValue('"' + value.toHex() + '"');
         }

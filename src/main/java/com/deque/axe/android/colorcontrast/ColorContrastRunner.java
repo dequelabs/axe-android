@@ -173,7 +173,8 @@ public class ColorContrastRunner {
 
     for (Map.Entry<ColorPair, Integer> entry : sortedByValueAndContrast) {
       ColorPair colorPair = entry.getKey();
-      if (colorPair.backgroundColor.equals(actualTextColor) || colorPair.textColor.equals(actualTextColor)) {
+      if (colorPair.backgroundColor.equals(actualTextColor)
+              || colorPair.textColor.equals(actualTextColor)) {
         if (colorPair.backgroundColor.equals(actualTextColor)) {
           filteredList.add(new Map.Entry<ColorPair, Integer>() {
             @Override

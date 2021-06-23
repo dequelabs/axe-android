@@ -20,6 +20,12 @@ public abstract class AxeImage implements JsonSerializable {
     return runColorContrastCalculation(frame());
   }
 
+  /**
+   * Run the ColorContrast calculation on a portion of the Image.
+   * @param frame The frame to run on.
+   * @param actualTextColor The actual color of the text.
+   * @return The result.
+   */
   public ColorContrastResult runColorContrastCalculation(AxeRect frame, AxeColor actualTextColor) {
 
     if (frame == null) {
