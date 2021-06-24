@@ -136,12 +136,12 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-version = "TEST_JAR94"
+version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
 
-//if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
-//    print ("No artifactory Info. Maven Central Publishing impossible.")
-//    return
-//}
+if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
+    print ("No artifactory Info. Maven Central Publishing impossible.")
+    return
+}
 
 signing {
     sign configurations.archives
@@ -152,13 +152,13 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-//                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-//            }
-//
-//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-//                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-//            }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+            }
 
             pom.project {
                 name 'Axe Android'
