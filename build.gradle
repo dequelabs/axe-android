@@ -58,6 +58,11 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.7.22'
 }
 
+configurations.all { config ->
+    config.exclude group: 'com.google.code.findbugs'
+    config.exclude group: 'net.jcip', module: 'jcip-annotations'
+}
+
 apply plugin: 'jacoco'
 
 jacoco {
