@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     id "com.github.spotbugs" version "1.6.11"
+    id "com.jfrog.artifactory" version "4.4.18"
 }
 
 apply plugin: 'java'
@@ -41,26 +42,25 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
+configurations {
+    spotbugsConfig {
+        canBeConsumed(false)
+        canBeResolved(false)
+    }
+}
 
+dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:support-annotations:24.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.jetbrains:annotations:15.0'
-    implementation ("com.google.code.findbugs:annotations:3.0.1") {
-        exclude module: 'jsr305'
-        exclude module: 'jcip-annotations'
-    }
 
     testImplementation 'ar.com.hjg:pngj:2.1.0'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.7.22'
-}
 
-configurations.all { config ->
-    config.exclude group: 'com.google.code.findbugs'
-    config.exclude group: 'net.jcip', module: 'jcip-annotations'
+    spotbugsConfig "com.google.code.findbugs:annotations:3.0.1"
 }
 
 apply plugin: 'jacoco'
@@ -136,12 +136,12 @@ task sourcesJar(type: Jar) {
     from sourceSets.main.allSource
 }
 
-version = project.hasProperty('versionName') ? project.versionName : 'NOT_A_VERSION_NAME'
+version = "TEST_JAR94"
 
-if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
-    print ("No artifactory Info. Maven Central Publishing impossible.")
-    return
-}
+//if (!(hasProperty('DQ_MAVEN_CENTRAL_USERNAME') && hasProperty('DQ_MAVEN_CENTRAL_APIKEY'))) {
+//    print ("No artifactory Info. Maven Central Publishing impossible.")
+//    return
+//}
 
 signing {
     sign configurations.archives
@@ -152,13 +152,13 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
-            }
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: "$DQ_MAVEN_CENTRAL_USERNAME", password: "$DQ_MAVEN_CENTRAL_APIKEY")
+//            }
 
             pom.project {
                 name 'Axe Android'
