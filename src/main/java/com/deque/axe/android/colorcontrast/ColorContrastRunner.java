@@ -214,21 +214,19 @@ public class ColorContrastRunner {
         break;
       }
 
-      final Integer adjustedOccurrenceCount = occurrenceCount
+      final int adjustedOccurrenceCount = occurrenceCount
               * ColorContrastConfig.TRANSITION_COUNT_DOMINANCE_FACTOR;
 
-
-      if (firstEntry != null) {
-        if (adjustedOccurrenceCount < firstEntry.getValue()) {
-          break;
-        }
-      }
-
-      resultPairs.add(colorPair);
 
       if (firstEntry == null) {
         firstEntry = entry;
       }
+
+      if (adjustedOccurrenceCount < firstEntry.getValue()) {
+        break;
+      }
+
+      resultPairs.add(colorPair);
     }
 
     for (final ColorPair colorPair : resultPairs) {
