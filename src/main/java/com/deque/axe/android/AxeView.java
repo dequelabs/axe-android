@@ -1,5 +1,6 @@
 package com.deque.axe.android;
 
+import com.deque.axe.android.colorcontrast.AxeColor;
 import com.deque.axe.android.constants.AndroidClassNames;
 import com.deque.axe.android.constants.Constants;
 import com.deque.axe.android.utils.AxeTextUtils;
@@ -14,7 +15,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -126,6 +126,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   public final int measuredWidth;
 
   /**
+   * Text Color property encapsulated in an Axe wrapper.
+   */
+  public final AxeColor textColor;
+
+  /**
    * Maintains a copy of Content View Axe Rect.
    */
   static AxeRect contentViewAxeRect;
@@ -180,6 +185,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     int measuredWidth();
 
+    AxeColor textColor();
+
     default AxeView build() {
       return new AxeView(this);
     }
@@ -204,7 +211,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean overridesAccessibilityDelegate,
       final boolean isVisibleToUser,
       final int measuredHeight,
-      final int measuredWidth
+      final int measuredWidth,
+      final AxeColor textColor
   ) {
     this.boundsInScreen = boundsInScreen;
     this.className = className;
@@ -225,6 +233,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.isVisibleToUser = isVisibleToUser;
     this.measuredHeight = measuredHeight;
     this.measuredWidth = measuredWidth;
+    this.textColor = textColor;
 
     setContentView(viewIdResourceName, boundsInScreen);
     this.calculatedProps = calculateProps();
@@ -260,7 +269,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.overridesAccessibilityDelegate(),
         builder.isVisibleToUser(),
         builder.measuredHeight(),
-        builder.measuredWidth()
+        builder.measuredWidth(),
+        builder.textColor()
     );
   }
 

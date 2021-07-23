@@ -47,7 +47,17 @@ public class ColorContrastRunner {
               transition.mostContrastingColor
           );
 
-          countExactPairs.increment(colorPair);
+
+          final ColorPair alternateColorPair = new ColorPair(
+                  transition.mostContrastingColor,
+                  transition.startColor
+          );
+
+          if (countExactPairs.containsKey(alternateColorPair)) {
+            countExactPairs.increment(alternateColorPair);
+          } else {
+            countExactPairs.increment(colorPair);
+          }
         }
       }
     }
@@ -131,6 +141,92 @@ public class ColorContrastRunner {
       if (firstEntry == null) {
         firstEntry = entry;
       }
+    }
+
+    for (final ColorPair colorPair : resultPairs) {
+      result.add(colorPair);
+    }
+
+    return result;
+  }
+
+  ColorContrastResult onRowEnd(AxeColor actualTextColor) {
+
+    ColorContrastResult result = new ColorContrastResult();
+
+    CountMap<ColorPair> pairsWithSimilarTextColor = new CountMap<>();
+
+    for (Map.Entry<ColorPair, Integer> entry1 : countExactPairs.entrySet()) {
+      for (Map.Entry<ColorPair, Integer> entry2 : countExactPairs.entrySet()) {
+        if (entry1.getKey().backgroundColor.equals(entry2.getKey().backgroundColor)) {
+          if (entry1.getKey().textColor.isVisiblySameColor(entry2.getKey().textColor)) {
+            pairsWithSimilarTextColor.increment(entry1.getKey(), entry2.getValue());
+          }
+        }
+      }
+    }
+
+    List<Map.Entry<ColorPair, Integer>> sortedByValueAndContrast = pairsWithSimilarTextColor
+            .entriesSortedByValue((o1, o2) -> o1.compareTo(o2));
+
+    List<Map.Entry<ColorPair, Integer>> filteredList = new ArrayList<>();
+
+    for (Map.Entry<ColorPair, Integer> entry : sortedByValueAndContrast) {
+      ColorPair colorPair = entry.getKey();
+      if (colorPair.backgroundColor.equals(actualTextColor)) {
+        filteredList.add(new Map.Entry<ColorPair, Integer>() {
+          @Override
+          public ColorPair getKey() {
+            return new ColorPair(entry.getKey().textColor, entry.getKey().backgroundColor);
+          }
+
+          @Override
+          public Integer getValue() {
+            return entry.getValue();
+          }
+
+          @Override
+          public Integer setValue(Integer value) {
+            return null;
+          }
+        });
+      } else if (colorPair.textColor.equals(actualTextColor)) {
+        filteredList.add(entry);
+      }
+
+    }
+
+    if (filteredList.size() <= 0) {
+      return result;
+    }
+
+    final Set<ColorPair> resultPairs = new HashSet<>();
+
+    Map.Entry<ColorPair, Integer> firstEntry = null;
+
+    for (Map.Entry<ColorPair, Integer> entry : filteredList) {
+
+      final ColorPair colorPair = entry.getKey();
+
+      final Integer occurrenceCount = entry.getValue();
+
+      if (occurrenceCount < ColorContrastConfig.MIN_CHARACTERS) {
+        break;
+      }
+
+      final int adjustedOccurrenceCount = occurrenceCount
+              * ColorContrastConfig.TRANSITION_COUNT_DOMINANCE_FACTOR;
+
+
+      if (firstEntry == null) {
+        firstEntry = entry;
+      }
+
+      if (adjustedOccurrenceCount < firstEntry.getValue()) {
+        break;
+      }
+
+      resultPairs.add(colorPair);
     }
 
     for (final ColorPair colorPair : resultPairs) {
