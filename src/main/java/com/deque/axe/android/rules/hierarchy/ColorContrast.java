@@ -50,7 +50,7 @@ public class ColorContrast extends InformativeView {
 
       ColorContrastResult result;
 
-      if (axeView.textColor == null) {
+      if (axeView.textColor == null || axeView.textColor.equals(new AxeColor(0))) {
         result = axeBitmap.runColorContrastCalculation(
                 axeView.boundsInScreen
         );
