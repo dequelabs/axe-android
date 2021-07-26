@@ -22,7 +22,8 @@ public class ActiveViewName extends ActiveView {
   @Override
   public boolean isApplicable(AxeProps axeProps) {
     final String className = axeProps.get(Name.CLASS_NAME, String.class);
-    if (className.equals(AndroidClassNames.CHECKBOX)
+    if (className == null
+            || className.equals(AndroidClassNames.CHECKBOX)
             || className.equals(AndroidClassNames.SWITCH)) {
       return false;
     }
