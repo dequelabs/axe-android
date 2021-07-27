@@ -136,6 +136,11 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   static AxeRect contentViewAxeRect;
 
   /**
+   * True if the view overrides AccessibilityDelegate.
+   */
+  public final boolean isComposeView;
+
+  /**
    * Library of calculated props name, role, state, value.
    */
   public final Map<String, String> calculatedProps;
@@ -187,6 +192,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
 
     AxeColor textColor();
 
+    boolean isComposeView();
+
     default AxeView build() {
       return new AxeView(this);
     }
@@ -212,7 +219,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
       final boolean isVisibleToUser,
       final int measuredHeight,
       final int measuredWidth,
-      final AxeColor textColor
+      final AxeColor textColor,
+      final boolean isComposeView
   ) {
     this.boundsInScreen = boundsInScreen;
     this.className = className;
@@ -234,6 +242,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
     this.measuredHeight = measuredHeight;
     this.measuredWidth = measuredWidth;
     this.textColor = textColor;
+    this.isComposeView = isComposeView;
 
     setContentView(viewIdResourceName, boundsInScreen);
     this.calculatedProps = calculateProps();
@@ -270,7 +279,8 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
         builder.isVisibleToUser(),
         builder.measuredHeight(),
         builder.measuredWidth(),
-        builder.textColor()
+        builder.textColor(),
+        builder.isComposeView()
     );
   }
 

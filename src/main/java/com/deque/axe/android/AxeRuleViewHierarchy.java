@@ -24,6 +24,10 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
         AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE,
         axeView.overridesAccessibilityDelegate
     );
+    axeProps.put(
+        AxeProps.Name.IS_COMPOSE_VIEW,
+        axeView.isComposeView
+    );
     if (axeView.calculatedProps != null
             && axeView.calculatedProps.get(
                     AxePropCalculator.Props.IS_VISIBLE_TO_USER.getProp()) != null) {
@@ -40,7 +44,8 @@ public abstract class AxeRuleViewHierarchy extends AxeRule {
 
   @CallSuper
   public boolean isApplicable(final AxeProps axeProps) {
-    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class);
+    return !axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class)
+            && !axeProps.get(AxeProps.Name.IS_COMPOSE_VIEW, Boolean.class);
   }
 
   public abstract @AxeStatus String runRule(final AxeProps axeProps);

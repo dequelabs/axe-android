@@ -223,6 +223,11 @@ public class AxeViewBuilder implements Builder {
   }
 
   @Override
+  public boolean isComposeView() {
+    return false;
+  }
+
+  @Override
   public boolean isVisibleToUser() {
     return isVisibleToUser;
   }

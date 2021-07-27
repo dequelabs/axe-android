@@ -36,6 +36,8 @@ public class ImageViewNameTest {
             .thenReturn("android.widget.ImageView");
     when(axeProps.get(AxeProps.Name.OVERRIDES_ACCESSIBILITY_DELEGATE, Boolean.class))
             .thenReturn(false);
+    when(axeProps.get(AxeProps.Name.IS_COMPOSE_VIEW, Boolean.class))
+            .thenReturn(false);
 
     assertTrue(subject.isApplicable(axeProps));
   }
