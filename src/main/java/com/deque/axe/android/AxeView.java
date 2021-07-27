@@ -136,7 +136,7 @@ public class AxeView implements AxeTree<AxeView>, Comparable<AxeView>, JsonSeria
   static AxeRect contentViewAxeRect;
 
   /**
-   * True if the view overrides AccessibilityDelegate.
+   * True if the view is ComposeView.
    */
   public final boolean isComposeView;
 
