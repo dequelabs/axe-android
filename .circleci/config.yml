@@ -133,7 +133,7 @@ workflows:
             branches:
               ignore:
                 - qa
-                - master
+                - main
 
   Publish Release Candidate:
     jobs:
