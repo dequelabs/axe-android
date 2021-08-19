@@ -4,14 +4,6 @@ Automated **WCAG 2.0 and WCAG 2.1 Accessibility** library for Android Applicatio
 
 [![axe-web](https://img.shields.io/badge/axe-web-green.svg?logo=github&logoColor=ffffff&longCache=true&colorA=0077C8&colorB=000000&style=for-the-badge)](https://github.com/dequelabs/axe-core)
 
-### Results in Minutes
-
-The easiest way to get started with axe-android is to download the Official Axe for Android Google Play Store Application. 
-Get results on your phone in minutes. 
-
-[![Axe for Android Mobile Application Download](https://img.shields.io/badge/google%20play-download%20axe%20for%20android%20now-green.svg?logo=android&logoColor=ffffff&longCache=true&colorA=0077C8&colorB=000000&style=for-the-badge)](https://play.google.com/store/apps/details?id=com.deque.axe.android)
-
-
 ### Table of Contents
 
 - [Rule Overview](#rule-overview)
@@ -136,51 +128,6 @@ AxeImage axeImage = new YourAxeImageClass(screenshotData);
 // Run Axe and Get Results.
 AxeResult axeResult = axe.run(new AxeContext(axeView, axeDevice, axeImage, axeEventStream));
 ```
-
-## Configuration Strategies
-
-There are a lot of different reasons to want to configure Axe. Below are a few configuration 
-strategies and motivations for these strategies. We'd LOVE to hear about other ideas you have.
-
-### Chipping Away
-
-Accessibility can seem like a **huge** task. One way to make the load seem a little lighter can be 
-to focus on fixing one set of issues at a time. The easiest way to do that would be to set up an 
-`AxeConf` object like this:
-
-```
-AxeConf axeConf = new AxeConf()
-    .removeStandard(AxeStandard.BEST_PRACTICE)
-    .removeStandard(AxeStandard.PLATFORM)
-    .removeStandard(AxeStandard.WCAG_21)
-    .removeStandard(AxeStandard.WCAG_20)
-    .addRule(ColorContrast.class);
-```
-
-### Chopping it Off
-
-The motivation for this is similar to **Chipping Away** but instead of focusing on one Rule at a 
-time, you focus on one View at a time. For example, your **Login Workflow** would be a great place 
-to start. A great configuration for this would be:
-
-```
-AxeConf axeConf = new AxeConf()
-    .removeStandard(AxeStandard.BEST_PRACTICE);
-```
-
-### Targeting Standards
-
-If you have an organizational push to be **WCAG 2.0** compliant for example, it can be beneficial to 
-ignore any other rules. The best way to do this would be:
-
-```
-AxeConf axeConf = new AxeConf()
-    .removeStandard(AxeStandard.BEST_PRACTICE)
-    .removeStandard(AxeStandard.PLATFORM)
-    .removeStandard(AxeStandard.WCAG_21);
-```
-
-Notice we removed ALL standards except `AxeStandard.WCAG_20`.
 
 ### Avoiding False Positives
 
