@@ -17,6 +17,8 @@ import com.deque.axe.android.rules.hierarchy.SwitchName;
 import com.deque.axe.android.rules.hierarchy.TouchSizeWcag;
 import com.deque.axe.android.rules.stateful.DontMoveAccessibilityFocus;
 import com.deque.axe.android.utils.JsonSerializable;
+import com.deque.axe.android.utils.SuppressFBWarnings;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,14 +27,13 @@ import java.util.Set;
 
 public class AxeConf {
 
-  @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+  @SuppressFBWarnings(
           value = "URF_UNREAD_FIELD",
-          justification = "This is an object that isn't used for anything but serialization."
+          justification = "This is an object that isn't used for"
+                  + " anything but serialization."
   )
   static class IssueFilterConf implements JsonSerializable {
-
     boolean onlyShowResultsVisibleToUser = false;
-
   }
 
   static class RuleConf implements JsonSerializable {

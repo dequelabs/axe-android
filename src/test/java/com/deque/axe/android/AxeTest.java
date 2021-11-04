@@ -362,7 +362,9 @@ public class AxeTest {
 
     Set<String> actualAxeViewKeySet = actualAxeViewJsonObject.keySet();
 
-    assertEquals(actualAxeViewKeySet, keySet);
+    keySet.forEach(key -> {
+      assertTrue(actualAxeViewKeySet.contains(key));
+    });
   }
 
   @Test
